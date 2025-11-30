@@ -61,7 +61,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </div>
 
       {/* Section 2: Intro */}
-      <div className="shrink-0 w-full lg:w-[50vw] h-[20vh] lg:h-full flex flex-col justify-end items-start p-10 md:p-20 bg-white" id="about">
+      <div className="shrink-0 w-full lg:w-[50vw] h-[40vh] lg:h-full flex flex-col justify-end items-start p-10 md:p-20 bg-white" id="about">
         <p className="font-serif italic text-2xl md:text-4xl leading-relaxed text-gray-800 max-w-2xl">
           "Nous capturons le silence au milieu du chaos. Une narration visuelle composée de lumière, d'ombre et d'émotion brute."
         </p>

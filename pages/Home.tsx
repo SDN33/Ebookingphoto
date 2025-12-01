@@ -80,7 +80,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       {/* Section 5: Archive Gallery */}
       <div className="shrink-0 flex flex-col lg:flex-row lg:items-center bg-gray-50/50" id="journal">
          {/* Archive Label: Top Header on Mobile, Vertical Sidebar on Desktop */}
-         <div className="w-full lg:w-40 h-20 lg:h-full flex items-center justify-center lg:justify-center border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50 sticky top-0 lg:static z-20">
+         <div className="w-full lg:w-40 h-20 lg:h-full flex items-center justify-center lg:justify-center border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50 static lg:static z-20">
            <span className="lg:-rotate-90 text-xs tracking-widest uppercase text-gray-400 whitespace-nowrap">Archives 2023—2024</span>
          </div>
          

@@ -428,9 +428,8 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
                 transform: isExpanded ? 'translateY(-20px)' : 'translateY(0)'
             }}
           >
-            <p className="text-gray-400 text-sm leading-relaxed font-light text-right">
-               A stunning example of {item.category.toLowerCase()} photography. <br/>
-               {index + 1}/{items.length}
+            <p className="text-gray-400 text-sm font-bold leading-relaxed text-right">
+               Un project photo sur {item.category.toLowerCase()} {" "} <strong className="text-xl font-bold">.{index + 1}</strong>
             </p>
           </div>
         );

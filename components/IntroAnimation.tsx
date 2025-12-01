@@ -29,7 +29,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
   useEffect(() => {
     // Timing configuration
     const isIntro = mode === 'intro';
-    const totalDuration = isIntro ? 5000 : 1200; // 5s for intro, 1.2s for transition
+    const totalDuration = isIntro ? 3000 : 1200; // 5s for intro, 1.2s for transition
 
     const timer = setTimeout(() => {
       setSlideOut(true);

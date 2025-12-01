@@ -148,7 +148,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         {/* Right side: Image with button overlay */}
         <div className="w-full lg:w-1/2 h-[50vh] lg:h-full relative group overflow-hidden">
           <img 
-            src="https://picsum.photos/800/1200?random=wedding"  
+            src="/gallery/mariage/photo1.jpg"  
             alt="Mariage" 
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
           />

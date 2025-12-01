@@ -91,11 +91,12 @@ const AnimationTotem: React.FC = () => {
          </span>
          
          {/* Abstract representation of the Totem */}
-         <div className="relative w-[30vh] h-[60vh] md:h-[70vh] bg-black border border-gray-800 shadow-2xl flex flex-col items-center p-4">
-            <div className="w-full aspect-[9/16] bg-gray-800 animate-pulse mb-4 flex items-center justify-center">
-              <span className="font-sans text-xs text-gray-600">Écran 65"</span>
-            </div>
-            <div className="w-2 h-2 rounded-full bg-white mt-auto mb-8" />
+         <div className="relative w-[30vh] h-[60vh] mt-32 md:mt-0 md:h-[60vh] shadow-2xl flex flex-col items-center">
+            <img 
+              src="/totem.jpeg" 
+              alt="Totem d'animation" 
+              className="w-full h-full object-cover border border-gray-800"
+            />
          </div>
          
          <div className="mt-8 text-center">
@@ -105,7 +106,7 @@ const AnimationTotem: React.FC = () => {
       </div>
 
       {/* 3. Features Horizontal List */}
-      <div className="shrink-0 flex flex-col md:flex-row h-auto md:h-full bg-black">
+      <div className="shrink-0 flex flex-col md:flex-row h-auto md:h-full bg-black mt-24 md:mt-0">
         {FEATURES.map((feature, index) => (
           <div 
             key={index} 

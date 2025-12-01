@@ -8,10 +8,11 @@ export interface Photo {
 }
 
 export interface PortfolioItem {
-  id: string;
+  id: number;
   title: string;
   category: string;
   imageUrl: string;
+  projectImages: string[];
 }
 
 export interface ChatMessage {

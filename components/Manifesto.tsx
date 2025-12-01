@@ -37,18 +37,16 @@ const Manifesto: React.FC = () => {
 
       {/* Small Blurred Image - Positioned relative to text as per reference */}
       <motion.div 
-        initial={{ y: 50, opacity: 0, filter: 'blur(10px)' }}
-        whileInView={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.4 }}
-        className="mt-8 md:mt-16 w-32 md:w-64 aspect-[3/4] relative grayscale overflow-hidden"
+        className="mt-8 md:mt-16 w-32 md:w-64 aspect-[3/4] relative overflow-hidden"
       >
         <img 
-          src="https://picsum.photos/600/800?grayscale&blur=2" 
+          src="/gallery/culture/photo1.jpg" 
           alt="Abstract portrait" 
-          className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 grayscale"
         />
-        {/* Motion blur overlay effect */}
-        <div className="absolute inset-0 bg-white/10 mix-blend-overlay pointer-events-none" />
       </motion.div>
 
       {/* Background decoration */}

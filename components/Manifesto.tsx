@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Manifesto: React.FC = () => {
   return (
-    <section className="w-full md:w-[100vw] lg:w-[85vw] mdmin-h-screen md:h-screen shrink-0 flex flex-col justify-center p-6 md:p-16 lg:p-24 bg-white snap-start relative overflow-hidden">
+    <section className="w-full md:w-[100vw] lg:w-[85vw] 2xl:w-[60vw] mdmin-h-screen md:h-screen shrink-0 flex flex-col justify-center p-6 md:p-16 lg:p-24 bg-white snap-start relative overflow-hidden">
       
       {/* Large Typographic Block */}
       <div className="relative z-10 flex flex-col gap-2 md:gap-4 select-none mt-10 md:mt-0">
@@ -11,7 +11,7 @@ const Manifesto: React.FC = () => {
           initial={{ x: 100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl md:text-7xl lg:text-8xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
+          className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
         >
           J'AIME LA COULEUR,
         </motion.div>
@@ -20,7 +20,7 @@ const Manifesto: React.FC = () => {
            initial={{ x: 100, opacity: 0 }}
            whileInView={{ x: 0, opacity: 1 }}
            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-           className="text-4xl md:text-7xl lg:text-8xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
+           className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
         >
           LA MÉLANGER, L'ÉTUDIER,
         </motion.div>
@@ -29,7 +29,7 @@ const Manifesto: React.FC = () => {
            initial={{ x: 100, opacity: 0 }}
            whileInView={{ x: 0, opacity: 1 }}
            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-           className="text-4xl md:text-7xl lg:text-8xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
+           className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
         >
           LA COMPRENDRE, <span className="font-serif italic font-normal">L'ASSOCIER.</span>
         </motion.div>

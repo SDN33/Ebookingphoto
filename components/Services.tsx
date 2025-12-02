@@ -14,7 +14,7 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
   return (
-    <section className="w-full md:w-[70vw] min-h-screen md:h-screen shrink-0 flex flex-col justify-center p-6 md:p-20 bg-gray-50 snap-start">
+    <section className="w-full md:w-[70vw] min-h-screen md:h-screen shrink-0 flex flex-col justify-center p-6 md:p-0 bg-gray-50 snap-start">
       <div className="flex flex-col h-full justify-between py-10 md:py-20">
         
         <div className="border-b border-black pb-4 mb-8">
@@ -33,7 +33,7 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
             >
               <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-12">
                 <span className="font-serif italic text-xl md:text-2xl text-gray-400 group-hover:text-black transition-colors">{service.id}</span>
-                <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-6xl tracking-tight uppercase leading-none">{service.title}</h3>
+                <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-5xl tracking-tight uppercase leading-none">{service.title}</h3>
               </div>
               <div className="flex items-center gap-4 mt-4 md:mt-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                 <span className="font-sans text-xs md:text-sm tracking-wide text-gray-600">{service.desc}</span>

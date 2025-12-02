@@ -59,10 +59,10 @@ const Contact: React.FC = () => {
           </motion.div>
 
           {/* Phone Block */}
-           <motion.div 
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+          <motion.div 
+             initial={{ x: 50, opacity: 0 }}
+             animate={{ x: 0, opacity: 1 }}
+             transition={{ delay: 0.3, duration: 0.6 }}
             className="group"
           >
             <div className="flex items-center gap-3 mb-2">

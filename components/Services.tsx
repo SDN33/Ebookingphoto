@@ -14,7 +14,7 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
   return (
-    <section className="w-full lg:w-[70vw] min-h-screen md:h-screen shrink-0 flex flex-col justify-center p-6 md:p-20 lg:p-0 bg-gray-50 snap-start">
+    <section className="w-full lg:w-[70vw] min-h-screen md:h-screen shrink-0 flex flex-col justify-center p-6 md:p-20 lg:p-0 2xl:p-24 bg-gray-50 snap-start">
       <div className="flex flex-col h-full justify-between py-10 md:py-20">
         
         <div className="border-b border-black pb-4 mb-8">

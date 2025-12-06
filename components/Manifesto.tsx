@@ -43,7 +43,7 @@ const Manifesto: React.FC = () => {
         className="mt-8 md:mt-16 w-32 md:w-64 aspect-[3/4] relative overflow-hidden"
       >
         <img 
-          src="/photographe.png" 
+          src="/photographe1.jpg" 
           alt="Abstract portrait" 
           className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 grayscale"
         />

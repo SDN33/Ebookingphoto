@@ -9,7 +9,7 @@ interface IntroAnimationProps {
 
 const IntroAnimation: React.FC<IntroAnimationProps> = ({ 
   onComplete, 
-  lastLineText = "TOTEM", 
+  lastLineText = "EVENEMENTIEL", 
   mode = 'intro' 
 }) => {
   const [slideOut, setSlideOut] = useState(false);
@@ -91,7 +91,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                   marginTop: 'clamp(-0.25rem, -0.8vw, -1rem)'
                 }}
               >
-                PARIS
+                STUDIO
               </motion.span>
 
               <motion.span 
@@ -143,7 +143,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                   fontSize: isMobile ? '1.5rem' : 'clamp(3rem, 6vw + 1rem, 6rem)',
                 }}
               >
-                {lastLineText}
+                EVENEMENTIEL
               </motion.span>
             </div>
           )}

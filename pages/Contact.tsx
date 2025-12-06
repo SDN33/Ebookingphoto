@@ -21,8 +21,8 @@ const Contact: React.FC = () => {
             Prendre contact
           </span>
           <h1 className="flex flex-col leading-none">
-            <span className="font-sans font-bold text-4xl md:text-8xl tracking-tighter">DÉMARRER UNE</span>
-            <span className="font-serif italic font-light text-4xl md:text-8xl tracking-tight ml-2 md:ml-16 text-gray-300 break-all md:break-normal">CONVERSATION</span>
+            <span className="font-sans font-bold text-4xl md:text-6xl 2xl:text-8xl tracking-tighter">DÉMARRER UNE</span>
+            <span className="font-serif italic font-light text-4xl md:text-6xl 2xl:text-8xl tracking-tight ml-2 md:ml-16 text-gray-300 break-all md:break-normal">CONVERSATION</span>
           </h1>
         </motion.div>
 
@@ -72,22 +72,13 @@ const Contact: React.FC = () => {
             <a href="tel:+33667926647" className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors">
               +33 6 67 92 66 47
             </a>
-          </motion.div>
-
-          {/* Address Block */}
-          <motion.div 
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <div className="flex items-center gap-3 mb-2">
-               <MapPin className="w-4 h-4 text-gray-500" />
-               <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">Studio</h3>
-            </div>
-            <p className="font-serif italic text-xl md:text-2xl text-gray-200 leading-relaxed">
-              3, Rue du Petit Croissant<br/>
-              91410 Dourdan, France
-            </p>
+            {/* Appeler Button - Mobile Only */}
+            <a 
+              href="tel:+33667926647" 
+              className="md:hidden mt-4 inline-block px-6 py-3 bg-white text-black font-sans text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors duration-300"
+            >
+              Appeler
+            </a>
           </motion.div>
 
           {/* Socials Divider */}

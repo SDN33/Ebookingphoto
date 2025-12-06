@@ -3,20 +3,12 @@ import { motion } from 'framer-motion';
 import TypewriterText from './TypewriterText';
 
 const Hero: React.FC = () => {
-  const texts1 = [
-    'ANIMATION',
-    'REPORTAGE',
-    'PHOTOGRAPHE',
-    'ÉVÉNEMENT',
-    'ÉVÉNEMENT'
-  ];
 
   const texts2 = [
+    'REPORTAGE',
+    'ANIMATION',
     'TOTEM',
-    'PHOTO',
-    'MARIAGE',
-    'CORPORATE',
-    'SPORTIFS'
+    'EVENEMENTIEL'
   ];
 
   return (
@@ -46,7 +38,7 @@ const Hero: React.FC = () => {
                 marginTop: 'clamp(-0.25rem, -0.8vw, -1rem)'
               }}
             >
-              PARIS
+              STUDIO
             </span>
             <span 
               className="font-sans font-normal tracking-tight whitespace-nowrap"

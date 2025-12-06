@@ -123,30 +123,26 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       )}
 
       {/* Section 6: Mariages */}
-      <div className="shrink-0 w-full lg:w-[70vw] h-[80vh] lg:h-full flex flex-col lg:flex-row bg-white relative" id="mariages">
+      <div className="shrink-0 w-full lg:w-[120vw] mt-20 md:mt-0 lg:h-full flex flex-col lg:flex-row bg-white relative" id="mariages">
         {/* Left side: Text content */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center items-start p-10 md:p-20">
-          <div className="max-w-2xl">
-            <span className="font-sans text-xs tracking-widest uppercase text-gray-400 mb-6 block">Mariages</span>
+        <div className="w-full lg:w-2/3 flex flex-col justify-center items-start p-10 md:p-20">
+          <div className="max-w-7xl">
             <h2 className="font-sans text-4xl md:text-6xl font-bold tracking-tighter mb-4 text-black">
-              MOMENTS
+              EBOOKINGPHOTO
             </h2>
             <h2 className="font-serif italic text-4xl md:text-6xl font-light mb-8 text-gray-800">
-              ÉTERNELS
+              C'EST AUSSI LE JOUR DE VOTRE <strong className="font-bold">MARIAGE</strong> 
             </h2>
             <div className="h-px w-24 bg-black mb-8"></div>
             <p className="font-serif italic text-lg md:text-xl leading-relaxed text-gray-700 mb-6">
               Capturer l'émotion pure, l'intimité et la beauté de votre journée spéciale. 
               Une approche documentaire et artistique pour immortaliser chaque instant précieux.
             </p>
-            <p className="font-sans text-sm tracking-wide text-gray-600">
-              Reportage complet • Cérémonie • Réception • Shooting couple
-            </p>
           </div>
         </div>
 
         {/* Right side: Image with button overlay */}
-        <div className="w-full lg:w-1/2 h-[50vh] lg:h-full relative group overflow-hidden">
+        <div className="w-full lg:w-1/3 h-[50vh] lg:h-full relative group overflow-hidden">
           <img 
             src="/gallery/mariage/photo1.jpg"  
             alt="Mariage" 

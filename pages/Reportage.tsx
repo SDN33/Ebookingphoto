@@ -69,10 +69,10 @@ const Reportage: React.FC = () => {
         <span className="font-sans text-xs tracking-[0.3em] uppercase mb-6 text-gray-400">
           Série Documentaire
         </span>
-        <h1 className="text-5xl md:text-8xl font-sans font-bold tracking-tighter leading-none mb-2">
+        <h1 className="text-5xl md:text-6xl 2xl:text-8xl font-sans font-bold tracking-tighter leading-none mb-2">
           RÉALITÉ
         </h1>
-        <h1 className="text-5xl md:text-8xl font-serif italic font-light leading-none text-gray-400 mb-8 md:mb-12">
+        <h1 className="text-5xl md:text-6xl 2xl:text-8xl font-serif italic font-light leading-none text-gray-400 mb-8 md:mb-12">
           NON SCÉNARISÉE
         </h1>
         <p className="max-w-md font-sans text-sm leading-relaxed text-gray-600">

@@ -7,8 +7,8 @@ const Hero: React.FC = () => {
   const texts2 = [
     'REPORTAGE',
     'ANIMATION',
-    'TOTEM',
-    'EVENEMENTIEL'
+    'EVENEMENTIEL',
+    'TOTEM'
   ];
 
   return (

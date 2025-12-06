@@ -63,7 +63,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       {/* Section 2: Intro */}
       <div className="shrink-0 w-full lg:w-[50vw] h-[40vh] lg:h-full flex flex-col justify-end items-start p-10 md:p-20 bg-white" id="about">
         <p className="font-serif italic text-2xl md:text-4xl leading-relaxed text-gray-800 max-w-2xl">
-          "Nous capturons le silence au milieu du chaos. Une narration visuelle composée de lumière, d'ombre et d'émotion brute."
+          "J'aime la pudeur, la discrétion, quand l'ombre s'invite a la lumiere que nous capturons dans l'emotion brute. Une narration visuelle."
         </p>
         <div className="h-px w-24 bg-black mt-10"></div>
         <p className="font-sans text-xs tracking-widest mt-4 uppercase">

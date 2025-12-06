@@ -13,7 +13,7 @@ const Manifesto: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
         >
-          J'AIME LA COULEUR,
+          J'AIME LA COULEUR D'ORIGINE,
         </motion.div>
         
         <motion.div 
@@ -22,7 +22,7 @@ const Manifesto: React.FC = () => {
            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
            className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
         >
-          LA MÉLANGER, L'ÉTUDIER,
+          LE NOIR ET BLANC,
         </motion.div>
 
         <motion.div 
@@ -31,7 +31,7 @@ const Manifesto: React.FC = () => {
            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
            className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black"
         >
-          LA COMPRENDRE, <span className="font-serif italic font-normal">L'ASSOCIER.</span>
+          LE SILENCE, AU MILIEU <span className="font-serif italic font-normal">DU CHAOS.</span>
         </motion.div>
       </div>
 
@@ -43,7 +43,7 @@ const Manifesto: React.FC = () => {
         className="mt-8 md:mt-16 w-32 md:w-64 aspect-[3/4] relative overflow-hidden"
       >
         <img 
-          src="/gallery/culture/photo1.jpg" 
+          src="/photographe.png" 
           alt="Abstract portrait" 
           className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 grayscale"
         />

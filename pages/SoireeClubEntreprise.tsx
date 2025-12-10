@@ -1,6 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Trophy, Users, Star, Camera } from 'lucide-react';
+import { useSiteConfig } from '../hooks/useSiteConfig';
+
+const iconMap: { [key: string]: React.ElementType } = {
+  Trophy,
+  Users,
+  Star,
+  Camera
+};
 
 const EVENTS = [
   {
@@ -20,6 +28,7 @@ const EVENTS = [
 ];
 
 const SoireeClubEntreprise: React.FC = () => {
+  const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollXProgress } = useScroll({ container: containerRef });
 
@@ -47,28 +56,29 @@ const SoireeClubEntreprise: React.FC = () => {
       <div className="shrink-0 w-full md:w-[60vw] h-[80vh] md:h-full flex flex-col justify-center p-6 md:p-24 bg-gray-50 relative overflow-hidden pt-24 md:pt-0">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none">
-           <span className="absolute top-10 right-10 text-[10rem] md:text-[20rem] font-serif italic">Ev</span>
+           <span className="absolute top-10 right-10 text-[10rem] md:text-[20rem] font-serif italic">{config.soireeClubEntreprise.intro.decoration}</span>
         </div>
 
         <motion.div style={{ x: window.innerWidth > 768 ? titleX : 0 }} className="z-10 relative">
           <span className="font-sans text-xs md:text-sm tracking-[0.4em] uppercase text-gray-500 mb-6 block">
-            Expertise Événementielle
+            {config.soireeClubEntreprise.intro.category}
           </span>
           <h1 className="font-sans font-bold text-5xl md:text-8xl tracking-tighter leading-none text-black mb-2">
-            CLUB &
+            {config.soireeClubEntreprise.intro.title.line1}
           </h1>
           <h1 className="font-serif italic font-light text-5xl md:text-8xl tracking-tighter leading-none text-gray-800">
-            CORPORATE
+            {config.soireeClubEntreprise.intro.title.line2}
           </h1>
           <p className="mt-8 font-sans text-sm md:text-base leading-relaxed max-w-md text-gray-600 border-l-2 border-black pl-6">
-            Nous accompagnons les clubs sportifs et les entreprises dans la mise en lumière de leurs événements majeurs. 
-            Une approche dynamique et élégante pour célébrer vos réussites.
+            {config.soireeClubEntreprise.intro.description}
           </p>
         </motion.div>
       </div>
 
       {/* 2. Dual Offerings: Sports & Corporate */}
-      {EVENTS.map((event, idx) => (
+      {config.soireeClubEntreprise.events.map((event, idx) => {
+        const IconComponent = iconMap[event.icon] || Users;
+        return (
         <div key={idx} className="shrink-0 w-full md:w-[50vw] h-[70vh] md:h-full relative group overflow-hidden border-t md:border-t-0 md:border-l border-white">
           <div className="absolute inset-0 z-0">
              <img 
@@ -81,48 +91,40 @@ const SoireeClubEntreprise: React.FC = () => {
 
           <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-16 text-white">
              <div className="mb-auto pt-10 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 transform md:-translate-y-4 md:group-hover:translate-y-0">
-                <event.icon className="w-12 h-12 mb-4 text-white" />
+                <IconComponent className="w-12 h-12 mb-4 text-white" />
              </div>
              
              <h2 className="font-sans font-bold text-4xl md:text-6xl tracking-tight mb-2">{event.title}</h2>
              <h3 className="font-serif italic text-2xl md:text-3xl text-gray-300 mb-6">{event.subtitle}</h3>
              <p className="font-sans text-sm leading-relaxed max-w-sm opacity-90 md:opacity-80 md:group-hover:opacity-100 transition-opacity">
-               {event.desc}
+               {event.description}
              </p>
           </div>
         </div>
-      ))}
+        );
+      })}
 
       {/* 3. Features List */}
       <div className="shrink-0 w-full md:w-[40vw] h-auto md:h-full bg-black text-white flex flex-col justify-center p-8 md:p-20">
-         <h3 className="font-serif italic text-3xl md:text-4xl mb-8 md:mb-12 text-gray-200 mt-10 md:mt-0">Nos Services Inclus</h3>
+         <h3 className="font-serif italic text-3xl md:text-4xl mb-8 md:mb-12 text-gray-200 mt-10 md:mt-0">{config.soireeClubEntreprise.services.title}</h3>
          
          <div className="flex flex-col gap-8">
-            <div className="flex gap-6 items-start">
-               <Camera className="w-6 h-6 mt-1 text-gray-400 shrink-0" />
-               <div>
-                  <h4 className="font-sans font-bold tracking-widest uppercase text-sm mb-2">Reportage Complet</h4>
-                  <p className="text-gray-500 text-sm">Couverture intégrale de l'événement, des préparatifs à la fin de soirée.</p>
-               </div>
-            </div>
-            <div className="flex gap-6 items-start">
-               <Star className="w-6 h-6 mt-1 text-gray-400 shrink-0" />
-               <div>
-                  <h4 className="font-sans font-bold tracking-widest uppercase text-sm mb-2">Studio Mobile</h4>
-                  <p className="text-gray-500 text-sm">Installation d'un studio photo professionnel sur place pour des portraits de qualité.</p>
-               </div>
-            </div>
-            <div className="flex gap-6 items-start">
-               <Users className="w-6 h-6 mt-1 text-gray-400 shrink-0" />
-               <div>
-                  <h4 className="font-sans font-bold tracking-widest uppercase text-sm mb-2">Galerie Privée</h4>
-                  <p className="text-gray-500 text-sm">Accès sécurisé et partage instantané pour tous vos collaborateurs ou membres.</p>
-               </div>
-            </div>
+            {config.soireeClubEntreprise.services.items.map((service, idx) => {
+              const ServiceIcon = iconMap[service.icon] || Camera;
+              return (
+                <div key={idx} className="flex gap-6 items-start">
+                  <ServiceIcon className="w-6 h-6 mt-1 text-gray-400 shrink-0" />
+                  <div>
+                    <h4 className="font-sans font-bold tracking-widest uppercase text-sm mb-2">{service.title}</h4>
+                    <p className="text-gray-500 text-sm">{service.description}</p>
+                  </div>
+                </div>
+              );
+            })}
          </div>
 
          <button className="mt-16 mb-10 md:mb-0 border border-white px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors self-start">
-            Obtenir un devis
+            {config.soireeClubEntreprise.services.cta.label}
          </button>
       </div>
 

@@ -9,20 +9,18 @@ import AnimationTotem from './pages/AnimationTotem';
 import SoireeClubEntreprise from './pages/SoireeClubEntreprise';
 import CustomCursor from './components/CustomCursor';
 import IntroAnimation from './components/IntroAnimation';
+import { useSiteConfig } from './hooks/useSiteConfig';
 
 const App: React.FC = () => {
+  const config = useSiteConfig();
   const [currentPath, setCurrentPath] = useState('/');
   const [showIntro, setShowIntro] = useState(true);
-  const [introText, setIntroText] = useState('TOTEM');
+  const [introText, setIntroText] = useState(config.introAnimation.defaultText);
   const [introMode, setIntroMode] = useState<'intro' | 'transition'>('intro');
   
   const handleNavigate = (path: string) => {
     // Determine if we need a transition animation
-    let transitionTitle = '';
-    
-    if (path === '/reportage') transitionTitle = 'REPORTAGE PHOTO';
-    else if (path === '/animation-totem') transitionTitle = 'ANIMATION TOTEM';
-    else if (path === '/soiree-club-entreprise') transitionTitle = 'SOIRÉE CLUB & ENTREPRISE';
+    const transitionTitle = config.introAnimation.transitionTexts[path as keyof typeof config.introAnimation.transitionTexts];
 
     if (transitionTitle) {
       setIntroText(transitionTitle);

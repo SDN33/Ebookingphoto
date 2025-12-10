@@ -6,19 +6,14 @@ import Manifesto from '../components/Manifesto';
 import Services from '../components/Services';
 import { Photo } from '../types';
 import { X } from 'lucide-react';
-
-// Mock Data
-const PHOTOS: Photo[] = [
-  { id: '1', url: 'https://picsum.photos/800/1200?random=1', title: 'Noir Étude', category: 'Mode', aspectRatio: 'portrait' },
-  { id: '2', url: 'https://picsum.photos/1200/800?random=2', title: 'Silence Urbain', category: 'Architecture', aspectRatio: 'landscape' },
-  { id: '3', url: 'https://picsum.photos/800/1200?random=3', title: 'La Muse', category: 'Portrait', aspectRatio: 'portrait' },
-];
+import { useSiteConfig } from '../hooks/useSiteConfig';
 
 interface HomeProps {
   onNavigate: (path: string) => void;
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+  const config = useSiteConfig();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isFlipbookOpen, setIsFlipbookOpen] = useState(false);
 
@@ -63,11 +58,11 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       {/* Section 2: Intro */}
       <div className="shrink-0 w-full lg:w-[50vw] h-[40vh] lg:h-full flex flex-col justify-end items-start p-10 md:p-20 bg-white" id="about">
         <p className="font-serif italic text-2xl md:text-4xl leading-relaxed text-gray-800 max-w-2xl">
-          "J'aime la pudeur, la discrétion, quand l'ombre s'invite a la lumiere que nous capturons dans l'emotion brute. Une narration visuelle."
+          "{config.home.intro.quote}"
         </p>
         <div className="h-px w-24 bg-black mt-10"></div>
         <p className="font-sans text-xs tracking-widest mt-4 uppercase">
-          Défiler pour explorer
+          {config.home.intro.scrollHint}
         </p>
       </div>
 
@@ -81,19 +76,19 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       <div className="shrink-0 flex flex-col lg:flex-row lg:items-center bg-gray-50/50" id="journal">
          {/* Archive Label: Top Header on Mobile, Vertical Sidebar on Desktop */}
          <div className="w-full lg:w-40 h-20 lg:h-full flex items-center justify-center lg:justify-center border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50 static lg:static z-20">
-           <span className="lg:-rotate-90 text-xs tracking-widest uppercase text-gray-400 whitespace-nowrap">Archives 2023—2024</span>
+           <span className="lg:-rotate-90 text-xs tracking-widest uppercase text-gray-400 whitespace-nowrap">{config.home.gallery.label}</span>
          </div>
          
          {/* Gallery Items */}
-         {PHOTOS.map((photo, index) => (
-          <div key={photo.id} className="shrink-0 w-full lg:w-auto">
-            <GalleryItem 
-              photo={photo} 
-              index={index} 
-              onClick={() => setIsFlipbookOpen(true)}
-            />
-          </div>
-        ))}
+         {config.home.gallery.photos.map((photo, index) => (
+           <div key={photo.id} className="shrink-0 w-full lg:w-auto">
+             <GalleryItem 
+               photo={photo as Photo} 
+               index={index} 
+               onClick={() => setIsFlipbookOpen(true)}
+             />
+           </div>
+         ))}
       </div>
 
       {/* Flipbook Modal */}
@@ -113,7 +108,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               <X size={24} className="text-black" />
             </button>
             <iframe
-              src="https://online.flippingbook.com/view/1041806480/"
+              src={config.home.flipbook.url}
               className="w-full h-full border-0"
               allowFullScreen
               title="Flipbook"
@@ -128,15 +123,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="w-full lg:w-2/3 flex flex-col justify-center items-start p-10 md:p-20">
           <div className="max-w-7xl">
             <h2 className="font-sans text-4xl md:text-6xl font-bold tracking-tighter mb-4 text-black">
-              EBOOKINGPHOTO
+              {config.home.mariage.title.line1}
             </h2>
             <h2 className="font-serif italic text-4xl md:text-6xl font-light mb-8 text-gray-800">
-             c'est aussi le jour de votre <strong className="font-bold">MARIAGE</strong> 
+             {config.home.mariage.title.line2} <strong className="font-bold">{config.home.mariage.title.line3}</strong> 
             </h2>
             <div className="h-px w-24 bg-black mb-8"></div>
             <p className="font-serif italic text-lg md:text-xl leading-relaxed text-gray-700 mb-6">
-              Capturer l'émotion pure, l'intimité et la beauté de votre journée spéciale. 
-              Une approche documentaire et artistique pour immortaliser chaque instant précieux.
+              {config.home.mariage.description}
             </p>
           </div>
         </div>
@@ -144,8 +138,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         {/* Right side: Image with button overlay */}
         <div className="w-full lg:w-1/3 h-[50vh] lg:h-full relative group overflow-hidden">
           <img 
-            src="/gallery/mariage/photo1.jpg"  
-            alt="Mariage" 
+            src={config.home.mariage.image.src}  
+            alt={config.home.mariage.image.alt} 
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
           />
           {/* Overlay gradient */}
@@ -153,13 +147,13 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           
           {/* Button overlay */}
           <a 
-            href="https://ebookingphoto-mariage.com/" 
+            href={config.home.mariage.link.url} 
             target="_blank" 
             rel="noopener noreferrer"
             className="absolute inset-0 flex items-center justify-center z-10 cursor-pointer"
           >
             <button className="px-8 py-4 bg-white/80 hover:bg-white text-black font-sans text-sm tracking-widest uppercase border border-black/30 hover:border-black transition-all duration-300 opacity-70 group-hover:opacity-100">
-              Découvrir
+              {config.home.mariage.link.label}
             </button>
           </a>
         </div>

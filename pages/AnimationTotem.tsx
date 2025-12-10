@@ -1,56 +1,22 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Monitor, Printer, Share2, Smartphone, ArrowRight, Sparkles } from 'lucide-react';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 
-// --- Data ---
-interface Feature {
-  id: number;
-  icon: React.ElementType;
-  title: string;
-  subtitle: string;
-  desc: string;
-  image: string;
-}
-
-const FEATURES: Feature[] = [
-  {
-    id: 1,
-    icon: Monitor,
-    title: 'Visualisation',
-    subtitle: 'Instantanée 4K',
-    desc: 'Un écran haute luminosité de 65" pour un retour en direct époustouflant. Vos invités se voient en grand, en beau, en temps réel.',
-    image: 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1600&auto=format&fit=crop'
-  },
-  {
-    id: 2,
-    icon: Printer,
-    title: 'Impression',
-    subtitle: 'Illimitée & Rapide',
-    desc: 'Une imprimante thermique industrielle capable de sortir des tirages de qualité laboratoire en moins de 8 secondes.',
-    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c46ae96?q=80&w=1600&auto=format&fit=crop'
-  },
-  {
-    id: 3,
-    icon: Smartphone,
-    title: 'Partage',
-    subtitle: 'Sans Contact',
-    desc: 'AirDrop, QR Code, Email ou SMS. La récupération des médias est fluide, moderne et instantanée pour tous les smartphones.',
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1600&auto=format&fit=crop'
-  },
-  {
-    id: 4,
-    icon: Share2,
-    title: 'Branding',
-    subtitle: 'Social Ready',
-    desc: 'Chaque photo est une opportunité marketing. Intégrez votre logo et laissez vos invités devenir vos meilleurs ambassadeurs.',
-    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1600&auto=format&fit=crop'
-  }
-];
+const iconMap: { [key: string]: React.ElementType } = {
+  Monitor,
+  Printer,
+  Share2,
+  Smartphone
+};
 
 // --- Sub-Components ---
 
 // 1. Hero Section
 const SectionHero = () => {
+  const config = useSiteConfig();
+  const hero = config.animationTotem.hero;
+  
   return (
     <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center overflow-hidden border-r border-white/10 bg-black">
       {/* Background Image with Parallax-like scale */}
@@ -61,7 +27,7 @@ const SectionHero = () => {
         transition={{ duration: 10, ease: "easeOut" }}
       >
         <img 
-          src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2000&auto=format&fit=crop" 
+          src={hero.backgroundImage} 
           alt="Atmosphere" 
           className="w-full h-full object-cover grayscale contrast-125"
         />
@@ -76,7 +42,7 @@ const SectionHero = () => {
             transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
             className="font-sans font-bold text-[15vw] md:text-[12vw] leading-[0.8] tracking-tighter text-white mix-blend-difference"
           >
-            LE TOTEM
+            {hero.title}
           </motion.h1>
         </div>
 
@@ -87,7 +53,7 @@ const SectionHero = () => {
           className="mt-12 md:mt-24 max-w-lg border-l-2 border-white pl-6"
         >
           <p className="font-sans text-lg text-gray-300 leading-relaxed">
-            Redéfinissez l'expérience photo événementielle. Une présence monolithique, une technologie de pointe et un design qui captive l'attention.
+            {hero.description}
           </p>
         </motion.div>
       </div>
@@ -98,7 +64,7 @@ const SectionHero = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <span>Scroll</span>
+        <span>{hero.scrollHint}</span>
         <div className="w-12 h-[1px] bg-gray-600" />
       </motion.div>
     </div>
@@ -107,6 +73,9 @@ const SectionHero = () => {
 
 // 2. Showcase / Concept
 const SectionShowcase = () => {
+  const config = useSiteConfig();
+  const showcase = config.animationTotem.showcase;
+  
   return (
     <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center bg-zinc-950 border-r border-white/10 overflow-hidden">
 
@@ -120,8 +89,8 @@ const SectionShowcase = () => {
              transition={{ duration: 0.5 }}
            >
               <img 
-                src="/totem.jpeg" 
-                alt="Totem d'animation" 
+                src={showcase.image.src} 
+                alt={showcase.image.alt} 
                 className="w-full h-auto border border-gray-800"
               />
            </motion.div>
@@ -130,21 +99,17 @@ const SectionShowcase = () => {
         {/* Specs Text */}
         <div className="flex flex-col gap-8 md:w-1/3">
           <h3 className="font-serif text-4xl md:text-5xl text-white">
-            <span className="italic text-gray-400">Pureté</span> du design.
+            <span className="italic text-gray-400">{showcase.title.line1}</span> {showcase.title.line2}
           </h3>
           <p className="font-sans text-gray-300 leading-relaxed">
-             Conçu pour s'intégrer dans les environnements les plus prestigieux. Son encombrement minimal au sol contraste avec la puissance de son affichage numérique.
+             {showcase.description}
           </p>
           <ul className="space-y-4 font-sans text-sm text-gray-300">
-            <li className="flex items-center gap-4 border-b border-gray-800 pb-2">
-              <span className="w-2 h-2 bg-white rounded-full" /> Écran Tactile 65 Pouces
-            </li>
-            <li className="flex items-center gap-4 border-b border-gray-800 pb-2">
-              <span className="w-2 h-2 bg-white rounded-full" /> Appareil Réflex DSLR Intégré
-            </li>
-            <li className="flex items-center gap-4 border-b border-gray-800 pb-2">
-              <span className="w-2 h-2 bg-white rounded-full" /> Éclairage LED Studio Ajustable
-            </li>
+            {showcase.specs.map((spec, idx) => (
+              <li key={idx} className="flex items-center gap-4 border-b border-gray-800 pb-2">
+                <span className="w-2 h-2 bg-white rounded-full" /> {spec}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -153,7 +118,21 @@ const SectionShowcase = () => {
 };
 
 // 3. Feature Card Component
-const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, index }) => {
+interface FeatureCardProps {
+  feature: {
+    id: number;
+    icon: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+  };
+  index: number;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
+  const IconComponent = iconMap[feature.icon] || Monitor;
+  
   return (
     <div className="h-screen w-screen md:w-[45vw] flex-shrink-0 flex flex-col border-r border-white/10 relative overflow-hidden group">
       {/* Background Image that reveals on hover */}
@@ -170,7 +149,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
         <div className="flex justify-between items-start">
           <span className="font-serif text-6xl text-white/20 group-hover:text-white/40 transition-colors">0{index + 1}</span>
           <div className="p-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md group-hover:bg-white group-hover:text-black transition-all duration-300">
-            <feature.icon className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black" strokeWidth={1.5} />
+            <IconComponent className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black" strokeWidth={1.5} />
           </div>
         </div>
 
@@ -180,7 +159,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
             <span className="font-serif italic font-light text-gray-300 group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-2">{feature.subtitle}</span>
           </h4>
           <p className="font-sans text-sm md:text-base text-gray-300 leading-relaxed max-w-md group-hover:text-white transition-colors">
-            {feature.desc}
+            {feature.description}
           </p>
         </div>
       </div>
@@ -190,6 +169,9 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
 
 // 4. CTA Section
 const SectionCTA = () => {
+  const config = useSiteConfig();
+  const cta = config.animationTotem.cta;
+  
   return (
     <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center bg-white text-black overflow-hidden">
       <motion.div 
@@ -208,7 +190,7 @@ const SectionCTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           className="font-sans text-xs md:text-sm tracking-[0.3em] uppercase text-gray-500 mb-8"
         >
-          Prêt à marquer les esprits ?
+          {cta.subtitle}
         </motion.p>
         
         <motion.h2 
@@ -217,7 +199,7 @@ const SectionCTA = () => {
           transition={{ duration: 0.6 }}
           className="font-serif italic text-6xl md:text-8xl mb-8 leading-tight"
         >
-          Sublimez<br/>l'instant.
+          {cta.title.line1}<br/>{cta.title.line2}
         </motion.h2>
 
         <motion.button 
@@ -225,7 +207,7 @@ const SectionCTA = () => {
           whileTap={{ scale: 0.95 }}
           className="group relative inline-flex items-center gap-4 px-12 py-6 bg-black text-white overflow-hidden transition-all duration-300"
         >
-          <span className="relative z-10 font-sans text-sm tracking-[0.2em] uppercase font-bold">Réserver maintenant</span>
+          <span className="relative z-10 font-sans text-sm tracking-[0.2em] uppercase font-bold">{cta.button.label}</span>
           <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
           <div className="absolute inset-0 bg-gray-800 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
         </motion.button>
@@ -237,6 +219,7 @@ const SectionCTA = () => {
 // --- Main Component ---
 
 const AnimationTotem: React.FC = () => {
+  const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Horizontal Scroll Handler for Desktop
@@ -279,7 +262,7 @@ const AnimationTotem: React.FC = () => {
       </div>
 
       {/* 3. Features Horizontal List */}
-      {FEATURES.map((feature, index) => (
+      {config.animationTotem.features.map((feature, index) => (
         <div key={feature.id} className="shrink-0 w-full md:w-auto border-b md:border-b-0 border-white/10">
           <FeatureCard feature={feature} index={index} />
         </div>

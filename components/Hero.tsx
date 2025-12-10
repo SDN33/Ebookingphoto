@@ -1,15 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import TypewriterText from './TypewriterText';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 
 const Hero: React.FC = () => {
-
-  const texts2 = [
-    'REPORTAGE',
-    'ANIMATION',
-    'EVENEMENTIEL',
-    'TOTEM'
-  ];
+  const config = useSiteConfig();
+  const hero = config.home.hero;
 
   return (
     <section className="min-w-full h-[100dvh] w-screen lg:w-[100vw] flex flex-col lg:flex-row relative shrink-0 min-w-[320px]">
@@ -28,7 +24,7 @@ const Hero: React.FC = () => {
               className="font-sans font-normal tracking-tight whitespace-nowrap"
               style={{ fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 70px)' }}
             >
-              EBOOKINGPHOTO
+              {hero.title.line1}
             </span>
             <span 
               className="font-serif italic font-light tracking-tight whitespace-nowrap"
@@ -38,7 +34,7 @@ const Hero: React.FC = () => {
                 marginTop: 'clamp(-0.25rem, -0.8vw, -1rem)'
               }}
             >
-              STUDIO
+              {hero.title.line2}
             </span>
             <span 
               className="font-sans font-normal tracking-tight whitespace-nowrap"
@@ -47,7 +43,7 @@ const Hero: React.FC = () => {
                 marginTop: 'clamp(-0.125rem, -0.4vw, -0.75rem)'
               }}
             >
-              PHOTOGRAPHE
+              {hero.title.line3}
             </span>
             <span 
               className="font-serif italic font-light tracking-tight whitespace-nowrap"
@@ -58,7 +54,7 @@ const Hero: React.FC = () => {
               }}
             >
               <TypewriterText 
-                words={texts2}
+                words={hero.title.line4.words}
                 className="font-serif italic font-light tracking-tight whitespace-nowrap"
                 interval={2000}
               />
@@ -78,10 +74,10 @@ const Hero: React.FC = () => {
           {/* Grayscale overlay */}
           <div className="absolute inset-0 bg-black/10 z-10" />
           <video 
-            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            autoPlay
-            loop
-            muted
+            src={hero.video.src}
+            autoPlay={hero.video.autoPlay}
+            loop={hero.video.loop}
+            muted={hero.video.muted}
             playsInline
             className="w-full h-full object-cover grayscale contrast-125"
           />

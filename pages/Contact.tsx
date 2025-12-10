@@ -1,14 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
+import { useSiteConfig } from '../hooks/useSiteConfig';
+
+const iconMap: { [key: string]: React.ElementType } = {
+  Mail,
+  Phone,
+  Instagram,
+  Facebook
+};
 
 const Contact: React.FC = () => {
+  const config = useSiteConfig();
   return (
     <div className="w-full h-full bg-black text-white flex flex-col md:flex-row relative overflow-y-auto md:overflow-hidden">
       
       {/* Background Texture/Noise */}
       <div className="absolute inset-0 opacity-20 pointer-events-none z-0 fixed" 
-           style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }} />
+           style={{ backgroundImage: `url("${config.contact.backgroundTexture}")` }} />
 
       {/* Left Side: Typography */}
       <div className="w-full md:w-1/2 shrink-0 min-h-[50vh] md:h-full flex flex-col justify-center p-10 md:p-20 relative z-10 border-b md:border-b-0 md:border-r border-white/10 pt-24 md:pt-20">
@@ -18,11 +27,11 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <span className="font-sans text-xs tracking-[0.3em] text-gray-400 uppercase mb-4 block">
-            Prendre contact
+            {config.contact.intro.category}
           </span>
           <h1 className="flex flex-col leading-none">
-            <span className="font-sans font-bold text-4xl md:text-6xl 2xl:text-8xl tracking-tighter">DÉMARRER UNE</span>
-            <span className="font-serif italic font-light text-4xl md:text-6xl 2xl:text-8xl tracking-tight ml-2 md:ml-16 text-gray-300 break-all md:break-normal">CONVERSATION</span>
+            <span className="font-sans font-bold text-4xl md:text-6xl 2xl:text-8xl tracking-tighter">{config.contact.intro.title.line1}</span>
+            <span className="font-serif italic font-light text-4xl md:text-6xl 2xl:text-8xl tracking-tight ml-2 md:ml-16 text-gray-300 break-all md:break-normal">{config.contact.intro.title.line2}</span>
           </h1>
         </motion.div>
 
@@ -32,7 +41,7 @@ const Contact: React.FC = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mt-8 md:mt-12 max-w-md font-sans text-sm leading-relaxed text-gray-400"
         >
-          Disponible pour des commandes commerciales, reportages et collaborations dans le monde entier.
+          {config.contact.intro.description}
         </motion.p>
       </div>
 
@@ -50,10 +59,10 @@ const Contact: React.FC = () => {
           >
             <div className="flex items-center gap-3 mb-2">
                <Mail className="w-4 h-4 text-gray-500" />
-               <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">Email</h3>
+               <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.email.label}</h3>
             </div>
-            <a href="mailto:charles-andre@ebookingphoto.com" className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors break-all">
-              charles-andre@ebookingphoto.com
+            <a href={config.contact.details.email.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors break-all">
+              {config.contact.details.email.value}
               <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-5 h-5 shrink-0 text-gray-400" />
             </a>
           </motion.div>
@@ -67,17 +76,17 @@ const Contact: React.FC = () => {
           >
             <div className="flex items-center gap-3 mb-2">
                <Phone className="w-4 h-4 text-gray-500" />
-               <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">Téléphone</h3>
+               <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.phone.label}</h3>
             </div>
-            <a href="tel:+33667926647" className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors">
-              +33 6 67 92 66 47
+            <a href={config.contact.details.phone.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors">
+              {config.contact.details.phone.value}
             </a>
             {/* Appeler Button - Mobile Only */}
             <a 
-              href="tel:+33667926647" 
+              href={config.contact.details.phone.href} 
               className="md:hidden mt-4 inline-block px-6 py-3 bg-white text-black font-sans text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors duration-300"
             >
-              Appeler
+              {config.contact.details.phone.callButton}
             </a>
           </motion.div>
 
@@ -96,14 +105,15 @@ const Contact: React.FC = () => {
              transition={{ delay: 0.6, duration: 0.6 }}
              className="flex gap-12"
           >
-            <a href="#" className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-              <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span className="font-sans text-sm tracking-wide uppercase border-b border-transparent group-hover:border-white pb-0.5 transition-all">Facebook</span>
-            </a>
-            <a href="#" className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-              <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span className="font-sans text-sm tracking-wide uppercase border-b border-transparent group-hover:border-white pb-0.5 transition-all">Instagram</span>
-            </a>
+            {config.contact.details.socials.map((social, idx) => {
+              const SocialIcon = iconMap[social.icon] || Facebook;
+              return (
+                <a key={idx} href={social.href} className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                  <SocialIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <span className="font-sans text-sm tracking-wide uppercase border-b border-transparent group-hover:border-white pb-0.5 transition-all">{social.name}</span>
+                </a>
+              );
+            })}
           </motion.div>
 
         </div>

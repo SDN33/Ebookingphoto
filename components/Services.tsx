@@ -1,28 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-
-const SERVICES = [
-  { id: '01', title: 'REPORTAGE PHOTO', desc: 'Documentaire & Storytelling', path: '/reportage' },
-  { id: '02', title: 'ANIMATION TOTEM', desc: 'Expérience Photo Interactive', path: '/animation-totem' },
-  { id: '03', title: 'SOIRÉE CLUB & ENTREPRISE', desc: 'Événements Sportifs & Entreprise', path: '/soiree-club-entreprise' },
-];
+import { useSiteConfig } from '../hooks/useSiteConfig';
 
 interface ServicesProps {
   onNavigate: (path: string) => void;
 }
 
 const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
+  const config = useSiteConfig();
+  const services = config.home.services;
+
   return (
     <section className="w-full lg:w-[70vw] min-h-screen md:h-screen shrink-0 flex flex-col justify-center p-6 md:p-20 lg:p-0 2xl:p-24 bg-gray-50 snap-start">
       <div className="flex flex-col h-full justify-between py-10 md:py-20">
         
         <div className="border-b border-black pb-4 mb-8">
-           <h2 className="text-sm font-sans tracking-widest uppercase">NOS EXPERTISES</h2>
+           <h2 className="text-sm font-sans tracking-widest uppercase">{services.title}</h2>
         </div>
 
         <div className="flex flex-col gap-0">
-          {SERVICES.map((service, idx) => (
+          {services.items.map((service, idx) => (
             <motion.div 
               key={service.id}
               initial={{ x: -50, opacity: 0 }}
@@ -36,7 +34,7 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                 <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-5xl tracking-tight uppercase leading-none">{service.title}</h3>
               </div>
               <div className="flex items-center gap-4 mt-4 md:mt-4 lg:mt-0 opacity-100 md:opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">
-                <span className="font-sans text-xs md:text-sm tracking-wide text-gray-600">{service.desc}</span>
+                <span className="font-sans text-xs md:text-sm tracking-wide text-gray-600">{service.description}</span>
                 <ArrowUpRight className="w-5 h-5" />
               </div>
             </motion.div>
@@ -44,7 +42,7 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
         </div>
 
         <div className="mt-auto pt-8">
-          <p className="font-serif italic text-lg md:text-xl text-gray-500">Disponible pour des commandes dans le monde entier.</p>
+          <p className="font-serif italic text-lg md:text-xl text-gray-500">{services.footer}</p>
         </div>
       </div>
     </section>

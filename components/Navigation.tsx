@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 
 interface NavigationProps {
   currentPath: string;
@@ -7,6 +8,7 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
+  const config = useSiteConfig();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavigate = (path: string, sectionId?: string) => {
@@ -44,8 +46,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
           className="pointer-events-auto hover:scale-110 transition-transform duration-300 cursor-pointer"
         >
           <img 
-            src="/logo2.svg" 
-            alt="Ebooking Photo Logo" 
+            src={config.navigation.logo.src} 
+            alt={config.navigation.logo.alt} 
             className="h-8 w-auto md:h-10"
           />
         </div>
@@ -73,38 +75,20 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
           </div>
 
           <div className="flex-1 flex flex-col justify-center items-center gap-8 md:gap-12">
-            <button 
-              onClick={() => handleNavigate('/work')}
-              className={`text-4xl md:text-7xl font-serif italic hover:font-sans hover:not-italic transition-all duration-300 cursor-pointer bg-transparent border-none ${currentPath === '/work' ? 'opacity-50' : 'text-white'}`}
-            >
-              PROJETS
-            </button>
-            
-            <button 
-              onClick={() => handleNavigate('/', 'about')}
-              className="text-4xl md:text-7xl font-serif italic hover:font-sans hover:not-italic transition-all duration-300 cursor-pointer bg-transparent border-none text-white"
-            >
-              À PROPOS
-            </button>
-
-            <button 
-              onClick={() => handleNavigate('/', 'journal')}
-              className="text-4xl md:text-7xl font-serif italic hover:font-sans hover:not-italic transition-all duration-300 cursor-pointer bg-transparent border-none text-white"
-            >
-              JOURNAL
-            </button>
-
-            <button 
-              onClick={() => handleNavigate('/contact')}
-              className={`text-4xl md:text-7xl font-serif italic hover:font-sans hover:not-italic transition-all duration-300 cursor-pointer bg-transparent border-none ${currentPath === '/contact' ? 'opacity-50' : 'text-white'}`}
-            >
-              CONTACT
-            </button>
+            {config.navigation.menuItems.map((item) => (
+              <button 
+                key={item.id}
+                onClick={() => handleNavigate(item.path, item.sectionId)}
+                className={`text-4xl md:text-7xl font-serif italic hover:font-sans hover:not-italic transition-all duration-300 cursor-pointer bg-transparent border-none ${currentPath === item.path ? 'opacity-50' : 'text-white'}`}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
 
           <div className="flex justify-between text-xs text-gray-400 font-sans tracking-widest uppercase">
-            <span>© 2024 Ebooking Photo</span>
-            <span>Paris / Milan / New York</span>
+            <span>{config.site.copyright}</span>
+            <span>{config.site.locations}</span>
           </div>
         </div>
       </div>

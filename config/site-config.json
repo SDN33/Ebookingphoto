@@ -1,0 +1,439 @@
+{
+  "site": {
+    "name": "EBOOKINGPHOTO",
+    "tagline": "STUDIO PHOTOGRAPHE",
+    "copyright": "© 2024 Ebooking Photo",
+    "locations": "Paris"
+  },
+  "navigation": {
+    "logo": {
+      "src": "/logo2.svg",
+      "alt": "Ebooking Photo Logo"
+    },
+    "menuItems": [
+      {
+        "id": "work",
+        "label": "PROJETS",
+        "path": "/work"
+      },
+      {
+        "id": "about",
+        "label": "À PROPOS",
+        "path": "/",
+        "sectionId": "about"
+      },
+      {
+        "id": "journal",
+        "label": "JOURNAL",
+        "path": "/",
+        "sectionId": "journal"
+      },
+      {
+        "id": "contact",
+        "label": "CONTACT",
+        "path": "/contact"
+      }
+    ]
+  },
+  "home": {
+    "hero": {
+      "title": {
+        "line1": "EBOOKINGPHOTO",
+        "line2": "STUDIO",
+        "line3": "PHOTOGRAPHE",
+        "line4": {
+          "type": "typewriter",
+          "words": ["REPORTAGE", "ANIMATION", "EVENEMENTIEL", "TOTEM"]
+        }
+      },
+      "video": {
+        "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "autoPlay": true,
+        "loop": true,
+        "muted": true
+      }
+    },
+    "intro": {
+      "quote": "J'aime la pudeur, la discrétion, quand l'ombre s'invite a la lumiere que nous capturons dans l'emotion brute. Une narration visuelle.",
+      "scrollHint": "Défiler pour explorer"
+    },
+    "manifesto": {
+      "lines": [
+        "J'AIME LA COULEUR D'ORIGINE,",
+        "LE NOIR ET BLANC,",
+        "LE SILENCE, AU MILIEU DU CHAOS."
+      ],
+      "image": {
+        "src": "/photographe1.jpg",
+        "alt": "Abstract portrait"
+      },
+      "decoration": "&"
+    },
+    "services": {
+      "title": "NOS EXPERTISES",
+      "items": [
+        {
+          "id": "01",
+          "title": "REPORTAGE PHOTO",
+          "description": "Documentaire & Storytelling",
+          "path": "/reportage"
+        },
+        {
+          "id": "02",
+          "title": "ANIMATION TOTEM",
+          "description": "Expérience Photo Interactive",
+          "path": "/animation-totem"
+        },
+        {
+          "id": "03",
+          "title": "SOIRÉE CLUB & ENTREPRISE",
+          "description": "Événements Sportifs & Entreprise",
+          "path": "/soiree-club-entreprise"
+        }
+      ],
+      "footer": "Disponible pour des commandes dans le monde entier."
+    },
+    "gallery": {
+      "label": "Archives 2023—2024",
+      "photos": [
+        {
+          "id": "1",
+          "url": "https://picsum.photos/800/1200?random=1",
+          "title": "Noir Étude",
+          "category": "Mode",
+          "aspectRatio": "portrait"
+        },
+        {
+          "id": "2",
+          "url": "https://picsum.photos/1200/800?random=2",
+          "title": "Silence Urbain",
+          "category": "Architecture",
+          "aspectRatio": "landscape"
+        },
+        {
+          "id": "3",
+          "url": "https://picsum.photos/800/1200?random=3",
+          "title": "La Muse",
+          "category": "Portrait",
+          "aspectRatio": "portrait"
+        }
+      ]
+    },
+    "mariage": {
+      "title": {
+        "line1": "EBOOKINGPHOTO",
+        "line2": "c'est aussi le jour de votre",
+        "line3": "MARIAGE"
+      },
+      "description": "Capturer l'émotion pure, l'intimité et la beauté de votre journée spéciale. Une approche documentaire et artistique pour immortaliser chaque instant précieux.",
+      "image": {
+        "src": "/gallery/mariage/photo1.jpg",
+        "alt": "Mariage"
+      },
+      "link": {
+        "url": "https://ebookingphoto-mariage.com/",
+        "label": "Découvrir"
+      }
+    },
+    "flipbook": {
+      "url": "https://online.flippingbook.com/view/1041806480/"
+    }
+  },
+  "reportage": {
+    "intro": {
+      "category": "Série Documentaire",
+      "title": {
+        "line1": "RÉALITÉ NON",
+        "line2": "SCÉNARISÉE"
+      },
+      "description": "Une sélection curatée de photographies de reportage. Capturer les moments bruts et sans filtre entre les poses. Là où la perfection se trouve dans l'inattendu."
+    },
+    "stories": [
+      {
+        "id": 1,
+        "url": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2000&auto=format&fit=crop",
+        "caption": "Silence en coulisses, Milan Fashion Week",
+        "layout": "full"
+      },
+      {
+        "id": 2,
+        "url": "https://images.unsplash.com/photo-1517059224940-d4af9eec41b4?q=80&w=2000&auto=format&fit=crop",
+        "caption": "Texture brute",
+        "layout": "small-top"
+      },
+      {
+        "id": 3,
+        "url": "https://images.unsplash.com/photo-1550614000-4b9519e02a48?q=80&w=2000&auto=format&fit=crop",
+        "caption": "Le jeu de l'attente",
+        "layout": "small-bottom"
+      },
+      {
+        "id": 4,
+        "url": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2000&auto=format&fit=crop",
+        "caption": "Souvenirs analogiques",
+        "layout": "wide"
+      },
+      {
+        "id": 5,
+        "url": "https://images.unsplash.com/photo-1552168324-d612d77725e3?q=80&w=2000&auto=format&fit=crop",
+        "caption": "Solitude urbaine",
+        "layout": "full"
+      },
+      {
+        "id": 6,
+        "url": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=2000&auto=format&fit=crop",
+        "caption": "Étude de contraste",
+        "layout": "small-center"
+      }
+    ],
+    "endLabel": "Fin de la Série"
+  },
+  "soireeClubEntreprise": {
+    "intro": {
+      "category": "Expertise Événementielle",
+      "title": {
+        "line1": "CLUB &",
+        "line2": "CORPORATE"
+      },
+      "description": "Nous accompagnons les clubs sportifs et les entreprises dans la mise en lumière de leurs événements majeurs. Une approche dynamique et élégante pour célébrer vos réussites.",
+      "decoration": "Ev"
+    },
+    "events": [
+      {
+        "title": "Clubs Sportifs",
+        "subtitle": "Victoires & Galas",
+        "description": "Immortalisez les moments forts de votre saison. Des matchs décisifs aux soirées de gala, nous capturons l'esprit d'équipe et la passion qui animent votre club.",
+        "image": "https://images.unsplash.com/photo-1574629810360-7efbbe4384d4?q=80&w=2000&auto=format&fit=crop",
+        "icon": "Trophy"
+      },
+      {
+        "title": "Événements Pro",
+        "subtitle": "Soirées d'Entreprise",
+        "description": "Valorisez votre image de marque lors de vos séminaires, lancements de produits ou fêtes de fin d'année. Une couverture professionnelle pour une communication impactante.",
+        "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2000&auto=format&fit=crop",
+        "icon": "Users"
+      }
+    ],
+    "services": {
+      "title": "Nos Services Inclus",
+      "items": [
+        {
+          "icon": "Camera",
+          "title": "Reportage Complet",
+          "description": "Couverture intégrale de l'événement, des préparatifs à la fin de soirée."
+        },
+        {
+          "icon": "Star",
+          "title": "Studio Mobile",
+          "description": "Installation d'un studio photo professionnel sur place pour des portraits de qualité."
+        },
+        {
+          "icon": "Users",
+          "title": "Galerie Privée",
+          "description": "Accès sécurisé et partage instantané pour tous vos collaborateurs ou membres."
+        }
+      ],
+      "cta": {
+        "label": "Obtenir un devis"
+      }
+    }
+  },
+  "animationTotem": {
+    "hero": {
+      "title": "LE TOTEM",
+      "description": "Redéfinissez l'expérience photo événementielle. Une présence monolithique, une technologie de pointe et un design qui captive l'attention.",
+      "backgroundImage": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2000&auto=format&fit=crop",
+      "scrollHint": "Scroll"
+    },
+    "showcase": {
+      "title": {
+        "line1": "Pureté",
+        "line2": "du design."
+      },
+      "description": "Conçu pour s'intégrer dans les environnements les plus prestigieux. Son encombrement minimal au sol contraste avec la puissance de son affichage numérique.",
+      "image": {
+        "src": "/totem.jpeg",
+        "alt": "Totem d'animation"
+      },
+      "specs": [
+        "Écran Tactile 65 Pouces",
+        "Appareil Réflex DSLR Intégré",
+        "Éclairage LED Studio Ajustable"
+      ]
+    },
+    "features": [
+      {
+        "id": 1,
+        "icon": "Monitor",
+        "title": "Visualisation",
+        "subtitle": "Instantanée 4K",
+        "description": "Un écran haute luminosité de 65\" pour un retour en direct époustouflant. Vos invités se voient en grand, en beau, en temps réel.",
+        "image": "https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1600&auto=format&fit=crop"
+      },
+      {
+        "id": 2,
+        "icon": "Printer",
+        "title": "Impression",
+        "subtitle": "Illimitée & Rapide",
+        "description": "Une imprimante thermique industrielle capable de sortir des tirages de qualité laboratoire en moins de 8 secondes.",
+        "image": "https://images.unsplash.com/photo-1612815154858-60aa4c46ae96?q=80&w=1600&auto=format&fit=crop"
+      },
+      {
+        "id": 3,
+        "icon": "Smartphone",
+        "title": "Partage",
+        "subtitle": "Sans Contact",
+        "description": "AirDrop, QR Code, Email ou SMS. La récupération des médias est fluide, moderne et instantanée pour tous les smartphones.",
+        "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1600&auto=format&fit=crop"
+      },
+      {
+        "id": 4,
+        "icon": "Share2",
+        "title": "Branding",
+        "subtitle": "Social Ready",
+        "description": "Chaque photo est une opportunité marketing. Intégrez votre logo et laissez vos invités devenir vos meilleurs ambassadeurs.",
+        "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1600&auto=format&fit=crop"
+      }
+    ],
+    "cta": {
+      "subtitle": "Prêt à marquer les esprits ?",
+      "title": {
+        "line1": "Sublimez",
+        "line2": "l'instant."
+      },
+      "button": {
+        "label": "Réserver maintenant"
+      }
+    }
+  },
+  "contact": {
+    "intro": {
+      "category": "Prendre contact",
+      "title": {
+        "line1": "DÉMARRER UNE",
+        "line2": "CONVERSATION"
+      },
+      "description": "Disponible pour des commandes commerciales, reportages et collaborations dans le monde entier."
+    },
+    "details": {
+      "email": {
+        "label": "Email",
+        "value": "charles-andre@ebookingphoto.com",
+        "href": "mailto:charles-andre@ebookingphoto.com"
+      },
+      "phone": {
+        "label": "Téléphone",
+        "value": "+33 6 67 92 66 47",
+        "href": "tel:+33667926647",
+        "callButton": "Appeler"
+      },
+      "socials": [
+        {
+          "name": "Facebook",
+          "icon": "Facebook",
+          "href": "#"
+        },
+        {
+          "name": "Instagram",
+          "icon": "Instagram",
+          "href": "#"
+        }
+      ]
+    },
+    "backgroundTexture": "https://www.transparenttextures.com/patterns/stardust.png"
+  },
+  "work": {
+    "projects": [
+      {
+        "id": 1,
+        "title": "AUTOMOBILE",
+        "category": "Sport & Prestige",
+        "imageUrl": "/gallery/auto/photo1.jpg",
+        "projectImages": [
+          "/gallery/auto/photo1.jpg",
+          "/gallery/auto/photo2.jpg",
+          "/gallery/auto/photo3.jpg",
+          "/gallery/auto/photo4.jpg",
+          "/gallery/auto/photo5.jpg"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "COURSE",
+        "category": "Compétition",
+        "imageUrl": "/gallery/course/photo1.jpg",
+        "projectImages": [
+          "/gallery/course/photo1.jpg",
+          "/gallery/course/photo2.jpg",
+          "/gallery/course/photo3.jpg",
+          "/gallery/course/photo4.jpg",
+          "/gallery/course/photo5.jpg"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "CULTURE",
+        "category": "Art & Événement",
+        "imageUrl": "/gallery/culture/photo1.jpg",
+        "projectImages": [
+          "/gallery/culture/photo1.jpg",
+          "/gallery/culture/photo2.jpg",
+          "/gallery/culture/photo3.jpg",
+          "/gallery/culture/photo4.jpg",
+          "/gallery/culture/photo5.jpg",
+          "/gallery/culture/photo6.jpg"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "MARIAGE",
+        "category": "Cérémonie",
+        "imageUrl": "/gallery/mariage/photo1.jpg",
+        "projectImages": [
+          "/gallery/mariage/photo1.jpg",
+          "/gallery/mariage/photo12.jpg",
+          "/gallery/mariage/photo2.jpg",
+          "/gallery/mariage/photo3.jpg"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "SÉMINAIRE",
+        "category": "Corporate",
+        "imageUrl": "/gallery/seminaire/photo1.JPG",
+        "projectImages": [
+          "/gallery/seminaire/photo1.JPG",
+          "/gallery/seminaire/photo2.jpg",
+          "/gallery/seminaire/photo3.JPG"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "VOILE",
+        "category": "Nautisme",
+        "imageUrl": "/gallery/voile/photo10.jpg",
+        "projectImages": [
+          "/gallery/voile/photo10.jpg",
+          "/gallery/voile/photo11.jpg",
+          "/gallery/voile/photo2.jpg",
+          "/gallery/voile/photo3.jpg",
+          "/gallery/voile/photo4.jpg",
+          "/gallery/voile/photo5.jpg",
+          "/gallery/voile/photo6.jpg",
+          "/gallery/voile/photo7.jpg",
+          "/gallery/voile/photo8.jpg",
+          "/gallery/voile/photo9.jpg"
+        ]
+      }
+    ]
+  },
+  "introAnimation": {
+    "defaultText": "TOTEM",
+    "transitionTexts": {
+      "/reportage": "REPORTAGE PHOTO",
+      "/animation-totem": "ANIMATION TOTEM",
+      "/soiree-club-entreprise": "SOIRÉE CLUB & ENTREPRISE"
+    }
+  }
+}
+

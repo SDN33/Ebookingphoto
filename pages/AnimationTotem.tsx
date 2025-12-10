@@ -1,50 +1,259 @@
 import React, { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Monitor, Printer, Share2, Smartphone } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Monitor, Printer, Share2, Smartphone, ArrowRight, Sparkles } from 'lucide-react';
 
-const FEATURES = [
+// --- Data ---
+interface Feature {
+  id: number;
+  icon: React.ElementType;
+  title: string;
+  subtitle: string;
+  desc: string;
+  image: string;
+}
+
+const FEATURES: Feature[] = [
   {
+    id: 1,
     icon: Monitor,
     title: 'Visualisation',
-    subtitle: 'Instantanée',
-    desc: 'Grâce à l\'écran du haut mesurant 65", vos invités voient en direct le résultat de leur photo avec une qualité cristalline.'
+    subtitle: 'Instantanée 4K',
+    desc: 'Un écran haute luminosité de 65" pour un retour en direct époustouflant. Vos invités se voient en grand, en beau, en temps réel.',
+    image: 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1600&auto=format&fit=crop'
   },
   {
+    id: 2,
     icon: Printer,
     title: 'Impression',
-    subtitle: 'Illimitée',
-    desc: 'Notre totem EbookingPhoto propose l\'impression instantanée et illimitée des photos pour un souvenir tangible immédiat.'
+    subtitle: 'Illimitée & Rapide',
+    desc: 'Une imprimante thermique industrielle capable de sortir des tirages de qualité laboratoire en moins de 8 secondes.',
+    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c46ae96?q=80&w=1600&auto=format&fit=crop'
   },
   {
+    id: 3,
     icon: Smartphone,
     title: 'Partage',
-    subtitle: 'Immédiat',
-    desc: 'Galerie en ligne dédiée. Les photos sont directement téléchargeables via QR Code ou AirDrop pour un partage instantané.'
+    subtitle: 'Sans Contact',
+    desc: 'AirDrop, QR Code, Email ou SMS. La récupération des médias est fluide, moderne et instantanée pour tous les smartphones.',
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1600&auto=format&fit=crop'
   },
   {
+    id: 4,
     icon: Share2,
-    title: 'Communication',
-    subtitle: 'Visuelle',
-    desc: 'Permettez à vos invités de partager leurs photos sur les réseaux sociaux avec votre branding et image de marque intégrés.'
+    title: 'Branding',
+    subtitle: 'Social Ready',
+    desc: 'Chaque photo est une opportunité marketing. Intégrez votre logo et laissez vos invités devenir vos meilleurs ambassadeurs.',
+    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1600&auto=format&fit=crop'
   }
 ];
 
+// --- Sub-Components ---
+
+// 1. Hero Section
+const SectionHero = () => {
+  return (
+    <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center overflow-hidden border-r border-white/10 bg-black">
+      {/* Background Image with Parallax-like scale */}
+      <motion.div 
+        className="absolute inset-0 z-0 opacity-40"
+        initial={{ scale: 1.2 }}
+        whileInView={{ scale: 1 }}
+        transition={{ duration: 10, ease: "easeOut" }}
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2000&auto=format&fit=crop" 
+          alt="Atmosphere" 
+          className="w-full h-full object-cover grayscale contrast-125"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+      </motion.div>
+
+      <div className="relative z-10 p-8 md:p-24 flex flex-col justify-center h-full w-full max-w-7xl">
+        <div className="overflow-hidden">
+          <motion.h1 
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            className="font-sans font-bold text-[15vw] md:text-[12vw] leading-[0.8] tracking-tighter text-white mix-blend-difference"
+          >
+            LE TOTEM
+          </motion.h1>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="mt-12 md:mt-24 max-w-lg border-l-2 border-white pl-6"
+        >
+          <p className="font-sans text-lg text-gray-300 leading-relaxed">
+            Redéfinissez l'expérience photo événementielle. Une présence monolithique, une technologie de pointe et un design qui captive l'attention.
+          </p>
+        </motion.div>
+      </div>
+
+      <motion.div 
+        className="absolute bottom-12 right-12 hidden md:flex items-center gap-4 text-xs font-sans tracking-[0.2em] uppercase text-gray-500"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+      >
+        <span>Scroll</span>
+        <div className="w-12 h-[1px] bg-gray-600" />
+      </motion.div>
+    </div>
+  );
+};
+
+// 2. Showcase / Concept
+const SectionShowcase = () => {
+  return (
+    <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center bg-zinc-950 border-r border-white/10 overflow-hidden">
+
+      <div className="flex flex-col md:flex-row items-center w-full max-w-7xl px-8 gap-12 md:gap-24">
+        {/* Abstract Product Visualization */}
+        <div className="relative group">
+           <div className="absolute inset-0 bg-white blur-[100px] opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
+           <motion.div 
+             className="relative z-10 w-[50vw] md:w-[20vw] h-auto mt-32 md:mt-0 shadow-2xl flex flex-col items-center"
+             whileHover={{ scale: 1.02 }}
+             transition={{ duration: 0.5 }}
+           >
+              <img 
+                src="/totem.jpeg" 
+                alt="Totem d'animation" 
+                className="w-full h-auto border border-gray-800"
+              />
+           </motion.div>
+        </div>
+
+        {/* Specs Text */}
+        <div className="flex flex-col gap-8 md:w-1/3">
+          <h3 className="font-serif text-4xl md:text-5xl text-white">
+            <span className="italic text-gray-400">Pureté</span> du design.
+          </h3>
+          <p className="font-sans text-gray-300 leading-relaxed">
+             Conçu pour s'intégrer dans les environnements les plus prestigieux. Son encombrement minimal au sol contraste avec la puissance de son affichage numérique.
+          </p>
+          <ul className="space-y-4 font-sans text-sm text-gray-300">
+            <li className="flex items-center gap-4 border-b border-gray-800 pb-2">
+              <span className="w-2 h-2 bg-white rounded-full" /> Écran Tactile 65 Pouces
+            </li>
+            <li className="flex items-center gap-4 border-b border-gray-800 pb-2">
+              <span className="w-2 h-2 bg-white rounded-full" /> Appareil Réflex DSLR Intégré
+            </li>
+            <li className="flex items-center gap-4 border-b border-gray-800 pb-2">
+              <span className="w-2 h-2 bg-white rounded-full" /> Éclairage LED Studio Ajustable
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// 3. Feature Card Component
+const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, index }) => {
+  return (
+    <div className="h-screen w-screen md:w-[45vw] flex-shrink-0 flex flex-col border-r border-white/10 relative overflow-hidden group">
+      {/* Background Image that reveals on hover */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={feature.image} 
+          alt={feature.title} 
+          className="w-full h-full object-cover opacity-20 grayscale group-hover:grayscale-0 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 ease-out"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black/40" />
+      </div>
+
+      <div className="relative z-10 flex flex-col justify-between h-full p-8 md:p-16">
+        <div className="flex justify-between items-start">
+          <span className="font-serif text-6xl text-white/20 group-hover:text-white/40 transition-colors">0{index + 1}</span>
+          <div className="p-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md group-hover:bg-white group-hover:text-black transition-all duration-300">
+            <feature.icon className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black" strokeWidth={1.5} />
+          </div>
+        </div>
+
+        <div className="mb-12 md:mb-0">
+          <h4 className="flex flex-col text-4xl md:text-5xl mb-6">
+            <span className="font-sans font-bold tracking-tight text-white">{feature.title}</span>
+            <span className="font-serif italic font-light text-gray-300 group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-2">{feature.subtitle}</span>
+          </h4>
+          <p className="font-sans text-sm md:text-base text-gray-300 leading-relaxed max-w-md group-hover:text-white transition-colors">
+            {feature.desc}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// 4. CTA Section
+const SectionCTA = () => {
+  return (
+    <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center bg-white text-black overflow-hidden">
+      <motion.div 
+        className="absolute inset-0 opacity-10"
+        initial={{ backgroundSize: "100%" }}
+        whileInView={{ backgroundSize: "110%" }}
+        transition={{ duration: 10, repeat: Infinity, repeatType: "mirror" }}
+        style={{ 
+          backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')",
+        }}
+      />
+      
+      <div className="relative z-10 text-center px-4 max-w-4xl">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="font-sans text-xs md:text-sm tracking-[0.3em] uppercase text-gray-500 mb-8"
+        >
+          Prêt à marquer les esprits ?
+        </motion.p>
+        
+        <motion.h2 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="font-serif italic text-6xl md:text-8xl mb-8 leading-tight"
+        >
+          Sublimez<br/>l'instant.
+        </motion.h2>
+
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="group relative inline-flex items-center gap-4 px-12 py-6 bg-black text-white overflow-hidden transition-all duration-300"
+        >
+          <span className="relative z-10 font-sans text-sm tracking-[0.2em] uppercase font-bold">Réserver maintenant</span>
+          <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+          <div className="absolute inset-0 bg-gray-800 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+        </motion.button>
+      </div>
+    </div>
+  );
+};
+
+// --- Main Component ---
+
 const AnimationTotem: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollXProgress } = useScroll({ container: containerRef });
 
-  // Parallax for the big "LE TOTEM" text - only works on horizontal scroll
-  const xTitle = useTransform(scrollXProgress, [0, 0.3], ["0%", "-50%"]);
-
+  // Horizontal Scroll Handler for Desktop
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    const handleWheel = (evt: WheelEvent) => {
-      if (window.innerWidth > 768) {
-        evt.preventDefault();
-        container.scrollLeft += evt.deltaY + evt.deltaX;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Only apply on desktop
+      if (window.innerWidth >= 768) {
+        // Prevent default vertical scroll
+        e.preventDefault();
+        // Translate vertical delta to horizontal scroll
+        container.scrollLeft += e.deltaY + e.deltaX;
       }
     };
+
     container.addEventListener('wheel', handleWheel, { passive: false });
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
@@ -52,95 +261,33 @@ const AnimationTotem: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="flex flex-col md:flex-row h-full w-full overflow-y-auto md:overflow-y-hidden md:overflow-x-auto no-scrollbar bg-black text-white"
+      className="relative w-full h-[full] overflow-y-auto md:overflow-y-hidden md:overflow-x-auto no-scrollbar flex flex-col md:flex-row bg-black text-white"
     >
-      {/* 1. Hero Section - The Monolith */}
-      <div className="shrink-0 w-full md:w-screen h-[80vh] md:h-full flex relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?q=80&w=2000&auto=format&fit=crop" 
-            alt="Event Atmosphere" 
-            className="w-full h-full object-cover opacity-30 grayscale"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-black via-black/80 to-transparent" />
-        </div>
-
-        <div className="relative z-10 flex flex-col justify-center p-6 md:p-24 w-full md:w-2/3 mt-10 md:mt-0">
-          <motion.div style={{ x: window.innerWidth > 768 ? xTitle : 0 }}>
-            <h1 className="font-sans font-bold text-[18vw] md:text-[15vw] leading-[0.8] tracking-tighter">
-              LE
-            </h1>
-            <h1 className="font-serif italic font-light text-[18vw] md:text-[15vw] leading-[0.8] tracking-tighter ml-12 md:ml-40 text-gray-300">
-              TOTEM
-            </h1>
-          </motion.div>
-          
-          <div className="mt-8 md:mt-24 max-w-xl">
-             <div className="w-12 h-1 bg-white mb-8" />
-             <p className="font-sans text-base md:text-xl leading-relaxed text-gray-300">
-               L'animation star de nos événements. Un Totem entièrement personnalisable pour refléter votre identité visuelle et offrir une expérience photo élégante, moderne et inoubliable.
-             </p>
-          </div>
-        </div>
+      {/* 
+        Horizontal Layout for Desktop (flex-row)
+        Vertical Layout for Mobile (flex-col) 
+      */}
+      
+      {/* 1. Hero */}
+      <div className="shrink-0 w-full md:w-auto">
+        <SectionHero />
       </div>
 
-      {/* 2. Concept / "Monolith" Visualization */}
-      <div className="shrink-0 w-full md:w-[60vw] h-[80vh] md:h-full flex flex-col justify-center items-center bg-gray-900 relative border-l border-white/10">
-         <span className="absolute top-10 left-10 font-sans text-xs tracking-[0.3em] text-gray-500 uppercase">
-           Design & Spécifications
-         </span>
-         
-         {/* Abstract representation of the Totem */}
-         <div className="relative w-[30vh] h-[60vh] mt-32 md:mt-0 md:h-[60vh] shadow-2xl flex flex-col items-center">
-            <img 
-              src="/totem.jpeg" 
-              alt="Totem d'animation" 
-              className="w-full h-full object-cover border border-gray-800"
-            />
-         </div>
-         
-         <div className="mt-8 text-center">
-           <h3 className="font-sans text-2xl font-bold uppercase tracking-widest">EbookingPhoto</h3>
-           <p className="font-serif italic text-gray-400 mt-2">Écran 65" — Personnalisable</p>
-         </div>
+      {/* 2. Showcase */}
+      <div className="shrink-0 w-full md:w-auto">
+        <SectionShowcase />
       </div>
 
       {/* 3. Features Horizontal List */}
-      <div className="shrink-0 flex flex-col md:flex-row h-auto md:h-full bg-black mt-24 md:mt-0">
-        {FEATURES.map((feature, index) => (
-          <div 
-            key={index} 
-            className="w-full md:w-[40vw] h-[50vh] md:h-full border-l border-white/10 flex flex-col justify-between p-8 md:p-16 hover:bg-gray-900 transition-colors duration-500 group"
-          >
-            <div className="flex justify-between items-start">
-              <span className="font-sans text-xs font-bold text-gray-600">0{index + 1}</span>
-              <feature.icon className="w-8 h-8 md:w-12 md:h-12 text-gray-500 group-hover:text-white transition-colors duration-500" strokeWidth={1} />
-            </div>
+      {FEATURES.map((feature, index) => (
+        <div key={feature.id} className="shrink-0 w-full md:w-auto border-b md:border-b-0 border-white/10">
+          <FeatureCard feature={feature} index={index} />
+        </div>
+      ))}
 
-            <div className="mt-auto">
-              <h3 className="flex flex-col text-3xl md:text-5xl mb-4 md:mb-6">
-                <span className="font-sans font-bold tracking-tight">{feature.title}</span>
-                <span className="font-serif italic font-light text-gray-400 group-hover:text-white transition-colors duration-500">{feature.subtitle}</span>
-              </h3>
-              <p className="font-sans text-sm md:text-base text-gray-500 leading-relaxed group-hover:text-gray-300 transition-colors duration-500">
-                {feature.desc}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* 4. Call to Action */}
-      <div className="shrink-0 w-full md:w-[50vw] h-[60vh] md:h-full flex flex-col justify-center items-center bg-white text-black relative">
-        <h2 className="font-serif italic text-5xl md:text-7xl text-center px-4">
-          Offrez une<br/>expérience
-        </h2>
-        <p className="mt-6 font-sans text-xs md:text-sm tracking-widest uppercase text-gray-500">
-          Transformez vos événements
-        </p>
-        <button className="mt-12 px-12 py-4 border border-black hover:bg-black hover:text-white transition-all duration-300 font-sans text-sm tracking-[0.2em] uppercase">
-          Réserver le Totem
-        </button>
+      {/* 4. CTA */}
+      <div className="shrink-0 w-full md:w-auto">
+        <SectionCTA />
       </div>
 
     </div>

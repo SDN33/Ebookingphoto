@@ -70,15 +70,14 @@ const Reportage: React.FC = () => {
           Série Documentaire
         </span>
         <h1 className="text-5xl md:text-6xl 2xl:text-8xl font-sans font-bold tracking-tighter leading-none mb-2">
-          RÉALITÉ
+          RÉALITÉ NON
         </h1>
-        <h1 className="text-5xl md:text-6xl 2xl:text-8xl font-serif italic font-light leading-none text-gray-400 mb-8 md:mb-12">
-          NON SCÉNARISÉE
+        <h1 className="text-5xl md:text-6xl 2xl:text-8xl font-serif italic font-light leading-none text-gray-400 mb-4 md:mb-6">
+          SCÉNARISÉE
         </h1>
-        <p className="max-w-md font-sans text-sm leading-relaxed text-gray-600">
-          Une sélection curatée de photographies de reportage. Capturer les moments bruts et sans filtre entre les poses. Là où la perfection se trouve dans l'inattendu.
+        <p className="mt-4 font-sans text-sm md:text-base leading-relaxed max-w-md text-gray-600 border-l-2 border-black pl-6">
+         Une sélection curatée de photographies de reportage. Capturer les moments bruts et sans filtre entre les poses. Là où la perfection se trouve dans l'inattendu.
         </p>
-        <div className="mt-8 md:mt-12 w-12 h-0.5 bg-black" />
       </div>
 
       {/* Gallery Flow */}

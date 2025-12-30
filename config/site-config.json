@@ -54,7 +54,7 @@
       }
     },
     "intro": {
-      "quote": "J'aime la pudeur, la discrétion, quand l'ombre s'invite a la lumiere que nous capturons dans l'emotion brute. Une narration visuelle.",
+      "quote": "J'aime le froid et la neige, la discrétion, quand l'ombre s'invite a la lumiere que nous capturons dans l'emotion brute. Une narration visuelle.",
       "scrollHint": "Défiler pour explorer"
     },
     "manifesto": {
@@ -151,7 +151,7 @@
     "stories": [
       {
         "id": 1,
-        "url": "/photographe1.jpg",
+        "url": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2000&auto=format&fit=crop",
         "caption": "Silence en coulisses, Milan Fashion Week",
         "layout": "full"
       },

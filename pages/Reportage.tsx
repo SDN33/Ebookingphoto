@@ -1,10 +1,34 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useSiteConfig } from '../hooks/useSiteConfig';
+
+// Charge automatiquement toutes les images du dossier reportage
+const imageModules = import.meta.glob('/public/portfolio/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true, as: 'url' });
 
 const Reportage: React.FC = () => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Generate images dynamically from folder
+  const images = useMemo(() => {
+    const layouts = config.reportage.gallery.layouts;
+    
+    // Récupère tous les chemins d'images et les trie
+    const imagePaths = Object.keys(imageModules).sort();
+    
+    return imagePaths.map((path, index) => {
+      // Extrait le nom du fichier et crée un caption
+      const filename = path.split('/').pop()?.replace(/\.[^/.]+$/, '') || '';
+      const caption = filename.replace(/[-_]/g, ' ');
+      
+      return {
+        id: index + 1,
+        url: path.replace('/public', ''),
+        caption: caption.charAt(0).toUpperCase() + caption.slice(1),
+        layout: layouts[index % layouts.length] || 'full'
+      };
+    });
+  }, [config.reportage.gallery.layouts]);
 
   // Manual horizontal scroll handler
   useEffect(() => {
@@ -44,7 +68,7 @@ const Reportage: React.FC = () => {
       </div>
 
       {/* Gallery Flow */}
-      {config.reportage.stories.map((item, index) => (
+      {images.map((item, index) => (
         <div 
           key={item.id} 
           className={`shrink-0 flex flex-col justify-center px-4 md:px-12 py-8 md:py-0 relative group
@@ -65,7 +89,7 @@ const Reportage: React.FC = () => {
               transition={{ duration: 1.5 }}
               src={item.url}
               alt={item.caption}
-              className="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+              className="w-full h-full object-cover contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out"
             />
           </div>
 

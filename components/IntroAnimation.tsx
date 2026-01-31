@@ -143,7 +143,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                   fontSize: isMobile ? '1.5rem' : 'clamp(3rem, 6vw + 1rem, 6rem)',
                 }}
               >
-                EVENEMENTIEL
+                {lastLineText}
               </motion.span>
             </div>
           )}

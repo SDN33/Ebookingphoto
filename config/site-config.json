@@ -7,25 +7,30 @@
   },
   "navigation": {
     "logo": {
-      "src": "/logo2.svg",
+      "src": "/logo.png",
       "alt": "Ebooking Photo Logo"
     },
     "menuItems": [
       {
+        "id": "about",
+        "label": "ACCUEIL",
+        "path": "/"
+      },
+      {
         "id": "work",
-        "label": "PROJETS",
+        "label": "GALERIE",
         "path": "/work"
       },
       {
-        "id": "about",
-        "label": "À PROPOS",
-        "path": "/",
-        "sectionId": "about"
+        "id": "journal",
+        "label": "TOTEM",
+        "path": "/animation-totem",
+        "sectionId": "journal"
       },
       {
         "id": "journal",
-        "label": "JOURNAL",
-        "path": "/",
+        "label": "CLUBS",
+        "path": "/soiree-club-entreprise",
         "sectionId": "journal"
       },
       {
@@ -54,8 +59,8 @@
       }
     },
     "intro": {
-      "quote": "J'aime le froid et la neige, la discrétion, quand l'ombre s'invite a la lumiere que nous capturons dans l'emotion brute. Une narration visuelle.",
-      "scrollHint": "Défiler pour explorer"
+      "quote": "Votre événement, notre regard. Quand les sourires se mêlent aux larmes, des cris, des joies, la pudeur d'un discours... Chaque instant devient une narration visuelle, authentique, capturée dans l'émotion brut.",
+      "scrollHint": "Défiler pour explorer où Saisir le bon instant ! "
     },
     "manifesto": {
       "lines": [
@@ -74,58 +79,58 @@
       "items": [
         {
           "id": "01",
-          "title": "REPORTAGE PHOTO",
-          "description": "Documentaire & Storytelling",
+          "title": "PORTFOLIO",
+          "description": "Saisir le bon instant !",
           "path": "/reportage"
         },
         {
           "id": "02",
-          "title": "ANIMATION TOTEM",
-          "description": "Expérience Photo Interactive",
+          "title": "ANIMATION EVENEMENTIELLE",
+          "description": "Bien plus qu'un simple photocall",
           "path": "/animation-totem"
         },
         {
           "id": "03",
-          "title": "SOIRÉE CLUB & ENTREPRISE",
-          "description": "Événements Sportifs & Entreprise",
+          "title": "SHOOTING OFFICIEL DES CLUBS",
+          "description": "Équipe et portrait",
           "path": "/soiree-club-entreprise"
         }
       ],
-      "footer": "Disponible pour des commandes dans le monde entier."
+      "footer": "Donnons vie à vos instants. Disponible pour vos projets, worldwide commissions"
     },
     "gallery": {
-      "label": "Archives 2023—2024",
+      "label": "Depuis 1986",
       "photos": [
         {
           "id": "1",
-          "url": "https://picsum.photos/800/1200?random=1",
+          "url": "/party.jpg",
           "title": "Noir Étude",
-          "category": "Mode",
+          "category": "Evenementiel",
           "aspectRatio": "portrait"
         },
         {
           "id": "2",
-          "url": "https://picsum.photos/1200/800?random=2",
-          "title": "Silence Urbain",
-          "category": "Architecture",
+          "url": "spectacle.jpg",
+          "title": "Centre Artistique",
+          "category": "Evenementiel",
           "aspectRatio": "landscape"
         },
         {
           "id": "3",
-          "url": "https://picsum.photos/800/1200?random=3",
-          "title": "La Muse",
-          "category": "Portrait",
+          "url": "/sport.jpg",
+          "title": "Sportif",
+          "category": "Evenementiel",
           "aspectRatio": "portrait"
         }
       ]
     },
     "mariage": {
       "title": {
-        "line1": "EBOOKINGPHOTO",
-        "line2": "c'est aussi le jour de votre",
-        "line3": "MARIAGE"
+        "line1": "LE JOUR DE VOTRE MARIAGE !",
+        "line2": "",
+        "line3": ""
       },
-      "description": "Capturer l'émotion pure, l'intimité et la beauté de votre journée spéciale. Une approche documentaire et artistique pour immortaliser chaque instant précieux.",
+      "description": "Ma vision de la photographie de mariage mêle l’esthétisme de la photo de beauté et l’authenticité inspiré du Photo-Journalisme.",
       "image": {
         "src": "/gallery/mariage/photo1.jpg",
         "alt": "Mariage"
@@ -141,159 +146,126 @@
   },
   "reportage": {
     "intro": {
-      "category": "Série Documentaire",
+      "category": "Photo Reportage",
       "title": {
-        "line1": "RÉALITÉ NON",
-        "line2": "SCÉNARISÉE"
+        "line1": "Votre événement,",
+        "line2": "notre regard."
       },
-      "description": "Une sélection curatée de photographies de reportage. Capturer les moments bruts et sans filtre entre les poses. Là où la perfection se trouve dans l'inattendu."
+      "description": "Une sélection curatée de photographies de reportage. Des fragments de vie capturés sur le vif, le mouvement et l’émotion, entre les gestes et les silences. Là où la perfection se révèle dans l’inattendu."
     },
-    "stories": [
-      {
-        "id": 1,
-        "url": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2000&auto=format&fit=crop",
-        "caption": "Silence en coulisses, Milan Fashion Week",
-        "layout": "full"
-      },
-      {
-        "id": 2,
-        "url": "https://images.unsplash.com/photo-1517059224940-d4af9eec41b4?q=80&w=2000&auto=format&fit=crop",
-        "caption": "Texture brute",
-        "layout": "small-top"
-      },
-      {
-        "id": 3,
-        "url": "https://images.unsplash.com/photo-1550614000-4b9519e02a48?q=80&w=2000&auto=format&fit=crop",
-        "caption": "Le jeu de l'attente",
-        "layout": "small-bottom"
-      },
-      {
-        "id": 4,
-        "url": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2000&auto=format&fit=crop",
-        "caption": "Souvenirs analogiques",
-        "layout": "wide"
-      },
-      {
-        "id": 5,
-        "url": "https://images.unsplash.com/photo-1552168324-d612d77725e3?q=80&w=2000&auto=format&fit=crop",
-        "caption": "Solitude urbaine",
-        "layout": "full"
-      },
-      {
-        "id": 6,
-        "url": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=2000&auto=format&fit=crop",
-        "caption": "Étude de contraste",
-        "layout": "small-center"
-      }
-    ],
+    "gallery": {
+      "folder": "/gallery/reportage",
+      "layouts": ["full", "small-top", "small-bottom", "wide", "full", "small-center"]
+    },
     "endLabel": "Fin de la Série"
   },
   "soireeClubEntreprise": {
     "intro": {
-      "category": "Expertise Événementielle",
+      "category": "OFFRE CLUBS",
       "title": {
-        "line1": "CLUB &",
-        "line2": "CORPORATE"
+        "line1": "SHOOTING OFFICIEL",
+        "line2": "ESPRIT D'EQUIPE"
       },
-      "description": "Nous accompagnons les clubs sportifs et les entreprises dans la mise en lumière de leurs événements majeurs. Une approche dynamique et élégante pour célébrer vos réussites.",
+      "description": "Nous accompagnons les associations sportives et artistiques dans la mise en lumière de leurs événements majeurs. Une approche dynamique et innovante pour célébrer vos réussites.",
       "decoration": "Ev"
     },
     "events": [
       {
-        "title": "Clubs Sportifs",
-        "subtitle": "Victoires & Galas",
-        "description": "Immortalisez les moments forts de votre saison. Des matchs décisifs aux soirées de gala, nous capturons l'esprit d'équipe et la passion qui animent votre club.",
-        "image": "https://images.unsplash.com/photo-1574629810360-7efbbe4384d4?q=80&w=2000&auto=format&fit=crop",
+        "title": "Portrait de saison",
+        "subtitle": "Edition Studio",
+        "description": "Le rendez-vous annuel pour immortaliser vos équipes et vos talents. Une journée de shooting, des portraits Pro pour chaque licencié.",
+        "image": "/portrait.jpg",
         "icon": "Trophy"
       },
       {
-        "title": "Événements Pro",
-        "subtitle": "Soirées d'Entreprise",
-        "description": "Valorisez votre image de marque lors de vos séminaires, lancements de produits ou fêtes de fin d'année. Une couverture professionnelle pour une communication impactante.",
-        "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2000&auto=format&fit=crop",
+        "title": "Au coeur de l'action",
+        "subtitle": "Reportage & Immersion",
+        "description": "Immortalisez les moments forts de votre saison. Des compétitions décisifs aux soirées de gala, nous capturons l'esprit d'équipe et la passion qui animent votre club.",
+        "image": "/action.jpg",
         "icon": "Users"
       }
     ],
     "services": {
-      "title": "Nos Services Inclus",
+      "title": "Fédérez votre communauté",
       "items": [
         {
           "icon": "Camera",
-          "title": "Reportage Complet",
-          "description": "Couverture intégrale de l'événement, des préparatifs à la fin de soirée."
+          "title": "Portrait de saison",
+          "description": "l'événement incontournable pour votre association."
         },
         {
           "icon": "Star",
-          "title": "Studio Mobile",
-          "description": "Installation d'un studio photo professionnel sur place pour des portraits de qualité."
+          "title": "Reportage & Immersion",
+          "description": "La photographie, un levier puissant pour votre communication et votre développement."
         },
         {
           "icon": "Users",
-          "title": "Galerie Privée",
-          "description": "Accès sécurisé et partage instantané pour tous vos collaborateurs ou membres."
+          "title": "Zéro Contrainte",
+          "description": "Qr-code & impression express - galerie privée : Un processus optimisé, une technologie innovante au service de votre sérénité administrative"
+        },
+        {
+          "icon": "Users",
+          "title": "Auto-financement",
+          "description": "Aucun engagement financier de votre part : le service est financé exclusivement par les achats de photos des licenciés et de leurs familles."
         }
       ],
       "cta": {
-        "label": "Obtenir un devis"
+        "label": "En savoir +"
       }
     }
   },
   "animationTotem": {
     "hero": {
-      "title": "LE TOTEM",
+      "category": "Un dispositif d'exception",
+      "title": {
+        "line1": "LE TOTEM",
+        "line2": "Un dispositif d'exception"
+      },
       "description": "Redéfinissez l'expérience photo événementielle. Une présence monolithique, une technologie de pointe et un design qui captive l'attention.",
-      "backgroundImage": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2000&auto=format&fit=crop",
-      "scrollHint": "Scroll"
+      "decoration": "Le"
     },
     "showcase": {
       "title": {
-        "line1": "Pureté",
-        "line2": "du design."
+        "line1": "Signature",
+        "line2": "événementielle"
       },
-      "description": "Conçu pour s'intégrer dans les environnements les plus prestigieux. Son encombrement minimal au sol contraste avec la puissance de son affichage numérique.",
+      "description": "Valorisez votre image de marques lors de vos séminaires, lancements de produits ou fête de fin d'année. Une couverture professionnelle pour une communication impactante.",
       "image": {
-        "src": "/totem.jpeg",
+        "src": "/totem.jpg",
         "alt": "Totem d'animation"
       },
       "specs": [
-        "Écran Tactile 65 Pouces",
-        "Appareil Réflex DSLR Intégré",
-        "Éclairage LED Studio Ajustable"
+        "Un photographe dédié : L'art de vous guider.",
+        "Un décor scénographique",
+        "Partage express >  QR-code et impression",
+        "Branding Social Ready"
       ]
     },
     "features": [
       {
         "id": 1,
         "icon": "Monitor",
-        "title": "Visualisation",
-        "subtitle": "Instantanée 4K",
-        "description": "Un écran haute luminosité de 65\" pour un retour en direct époustouflant. Vos invités se voient en grand, en beau, en temps réel.",
-        "image": "https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1600&auto=format&fit=crop"
+        "title": "Décor",
+        "subtitle": "Scénographique",
+        "description": "Un dispositif d'exception, décor scénarisé sur mesure et experience immersive : L'art de sublimer vos clichés.",
+        "image": "/decor.jpg"
       },
       {
         "id": 2,
         "icon": "Printer",
-        "title": "Impression",
-        "subtitle": "Illimitée & Rapide",
-        "description": "Une imprimante thermique industrielle capable de sortir des tirages de qualité laboratoire en moins de 8 secondes.",
-        "image": "https://images.unsplash.com/photo-1612815154858-60aa4c46ae96?q=80&w=1600&auto=format&fit=crop"
+        "title": "Qr-code & Impression",
+        "subtitle": "L'innovation sans compromis",
+        "description": "L'excellence du tirage papier alliée à la sécurité numérique. C'est parce que nous privilégions la confidentialité que chaque invité accède à ses souvenirs via un Qr-code personnel, offrant un accès immediat et sécurisé. Conçu pour tous les smartphones.",
+        "image": "/qrcode.png"
       },
       {
         "id": 3,
-        "icon": "Smartphone",
-        "title": "Partage",
-        "subtitle": "Sans Contact",
-        "description": "AirDrop, QR Code, Email ou SMS. La récupération des médias est fluide, moderne et instantanée pour tous les smartphones.",
-        "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1600&auto=format&fit=crop"
-      },
-      {
-        "id": 4,
         "icon": "Share2",
         "title": "Branding",
         "subtitle": "Social Ready",
-        "description": "Chaque photo est une opportunité marketing. Intégrez votre logo et laissez vos invités devenir vos meilleurs ambassadeurs.",
-        "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1600&auto=format&fit=crop"
-      }
+        "description": "Transformez chaque cliché en levier d'image. Entre logo intégré et scénographie personnalisée, vos invités deviennent les ambassadeurs de votre marque.",
+          "image": "/branding.jpg"
+        }
     ],
     "cta": {
       "subtitle": "Prêt à marquer les esprits ?",
@@ -308,12 +280,12 @@
   },
   "contact": {
     "intro": {
-      "category": "Prendre contact",
+      "category": "Réponse rapide et personnalisé",
       "title": {
-        "line1": "DÉMARRER UNE",
-        "line2": "CONVERSATION"
+        "line1": "CONTACT",
+        "line2": "EVENEMENTIEL"
       },
-      "description": "Disponible pour des commandes commerciales, reportages et collaborations dans le monde entier."
+      "description": "Parce que chaque événement est unique, je privilégie un échange direct par téléphone ou email . Disponible du lundi au samedi."
     },
     "details": {
       "email": {
@@ -430,9 +402,9 @@
   "introAnimation": {
     "defaultText": "TOTEM",
     "transitionTexts": {
-      "/reportage": "REPORTAGE PHOTO",
-      "/animation-totem": "ANIMATION TOTEM",
-      "/soiree-club-entreprise": "SOIRÉE CLUB & ENTREPRISE"
+      "/reportage": "Saisir le bon instant !",
+      "/animation-totem": "Signature événementielle",
+      "/soiree-club-entreprise": "Esprit d'Équipe"
     }
   }
 }

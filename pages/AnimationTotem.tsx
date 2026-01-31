@@ -12,61 +12,38 @@ const iconMap: { [key: string]: React.ElementType } = {
 
 // --- Sub-Components ---
 
-// 1. Hero Section
+// 1. Hero Section (même style que Club & Corporate)
 const SectionHero = () => {
   const config = useSiteConfig();
   const hero = config.animationTotem.hero;
   
   return (
-    <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center overflow-hidden border-r border-white/10 bg-black">
-      {/* Background Image with Parallax-like scale */}
-      <motion.div 
-        className="absolute inset-0 z-0 opacity-40"
-        initial={{ scale: 1.2 }}
-        whileInView={{ scale: 1 }}
-        transition={{ duration: 10, ease: "easeOut" }}
-      >
-        <img 
-          src={hero.backgroundImage} 
-          alt="Atmosphere" 
-          className="w-full h-full object-cover grayscale contrast-125"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-      </motion.div>
+    <div className="relative shrink-0 w-full md:w-[60vw] h-[80vh] md:h-full flex flex-col justify-center overflow-hidden border-r border-gray-200 bg-white">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none">
+        <span className="absolute top-10 right-10 text-[10rem] md:text-[20rem] font-serif italic">{hero.decoration}</span>
+      </div>
 
-      <div className="relative z-10 p-8 md:p-24 flex flex-col justify-center h-full w-full max-w-7xl">
-        <div className="overflow-hidden">
-          <motion.h1 
-            initial={{ y: 100, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-            className="font-sans font-bold text-[15vw] md:text-[12vw] leading-[0.8] tracking-tighter text-white mix-blend-difference"
-          >
-            {hero.title}
-          </motion.h1>
-        </div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="mt-12 md:mt-24 max-w-lg border-l-2 border-white pl-6"
+      <div className="relative z-10 p-6 md:p-24 pt-24 md:pt-0">
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <p className="font-sans text-lg text-gray-300 leading-relaxed">
+          <span className="font-sans text-xs md:text-sm tracking-[0.4em] uppercase text-gray-500 mb-6 block">
+            {hero.category}
+          </span>
+          <h1 className="font-sans font-bold text-5xl md:text-8xl tracking-tighter leading-none text-black mb-2">
+            {hero.title.line1}
+          </h1>
+          <h1 className="font-serif italic font-light text-5xl md:text-8xl tracking-tighter leading-none text-gray-800">
+            {hero.title.line2}
+          </h1>
+          <p className="mt-8 font-sans text-sm md:text-base leading-relaxed max-w-md text-gray-600 border-l-2 border-black pl-6">
             {hero.description}
           </p>
         </motion.div>
       </div>
-
-      <motion.div 
-        className="absolute bottom-12 right-12 hidden md:flex items-center gap-4 text-xs font-sans tracking-[0.2em] uppercase text-gray-500"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <span>{hero.scrollHint}</span>
-        <div className="w-12 h-[1px] bg-gray-600" />
-      </motion.div>
     </div>
   );
 };
@@ -77,7 +54,7 @@ const SectionShowcase = () => {
   const showcase = config.animationTotem.showcase;
   
   return (
-    <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center bg-zinc-950 border-r border-white/10 overflow-hidden">
+    <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center bg-zinc-950 border-r border-white/10 overflow-hidden text-white">
 
       <div className="flex flex-col md:flex-row items-center w-full max-w-7xl px-8 gap-12 md:gap-24">
         {/* Abstract Product Visualization */}
@@ -134,13 +111,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
   const IconComponent = iconMap[feature.icon] || Monitor;
   
   return (
-    <div className="h-screen w-screen md:w-[45vw] flex-shrink-0 flex flex-col border-r border-white/10 relative overflow-hidden group">
+    <div className="h-screen w-screen md:w-[45vw] flex-shrink-0 flex flex-col border-r border-white/10 relative overflow-hidden group text-white">
       {/* Background Image that reveals on hover */}
       <div className="absolute inset-0 z-0">
         <img 
           src={feature.image} 
           alt={feature.title} 
-          className="w-full h-full object-cover opacity-20 grayscale group-hover:grayscale-0 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 ease-out"
+          className="w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black/40" />
       </div>
@@ -244,7 +221,7 @@ const AnimationTotem: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-[full] overflow-y-auto md:overflow-y-hidden md:overflow-x-auto no-scrollbar flex flex-col md:flex-row bg-black text-white"
+      className="relative w-full h-[full] overflow-y-auto md:overflow-y-hidden md:overflow-x-auto no-scrollbar flex flex-col md:flex-row bg-white text-black"
     >
       {/* 
         Horizontal Layout for Desktop (flex-row)

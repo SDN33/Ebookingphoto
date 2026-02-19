@@ -1,15 +1,15 @@
-import React, { useRef, useEffect, useMemo, useState } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useSiteConfig } from '../hooks/useSiteConfig';
+import { useImageMetrics } from '../hooks/useImageMetrics';
 
 // Charge automatiquement toutes les images du dossier reportage
 const imageModules = import.meta.glob('/public/portfolio/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true, as: 'url' });
-type Orientation = 'vertical' | 'horizontal';
 
 const Reportage: React.FC = () => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [imageOrientations, setImageOrientations] = useState<Record<number, Orientation>>({});
+  const { onImageLoad, getMetrics } = useImageMetrics();
 
   // Generate images dynamically from folder
   const images = useMemo(() => {
@@ -45,14 +45,6 @@ const Reportage: React.FC = () => {
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
 
-  const handleImageLoad = (id: number) => (evt: React.SyntheticEvent<HTMLImageElement>) => {
-    const { naturalWidth, naturalHeight } = evt.currentTarget;
-    if (!naturalWidth || !naturalHeight) return;
-
-    const orientation: Orientation = naturalHeight > naturalWidth ? 'vertical' : 'horizontal';
-    setImageOrientations((prev) => (prev[id] === orientation ? prev : { ...prev, [id]: orientation }));
-  };
-
   return (
     <div 
       ref={containerRef}
@@ -75,25 +67,29 @@ const Reportage: React.FC = () => {
       </div>
 
       {/* Gallery Flow */}
-      {images.map((item, index) => (
+      {images.map((item, index) => {
+        const imageMetrics = getMetrics(`reportage-${item.id}`, 4 / 3);
+        const isVertical = imageMetrics.orientation === 'vertical';
+
+        return (
         <div
           key={item.id}
           className="shrink-0 w-full md:w-auto flex flex-col justify-center items-center px-4 md:px-10 py-8 md:py-0 relative group"
         >
-          {/* Two normalized display classes without cropping */}
           <div
-            className={`relative transition-all duration-700
-              ${imageOrientations[item.id] === 'vertical' ? 'h-[56vh] md:h-[78vh]' : 'h-[42vh] md:h-[62vh]'}`}
+            className={`relative transition-all duration-700 ${
+              isVertical ? 'h-[56vh] md:h-[78vh]' : 'h-[42vh] md:h-[62vh]'
+            }`}
+            style={{ aspectRatio: imageMetrics.ratio }}
           >
             <motion.img
-              initial={{ scale: 1.1 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 1.5 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
               src={item.url}
               alt={item.caption}
-              onLoad={handleImageLoad(item.id)}
-              className={`h-full w-auto object-contain contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out
-                ${imageOrientations[item.id] === 'vertical' ? 'max-w-[72vw] md:max-w-[34vw]' : 'max-w-[92vw] md:max-w-[66vw]'}`}
+              onLoad={onImageLoad(`reportage-${item.id}`)}
+              className="w-full h-full object-cover contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out"
             />
           </div>
 
@@ -104,7 +100,7 @@ const Reportage: React.FC = () => {
             <p className="font-serif italic text-lg">{item.caption}</p>
           </div>
         </div>
-      ))}
+      )})}
 
       {/* End Spacer */}
       <div className="shrink-0 h-20 md:h-full md:w-[20vw] bg-gray-50 flex items-center justify-center">

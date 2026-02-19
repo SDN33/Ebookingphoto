@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { PortfolioItem } from '../types';
+import { useImageMetrics } from '../hooks/useImageMetrics';
 
 interface DiagonalFeedProps {
   items: PortfolioItem[];
@@ -10,6 +11,7 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [expandedId, setExpandedId] = useState<number | null>(null); // Track opened folder
   const [isMobile, setIsMobile] = useState(false);
+  const { onImageLoad, getMetrics } = useImageMetrics();
   const lastScrollTime = useRef(0);
   const touchStartY = useRef(0);
   const reelContainerRef = useRef<HTMLDivElement>(null);
@@ -171,15 +173,14 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
   }, [goNext, goPrev, isMobile, expandedId]);
 
   // Helper to determine style based on relative position (Desktop Only)
-  const getDesktopStyle = (offset: number) => {
+  const getDesktopStyle = (offset: number, ratio: number) => {
     const isExpanded = expandedId !== null;
     let transform = '';
     let opacity = 0;
     let zIndex = 0;
-    
-    // Desktop Standard
-    const BASE_WIDTH = isExpanded && offset === 0 ? '30vw' : '45vw'; // Shrink main image when expanded
-    const BASE_HEIGHT = '100vh'; 
+
+    const safeRatio = Math.max(0.65, Math.min(1.9, ratio));
+    const BASE_HEIGHT = isExpanded && offset === 0 ? '100vh' : safeRatio >= 1 ? '72vh' : '88vh';
 
     if (offset === 0) {
       // Active
@@ -214,8 +215,9 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
     }
 
     return {
-      width: BASE_WIDTH,
+      width: 'auto',
       height: BASE_HEIGHT,
+      aspectRatio: safeRatio,
       transform,
       opacity,
       zIndex,
@@ -233,16 +235,20 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
         <div 
             className={`w-full h-full overflow-y-auto bg-[#fdfdfd] pt-28 pb-12 px-6 no-scrollbar transition-opacity duration-500 ${expandedId !== null ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         >
-          {items.map((item) => (
+          {items.map((item) => {
+            const coverMetrics = getMetrics(`work-cover-${item.id}`, 3 / 4);
+            return (
             <div key={item.id} className="mb-20 flex flex-col group">
               {/* Main Card */}
               <div 
-                  className="w-full aspect-[3/4] overflow-hidden mb-6 bg-gray-100 relative cursor-pointer active:scale-95 transition-transform"
+                  className="w-auto h-[58vh] max-w-[92vw] overflow-hidden mb-6 bg-gray-100 relative cursor-pointer active:scale-95 transition-transform mx-auto"
+                  style={{ aspectRatio: coverMetrics.ratio }}
                   onClick={() => toggleFolder(item.id)}
               >
                   <img 
                       src={item.imageUrl} 
                       alt={item.title} 
+                      onLoad={onImageLoad(`work-cover-${item.id}`)}
                       className="w-full h-full object-cover"
                   />
                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
@@ -262,7 +268,7 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
                   </h2>
               </div>
             </div>
-          ))}
+          )})}
         </div>
 
         {/* FULLSCREEN PROJECT OVERLAY */}
@@ -315,7 +321,8 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
       {items.map((item, index) => {
         const offset = index - activeIndex;
         if (offset < -1 || offset > 3) return null;
-        const style = getDesktopStyle(offset);
+        const itemMetrics = getMetrics(`work-cover-${item.id}`, 4 / 3);
+        const style = getDesktopStyle(offset, itemMetrics.ratio);
         const isActive = offset === 0;
 
         return (
@@ -330,10 +337,9 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
               <img
                 src={item.imageUrl}
                 alt={item.title}
+                onLoad={onImageLoad(`work-cover-${item.id}`)}
                 className="w-full h-full object-cover"
                 style={{
-                    // Reduce parallax effect when expanded to keep image stable
-                    transform: isExpanded && isActive ? 'scale(1) translate(0,0)' : `scale(1.2) translate(${offset * -2}%, ${offset * -2}%)`,
                     transition: TRANSITION_CSS
                 }}
               />
@@ -389,8 +395,17 @@ export const DiagonalFeed: React.FC<DiagonalFeedProps> = ({ items }) => {
 
              {/* Images */}
              {activeItem.projectImages.map((imgUrl, idx) => (
-                 <div key={idx} className="h-full aspect-[2/3] md:aspect-[3/4] lg:aspect-[4/5] relative shadow-lg overflow-hidden group flex-shrink-0 pointer-events-none">
-                     <img src={imgUrl} className="w-full h-full object-cover" alt={`Project ${idx}`} />
+                 <div
+                   key={idx}
+                   className="h-full w-auto relative shadow-lg overflow-hidden group flex-shrink-0 pointer-events-none"
+                   style={{ aspectRatio: getMetrics(`work-reel-${imgUrl}`, 3 / 4).ratio }}
+                 >
+                     <img
+                       src={imgUrl}
+                       onLoad={onImageLoad(`work-reel-${imgUrl}`)}
+                       className="w-full h-full object-cover"
+                       alt={`Project ${idx}`}
+                     />
                  </div>
              ))}
 

@@ -1,7 +1,7 @@
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
 import { Photo } from '../types';
+import { useImageMetrics } from '../hooks/useImageMetrics';
 
 interface GalleryItemProps {
   photo: Photo;
@@ -10,43 +10,29 @@ interface GalleryItemProps {
 }
 
 const GalleryItem: React.FC<GalleryItemProps> = ({ photo, index, onClick }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Track viewport intersection for parallax
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
-  // Use a smaller movement range for X to be safe on various screens, 
-  // or mainly visible on desktop where the scroll is horizontal (but mapped via this hook implicitly)
-  const xMovement = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
-
-  const isPortrait = photo.aspectRatio === 'portrait';
+  const { onImageLoad, getMetrics } = useImageMetrics();
+  const fallbackRatio = photo.aspectRatio === 'portrait' ? 3 / 4 : 4 / 3;
+  const metrics = getMetrics(photo.id, fallbackRatio);
+  const isPortrait = metrics.orientation === 'vertical';
 
   return (
     <div 
-      ref={containerRef}
       className={`shrink-0 flex flex-col justify-center px-6 md:px-16 py-10 md:py-0 w-full md:w-auto min-h-[50vh] md:h-screen relative group`}
     >
       <div 
         onClick={onClick}
         className={`relative overflow-hidden bg-gray-100 shadow-lg mx-auto md:mx-0 cursor-pointer ${
-          isPortrait ? 'w-full md:w-[45vh] h-[60vh] md:h-[70vh]' : 'w-full md:w-[75vh] h-[40vh] md:h-[50vh]'
+          isPortrait ? 'h-[60vh] md:h-[70vh]' : 'h-[40vh] md:h-[50vh]'
         }`}
+        style={{ aspectRatio: metrics.ratio }}
       >
-        <motion.div
-           className="w-full h-full relative"
-           style={{ scale: scale, x: xMovement }}
-        >
-          <img 
-            src={photo.url} 
-            alt={photo.title}
-            className="w-[110%] h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out contrast-110 -ml-[5%]"
-            loading="lazy"
-          />
-        </motion.div>
+        <img 
+          src={photo.url} 
+          alt={photo.title}
+          onLoad={onImageLoad(photo.id)}
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out contrast-110"
+          loading="lazy"
+        />
 
         {/* Hover Info - Desktop */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500 z-10 pointer-events-none" />

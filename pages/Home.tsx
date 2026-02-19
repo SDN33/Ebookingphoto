@@ -7,6 +7,7 @@ import Services from '../components/Services';
 import { Photo } from '../types';
 import { X } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
+import { useImageMetrics } from '../hooks/useImageMetrics';
 
 interface HomeProps {
   onNavigate: (path: string) => void;
@@ -16,6 +17,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const config = useSiteConfig();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isFlipbookOpen, setIsFlipbookOpen] = useState(false);
+  const { onImageLoad, getMetrics } = useImageMetrics();
+  const mariageImageMetrics = getMetrics('home-mariage-image', 3 / 4);
 
   // Horizontal Scroll on Desktop via Wheel
   useEffect(() => {
@@ -136,10 +139,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         </div>
 
         {/* Right side: Image with button overlay */}
-        <div className="w-full lg:w-1/3 h-[50vh] lg:h-full relative group overflow-hidden">
+        <div
+          className="w-auto h-[50vh] lg:h-full max-w-[92vw] lg:max-w-[40vw] relative group overflow-hidden mx-auto lg:mx-0"
+          style={{ aspectRatio: mariageImageMetrics.ratio }}
+        >
           <img 
             src={config.home.mariage.image.src}  
             alt={config.home.mariage.image.alt} 
+            onLoad={onImageLoad('home-mariage-image')}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
           />
           {/* Overlay gradient */}

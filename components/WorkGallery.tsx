@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import React from 'react';
+import { useImageMetrics } from '../hooks/useImageMetrics';
 
 const PROJECTS = [
   {
@@ -28,20 +28,12 @@ const PROJECTS = [
 interface ProjectCardProps {
   project: typeof PROJECTS[0];
   index: number;
-  progress: MotionValue<number>;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, progress }) => {
-  // Stagger the diagonal effect slightly for each item to create depth
-  // The 'diagonal' effect is created by moving the image UP (negative Y) as the user scrolls RIGHT (positive time/progress)
-  // Input progress: 0 (entering from right) -> 1 (exiting to left)
-  // We want: Start low (positive Y), End high (negative Y)
-  
-  const yRange = [150, -150]; // Move 300px vertically during the scroll pass
-  const y = useTransform(progress, [0, 1], yRange);
-  
-  // Also add a slight parallax speed difference
-  const x = useTransform(progress, [0, 1], ["10%", "-10%"]);
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+  const { onImageLoad, getMetrics } = useImageMetrics();
+  const fallbackRatio = project.aspect === 'portrait' ? 3 / 4 : project.aspect === 'square' ? 1 : 4 / 3;
+  const imageMetrics = getMetrics(`work-gallery-${project.id}`, fallbackRatio);
 
   return (
     <div className="flex-shrink-0 w-[80vw] md:w-[45vw] h-full flex flex-col justify-center px-8 md:px-12 relative">
@@ -57,17 +49,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, progress }) =
         </span>
       </div>
 
-      <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-gray-100 group">
-        <motion.div 
-          className="w-full h-[120%] relative -top-[10%]"
-          style={{ y, x }}
-        >
-          <img 
-            src={project.image} 
-            alt={project.client} 
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
-          />
-        </motion.div>
+      <div
+        className="relative h-[50vh] md:h-[60vh] w-auto overflow-hidden bg-gray-100 group"
+        style={{ aspectRatio: imageMetrics.ratio }}
+      >
+        <img 
+          src={project.image} 
+          alt={project.client}
+          onLoad={onImageLoad(`work-gallery-${project.id}`)}
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
+        />
       </div>
       
       {/* Decorative diagonal line behind */}
@@ -77,15 +68,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, progress }) =
 };
 
 const WorkGallery: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollXProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
   return (
     <section 
-      ref={containerRef} 
       className="shrink-0 h-screen flex items-center bg-white relative py-20 pl-20"
     >
       <div className="absolute top-10 left-10 md:left-20 z-10">
@@ -98,7 +82,6 @@ const WorkGallery: React.FC = () => {
             key={project.id} 
             project={project} 
             index={index} 
-            progress={scrollXProgress}
           />
         ))}
       </div>

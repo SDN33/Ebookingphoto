@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Monitor, Printer, Share2, Smartphone, ArrowRight, Sparkles } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
+import { useImageMetrics } from '../hooks/useImageMetrics';
 
 const iconMap: { [key: string]: React.ElementType } = {
   Monitor,
@@ -109,15 +110,21 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
   const IconComponent = iconMap[feature.icon] || Monitor;
+  const { onImageLoad, getMetrics } = useImageMetrics();
+  const imageMetrics = getMetrics(`animation-feature-${feature.id}`, 4 / 3);
   
   return (
-    <div className="h-screen w-screen md:w-[45vw] flex-shrink-0 flex flex-col border-r border-white/10 relative overflow-hidden group text-white">
+    <div
+      className="h-[75vh] md:h-screen w-auto max-w-[94vw] md:max-w-none flex-shrink-0 flex flex-col border-r border-white/10 relative overflow-hidden group text-white mx-auto md:mx-0"
+      style={{ aspectRatio: imageMetrics.ratio }}
+    >
       {/* Background Image that reveals on hover */}
       <div className="absolute inset-0 z-0">
         <img 
           src={feature.image} 
           alt={feature.title} 
-          className="w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+          onLoad={onImageLoad(`animation-feature-${feature.id}`)}
+          className="w-full h-full object-cover opacity-100 transition-[filter] duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black/40" />
       </div>

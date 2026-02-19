@@ -1,0 +1,42 @@
+/* Custom font class for manifesto special word */
+.manifesto-font {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  display: inline-block;
+}
+
+/* Ensure the custom font respects existing sizing and spacing */
+.manifesto-font.italic { font-style: italic; }
+.manifesto-font.font-normal { font-weight: 500; }
+
+/* Impact word in bold sans-serif to stand out against serif context */
+.manifesto-impact {
+  font-family: 'Sora', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.menu-line-primary {
+  font-family: 'Sora', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  display: block;
+  line-height: 0.94;
+}
+
+.menu-line-secondary {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  display: block;
+  line-height: 0.92;
+}

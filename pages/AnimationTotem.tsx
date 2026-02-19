@@ -11,6 +11,10 @@ const iconMap: { [key: string]: React.ElementType } = {
   Smartphone
 };
 
+interface AnimationTotemProps {
+  onNavigate: (path: string) => void;
+}
+
 // --- Sub-Components ---
 
 // 1. Hero Section (même style que Club & Corporate)
@@ -21,8 +25,13 @@ const SectionHero = () => {
   return (
     <div className="relative shrink-0 w-full md:w-[60vw] h-[80vh] md:h-full flex flex-col justify-center overflow-hidden border-r border-gray-200 bg-white">
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none">
-        <span className="absolute top-10 right-10 text-[10rem] md:text-[20rem] font-serif italic">{hero.decoration}</span>
+      <div className="absolute inset-0 pointer-events-none">
+        <img
+          src="/logo2.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute top-8 right-[-3rem] md:right-[-7rem] lg:right-[-10rem] w-[24rem] md:w-[36rem] lg:w-[44rem] max-w-[68vw] opacity-[0.11] select-none"
+        />
       </div>
 
       <div className="relative z-10 p-6 md:p-24 pt-24 md:pt-0">
@@ -112,6 +121,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
   const IconComponent = iconMap[feature.icon] || Monitor;
   const { onImageLoad, getMetrics } = useImageMetrics();
   const imageMetrics = getMetrics(`animation-feature-${feature.id}`, 4 / 3);
+  const isQrCodeCard = feature.id === 2;
   
   return (
     <div
@@ -125,24 +135,24 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
           alt={feature.title} 
           onLoad={onImageLoad(`animation-feature-${feature.id}`)}
           className="w-full h-full object-cover opacity-100 transition-[filter] duration-700 ease-out"
+          style={isQrCodeCard ? { objectPosition: '50% 44%' } : undefined}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black/40" />
       </div>
 
       <div className="relative z-10 flex flex-col justify-between h-full p-8 md:p-16">
         <div className="flex justify-between items-start">
-          <span className="font-serif text-6xl text-white/20 group-hover:text-white/40 transition-colors">0{index + 1}</span>
-          <div className="p-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md group-hover:bg-white group-hover:text-black transition-all duration-300">
+          <span className="font-serif text-6xl text-white">0{index + 1}</span>
+          <div className="p-4 rounded-full border border-white bg-transparent backdrop-blur-md group-hover:bg-white group-hover:text-black transition-all duration-300">
             <IconComponent className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black" strokeWidth={1.5} />
           </div>
         </div>
 
-        <div className="mb-12 md:mb-0">
-          <h4 className="flex flex-col text-4xl md:text-5xl mb-6">
-            <span className="font-sans font-bold tracking-tight text-white">{feature.title}</span>
-            <span className="font-serif italic font-light text-gray-300 group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-2">{feature.subtitle}</span>
+        <div className={`mb-12 md:mb-0 ${isQrCodeCard ? 'absolute bottom-8 md:bottom-12 left-8 md:left-16 right-8 md:right-16' : ''}`}>
+          <h4 className={`flex flex-col mb-6 ${isQrCodeCard ? 'text-3xl md:text-5xl leading-[0.95]' : 'text-4xl md:text-5xl'}`}>
+            <span className={`font-sans font-bold tracking-tight ${isQrCodeCard ? 'text-black' : 'text-white'}`}>{feature.title}</span>
+            <span className={`font-serif italic font-light ${isQrCodeCard ? 'text-black' : 'text-white'}`}>{feature.subtitle}</span>
           </h4>
-          <p className="font-sans text-sm md:text-base text-gray-300 leading-relaxed max-w-md group-hover:text-white transition-colors">
+          <p className={`font-sans text-sm md:text-base leading-relaxed ${isQrCodeCard ? 'text-black max-w-sm' : 'text-white max-w-md'}`}>
             {feature.description}
           </p>
         </div>
@@ -152,7 +162,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
 };
 
 // 4. CTA Section
-const SectionCTA = () => {
+interface SectionCTAProps {
+  onNavigate: (path: string) => void;
+}
+
+const SectionCTA: React.FC<SectionCTAProps> = ({ onNavigate }) => {
   const config = useSiteConfig();
   const cta = config.animationTotem.cta;
   
@@ -189,6 +203,7 @@ const SectionCTA = () => {
         <motion.button 
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => onNavigate('/contact')}
           className="group relative inline-flex items-center gap-4 px-12 py-6 bg-black text-white overflow-hidden transition-all duration-300"
         >
           <span className="relative z-10 font-sans text-sm tracking-[0.2em] uppercase font-bold">{cta.button.label}</span>
@@ -202,7 +217,7 @@ const SectionCTA = () => {
 
 // --- Main Component ---
 
-const AnimationTotem: React.FC = () => {
+const AnimationTotem: React.FC<AnimationTotemProps> = ({ onNavigate }) => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -254,7 +269,7 @@ const AnimationTotem: React.FC = () => {
 
       {/* 4. CTA */}
       <div className="shrink-0 w-full md:w-auto">
-        <SectionCTA />
+        <SectionCTA onNavigate={onNavigate} />
       </div>
 
     </div>

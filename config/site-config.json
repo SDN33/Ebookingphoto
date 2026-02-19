@@ -7,31 +7,29 @@
   },
   "navigation": {
     "logo": {
-      "src": "/logo.png",
+      "src": "/logo2.jpg",
       "alt": "Ebooking Photo Logo"
     },
     "menuItems": [
       {
-        "id": "about",
+        "id": "home",
         "label": "ACCUEIL",
         "path": "/"
       },
       {
-        "id": "work",
-        "label": "GALERIE",
-        "path": "/work"
+        "id": "reportage",
+        "label": "PORTFOLIO\nREPORTAGE",
+        "path": "/reportage"
       },
       {
-        "id": "journal",
-        "label": "TOTEM",
-        "path": "/animation-totem",
-        "sectionId": "journal"
+        "id": "totem",
+        "label": "TOTEM ANIMATION\nEVENEMENTIELLE",
+        "path": "/animation-totem"
       },
       {
-        "id": "journal",
-        "label": "CLUBS",
-        "path": "/soiree-club-entreprise",
-        "sectionId": "journal"
+        "id": "clubs",
+        "label": "SHOOTING OFFICIEL\nEsprit D'Équipe",
+        "path": "/soiree-club-entreprise"
       },
       {
         "id": "contact",
@@ -60,13 +58,15 @@
     },
     "intro": {
       "quote": "Votre événement, notre regard. Quand les sourires se mêlent aux larmes, des cris, des joies, la pudeur d'un discours... Chaque instant devient une narration visuelle, authentique, capturée dans l'émotion brut.",
-      "scrollHint": "Défiler pour explorer où Saisir le bon instant ! "
+      "scrollHint": "Photographe : Saisir le bon instant !"
     },
     "manifesto": {
       "lines": [
-        "J'AIME LA COULEUR D'ORIGINE,",
-        "LE NOIR ET BLANC,",
-        "LE SILENCE, AU MILIEU DU CHAOS."
+        "QUAND LA COULEUR D’ORIGINE",
+        "NOUS RAPPELLE L’AUTHENTIQUE,",
+        "LE GRAIN DU NOIR ET BLANC,",
+        "L’INSTANT DE VÉRITÉ OÙ",
+        "LES CONTRAIRES S’UNISSENT."
       ],
       "image": {
         "src": "/photographe1.jpg",
@@ -79,24 +79,24 @@
       "items": [
         {
           "id": "01",
-          "title": "PORTFOLIO",
+          "title": "PORTFOLIO\nREPORTAGE",
           "description": "Saisir le bon instant !",
           "path": "/reportage"
         },
         {
           "id": "02",
-          "title": "ANIMATION EVENEMENTIELLE",
+          "title": "TOTEM ANIMATION\nEVENEMENTIELLE",
           "description": "Bien plus qu'un simple photocall",
           "path": "/animation-totem"
         },
         {
           "id": "03",
-          "title": "SHOOTING OFFICIEL DES CLUBS",
-          "description": "Équipe et portrait",
+          "title": "SHOOTING OFFICIEL\nDES CLUBS",
+          "description": "Portraits de saison ",
           "path": "/soiree-club-entreprise"
         }
       ],
-      "footer": "Donnons vie à vos instants. Disponible pour vos projets, worldwide commissions"
+      "footer": "Là où l’humain performe, s’exprime et se ressemble."
     },
     "gallery": {
       "label": "Depuis 1986",
@@ -104,33 +104,40 @@
         {
           "id": "1",
           "url": "/party.jpg",
-          "title": "Noir Étude",
-          "category": "Evenementiel",
+          "title": "Prestige",
+          "category": "Soirée gala & Séminaire",
           "aspectRatio": "portrait"
         },
         {
           "id": "2",
           "url": "spectacle.jpg",
-          "title": "Centre Artistique",
-          "category": "Evenementiel",
+          "title": "Poésie Visuelle",
+          "category": "L’éphémère",
           "aspectRatio": "landscape"
         },
         {
           "id": "3",
           "url": "/sport.jpg",
-          "title": "Sportif",
-          "category": "Evenementiel",
+          "title": "Performance",
+          "category": "Le sport en événement",
           "aspectRatio": "portrait"
+        },
+        {
+          "id": "4",
+          "url": "/totem.jpg",
+          "title": "Totem",
+          "category": "Animation d’événement",
+          "aspectRatio": "landscape"
         }
       ]
     },
     "mariage": {
       "title": {
-        "line1": "LE JOUR DE VOTRE MARIAGE !",
-        "line2": "",
+        "line1": "EBooking Photo c’est aussi ",
+        "line2": "LE JOUR DE VOTRE MARIAGE !",
         "line3": ""
       },
-      "description": "Ma vision de la photographie de mariage mêle l’esthétisme de la photo de beauté et l’authenticité inspiré du Photo-Journalisme.",
+      "description": "Parce que chaque victoire, chaque projet, chaque union mérite une image forte.",
       "image": {
         "src": "/gallery/mariage/photo1.jpg",
         "alt": "Mariage"
@@ -167,14 +174,14 @@
         "line2": "Esprit D'Équipe"
       },
       "description": "Nous accompagnons les associations sportives et artistiques dans la mise en lumière de leurs événements majeurs. Une approche dynamique et innovante pour célébrer vos réussites.",
-      "decoration": "Ev"
+      "decoration": "EP"
     },
     "events": [
       {
         "title": "Portrait de saison",
         "subtitle": "Edition Studio",
-        "description": "Le rendez-vous annuel pour immortaliser vos équipes et vos talents. Une journée de shooting, des portraits Pro pour chaque licencié.",
-        "image": "/portrait.jpg",
+        "description": "Le rendez-vous annuel pour immortaliser vos équipes et vos talents. Une journée de shooting organisé dans votre club, des portraits Pro pour chaque licencié.",
+        "image": "/portrait-spiodt.png",
         "icon": "Trophy"
       },
       {
@@ -216,13 +223,13 @@
   },
   "animationTotem": {
     "hero": {
-      "category": "Un dispositif d'exception",
+      "category": "Bien plus qu’un simple photocalll",
       "title": {
         "line1": "LE TOTEM",
-        "line2": "Un dispositif d'exception"
+        "line2": "l’innovation sans compromis"
       },
       "description": "Redéfinissez l'expérience photo événementielle. Une présence monolithique, une technologie de pointe et un design qui captive l'attention.",
-      "decoration": "Le"
+      "decoration": "EP"
     },
     "showcase": {
       "title": {
@@ -236,7 +243,7 @@
       },
       "specs": [
         "Un photographe dédié : L'art de vous guider.",
-        "Un décor scénographique",
+        "Éclairage Studio & Décors Scénarisés",
         "Partage express >  QR-code et impression",
         "Branding Social Ready"
       ]
@@ -253,9 +260,9 @@
       {
         "id": 2,
         "icon": "Printer",
-        "title": "Qr-code & Impression",
-        "subtitle": "L'innovation sans compromis",
-        "description": "L'excellence du tirage papier alliée à la sécurité numérique. C'est parce que nous privilégions la confidentialité que chaque invité accède à ses souvenirs via un Qr-code personnel, offrant un accès immediat et sécurisé. Conçu pour tous les smartphones.",
+        "title": "Partage ",
+        "subtitle": "Qr-code & Impression",
+        "description": "L'excellence du tirage papier alliée à la sécurité numérique. Par confidentialité, chaque invité accède à ses souvenirs via un Qr-code, via un accès immediat et sécurisé.",
         "image": "/qrcode.png"
       },
       {
@@ -283,7 +290,7 @@
       "category": "Réponse rapide et personnalisé",
       "title": {
         "line1": "CONTACT",
-        "line2": "EVENEMENTIEL"
+        "line2": "PHOTOGRAPHE EVENEMENTIEL"
       },
       "description": "Parce que chaque événement est unique, je privilégie un échange direct par téléphone ou email . Disponible du lundi au samedi."
     },

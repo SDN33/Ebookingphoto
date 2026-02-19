@@ -86,14 +86,22 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col justify-center items-center gap-8 md:gap-12">
+          <div className="flex-1 flex flex-col justify-center items-center gap-4 md:gap-6 overflow-y-auto py-8 md:py-10">
             {config.navigation.menuItems.map((item) => (
-              <button 
+              <button
                 key={item.id}
                 onClick={() => handleNavigate(item.path, item.sectionId)}
-                className={`text-4xl md:text-7xl font-serif italic hover:font-sans hover:not-italic transition-all duration-300 cursor-pointer bg-transparent border-none ${currentPath === item.path ? 'opacity-50' : 'text-white'}`}
+                className={`transition-opacity duration-300 cursor-pointer bg-transparent border-none text-center ${currentPath === item.path ? 'opacity-55' : 'text-white hover:opacity-80'}`}
+                style={{ fontSize: 'clamp(1.25rem, 2.5vw, 3.2rem)' }}
               >
-                {item.label}
+                {item.label.split('\n').map((line, lineIndex, arr) => (
+                  <span
+                    key={`${item.id}-${lineIndex}`}
+                    className={lineIndex === 0 || arr.length === 1 ? 'menu-line-primary' : 'menu-line-secondary'}
+                  >
+                    {line}
+                  </span>
+                ))}
               </button>
             ))}
           </div>

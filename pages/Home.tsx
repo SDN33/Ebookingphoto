@@ -125,7 +125,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         {/* Left side: Text content */}
         <div className="w-full lg:w-2/3 flex flex-col justify-center items-start p-10 md:p-20">
           <div className="max-w-7xl">
-            <h2 className="font-sans text-4xl md:text-6xl font-bold tracking-tighter mb-4 text-black">
+            <h2 className="font-sans text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-black">
               {config.home.mariage.title.line1}
             </h2>
             <h2 className="font-serif italic text-4xl md:text-6xl font-light mb-8 text-gray-800">

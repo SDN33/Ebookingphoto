@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Trophy, Users, Star, Camera } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
@@ -30,7 +30,6 @@ const EVENTS = [
 const SoireeClubEntreprise: React.FC = () => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [eventRatios, setEventRatios] = useState<Record<number, number>>({});
   const { scrollXProgress } = useScroll({ container: containerRef });
 
   const titleX = useTransform(scrollXProgress, [0, 0.2], ["0%", "20%"]);
@@ -48,27 +47,24 @@ const SoireeClubEntreprise: React.FC = () => {
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
 
-  const handleEventImageLoad = (idx: number) => (evt: React.SyntheticEvent<HTMLImageElement>) => {
-    const { naturalWidth, naturalHeight } = evt.currentTarget;
-    if (!naturalWidth || !naturalHeight) return;
-
-    const ratio = naturalWidth / naturalHeight;
-    setEventRatios((prev) => (prev[idx] === ratio ? prev : { ...prev, [idx]: ratio }));
-  };
-
   return (
     <div 
       ref={containerRef}
       className="flex flex-col md:flex-row h-full w-full overflow-y-auto md:overflow-y-hidden md:overflow-x-auto no-scrollbar bg-white text-black"
     >
       {/* 1. Intro / Title Section */}
-      <div className="shrink-0 w-full md:w-[60vw] h-[80vh] md:h-full flex flex-col justify-center p-6 md:p-24 bg-gray-50 relative overflow-hidden pt-24 md:pt-0">
+      <div className="shrink-0 w-full md:w-[60vw] h-[80vh] md:h-full flex flex-col justify-center pl-6 pr-8 md:pl-24 md:pr-36 lg:pr-44 bg-gray-50 relative overflow-hidden pt-24 md:pt-0">
         {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none">
-           <span className="absolute top-10 right-10 text-[10rem] md:text-[20rem] font-serif italic">{config.soireeClubEntreprise.intro.decoration}</span>
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src="/logo2.png"
+            alt=""
+            aria-hidden="true"
+            className="absolute top-8 right-[-3rem] md:right-[-7rem] lg:right-[-10rem] w-[24rem] md:w-[36rem] lg:w-[44rem] max-w-[68vw] opacity-[0.11] select-none"
+          />
         </div>
 
-        <motion.div style={{ x: window.innerWidth > 768 ? titleX : 0 }} className="z-10 relative">
+        <motion.div style={{ x: window.innerWidth > 768 ? titleX : 0 }} className="z-10 relative max-w-[88%] md:max-w-[82%] lg:max-w-[78%]">
           <span className="font-sans text-xs md:text-sm tracking-[0.4em] uppercase text-gray-500 mb-6 block">
             {config.soireeClubEntreprise.intro.category}
           </span>
@@ -87,21 +83,19 @@ const SoireeClubEntreprise: React.FC = () => {
       {/* 2. Dual Offerings: Sports & Corporate */}
       {config.soireeClubEntreprise.events.map((event, idx) => {
         const IconComponent = iconMap[event.icon] || Users;
-        const eventRatio = eventRatios[idx] || 4 / 3;
         return (
         <div
           key={idx}
           className="shrink-0 w-full md:w-auto h-[70vh] md:h-full relative group overflow-hidden border-t md:border-t-0 md:border-l border-white"
-          style={{ aspectRatio: eventRatio }}
+          style={{ aspectRatio: 1134 / 1102 }}
         >
           <div className="absolute inset-0 z-0">
              <img 
                src={event.image} 
                alt={event.title}
-               onLoad={handleEventImageLoad(idx)}
-               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-[filter] duration-700"
-             />
-             <div className="absolute inset-0 z-20 bg-black/35 group-hover:bg-black/20 transition-colors duration-500" />
+               className="w-full h-full object-cover transition-[filter] duration-700 grayscale-0 group-hover:grayscale"
+              />
+             <div className="absolute inset-0 z-20 bg-black/20 group-hover:bg-black/30 transition-colors duration-500" />
           </div>
 
           <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-16 text-white">

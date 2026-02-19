@@ -50,7 +50,7 @@ const App: React.FC = () => {
       case '/reportage':
         return <Reportage />;
       case '/animation-totem':
-        return <AnimationTotem />;
+        return <AnimationTotem onNavigate={handleNavigate} />;
       case '/soiree-club-entreprise':
         return <SoireeClubEntreprise />;
       default:

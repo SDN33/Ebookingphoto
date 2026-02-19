@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Trophy, Users, Star, Camera } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
@@ -30,6 +30,7 @@ const EVENTS = [
 const SoireeClubEntreprise: React.FC = () => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [eventRatios, setEventRatios] = useState<Record<number, number>>({});
   const { scrollXProgress } = useScroll({ container: containerRef });
 
   const titleX = useTransform(scrollXProgress, [0, 0.2], ["0%", "20%"]);
@@ -46,6 +47,14 @@ const SoireeClubEntreprise: React.FC = () => {
     container.addEventListener('wheel', handleWheel, { passive: false });
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
+
+  const handleEventImageLoad = (idx: number) => (evt: React.SyntheticEvent<HTMLImageElement>) => {
+    const { naturalWidth, naturalHeight } = evt.currentTarget;
+    if (!naturalWidth || !naturalHeight) return;
+
+    const ratio = naturalWidth / naturalHeight;
+    setEventRatios((prev) => (prev[idx] === ratio ? prev : { ...prev, [idx]: ratio }));
+  };
 
   return (
     <div 
@@ -78,19 +87,19 @@ const SoireeClubEntreprise: React.FC = () => {
       {/* 2. Dual Offerings: Sports & Corporate */}
       {config.soireeClubEntreprise.events.map((event, idx) => {
         const IconComponent = iconMap[event.icon] || Users;
+        const eventRatio = eventRatios[idx] || 4 / 3;
         return (
-        <div key={idx} className="shrink-0 w-full md:w-[50vw] h-[70vh] md:h-full relative group overflow-hidden border-t md:border-t-0 md:border-l border-white">
-          <div className="absolute inset-0 z-0 bg-black">
-             <img
-               src={event.image}
-               alt=""
-               aria-hidden="true"
-               className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 grayscale group-hover:grayscale-0 transition-[filter] duration-700"
-             />
+        <div
+          key={idx}
+          className="shrink-0 w-full md:w-auto h-[70vh] md:h-full relative group overflow-hidden border-t md:border-t-0 md:border-l border-white"
+          style={{ aspectRatio: eventRatio }}
+        >
+          <div className="absolute inset-0 z-0">
              <img 
                src={event.image} 
                alt={event.title}
-               className="relative z-10 w-full h-full object-contain grayscale group-hover:grayscale-0 transition-[filter] duration-700"
+               onLoad={handleEventImageLoad(idx)}
+               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-[filter] duration-700"
              />
              <div className="absolute inset-0 z-20 bg-black/35 group-hover:bg-black/20 transition-colors duration-500" />
           </div>

@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { useSiteConfig } from '../hooks/useSiteConfig';
 import { useImageMetrics } from '../hooks/useImageMetrics';
 
-// Charge automatiquement toutes les images du dossier reportage
-const imageModules = import.meta.glob('/public/portfolio/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true, as: 'url' });
+// Charge automatiquement toutes les images du dossier reportage dédié
+const imageModules = import.meta.glob('/public/portfolio-reportage/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true, as: 'url' });
 
 const Reportage: React.FC = () => {
   const config = useSiteConfig();
@@ -19,7 +19,8 @@ const Reportage: React.FC = () => {
     return imagePaths.map((path, index) => {
       // Extrait le nom du fichier et crée un caption
       const filename = path.split('/').pop()?.replace(/\.[^/.]+$/, '') || '';
-      const caption = filename.replace(/[-_]/g, ' ');
+      const cleanFilename = filename.replace(/^\d{1,3}[)\-_\s]+/, '');
+      const caption = cleanFilename.replace(/[-_]/g, ' ');
       
       return {
         id: index + 1,

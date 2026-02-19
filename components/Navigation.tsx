@@ -61,6 +61,18 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
         </button>
       </div>
 
+      {/* Hidden Backlink */}
+      <a
+        href="https://stillinov.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hidden"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        Propulsé par Still-inov Agency
+      </a>
+
       {/* Menu Overlay */}
       <div className={`fixed inset-0 bg-black text-white z-[60] transition-transform duration-700 ease-[0.22,1,0.36,1] ${isOpen ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="flex flex-col h-full p-6 md:p-10">

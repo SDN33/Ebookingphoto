@@ -1,18 +1,18 @@
-import React, { useRef, useEffect, useMemo } from 'react';
+import React, { useRef, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSiteConfig } from '../hooks/useSiteConfig';
 
 // Charge automatiquement toutes les images du dossier reportage
 const imageModules = import.meta.glob('/public/portfolio/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true, as: 'url' });
+type Orientation = 'vertical' | 'horizontal';
 
 const Reportage: React.FC = () => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [imageOrientations, setImageOrientations] = useState<Record<number, Orientation>>({});
 
   // Generate images dynamically from folder
   const images = useMemo(() => {
-    const layouts = config.reportage.gallery.layouts;
-    
     // Récupère tous les chemins d'images et les trie
     const imagePaths = Object.keys(imageModules).sort();
     
@@ -24,11 +24,10 @@ const Reportage: React.FC = () => {
       return {
         id: index + 1,
         url: path.replace('/public', ''),
-        caption: caption.charAt(0).toUpperCase() + caption.slice(1),
-        layout: layouts[index % layouts.length] || 'full'
+        caption: caption.charAt(0).toUpperCase() + caption.slice(1)
       };
     });
-  }, [config.reportage.gallery.layouts]);
+  }, []);
 
   // Manual horizontal scroll handler
   useEffect(() => {
@@ -45,6 +44,14 @@ const Reportage: React.FC = () => {
     container.addEventListener('wheel', handleWheel, { passive: false });
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
+
+  const handleImageLoad = (id: number) => (evt: React.SyntheticEvent<HTMLImageElement>) => {
+    const { naturalWidth, naturalHeight } = evt.currentTarget;
+    if (!naturalWidth || !naturalHeight) return;
+
+    const orientation: Orientation = naturalHeight > naturalWidth ? 'vertical' : 'horizontal';
+    setImageOrientations((prev) => (prev[id] === orientation ? prev : { ...prev, [id]: orientation }));
+  };
 
   return (
     <div 
@@ -69,19 +76,14 @@ const Reportage: React.FC = () => {
 
       {/* Gallery Flow */}
       {images.map((item, index) => (
-        <div 
-          key={item.id} 
-          className={`shrink-0 flex flex-col justify-center px-4 md:px-12 py-8 md:py-0 relative group
-            ${item.layout === 'full' ? 'w-full md:w-[60vw]' : 
-              item.layout === 'wide' ? 'w-full md:w-[70vw]' : 'w-full md:w-[40vw]'}`}
+        <div
+          key={item.id}
+          className="shrink-0 w-full md:w-auto flex flex-col justify-center items-center px-4 md:px-10 py-8 md:py-0 relative group"
         >
-          {/* Layout Variations */}
-          <div className={`relative overflow-hidden bg-gray-200 transition-all duration-700
-            ${item.layout === 'full' ? 'h-[50vh] md:h-[85vh] w-full' : 
-              item.layout === 'wide' ? 'h-[40vh] md:h-[60vh] w-full' :
-              item.layout === 'small-top' ? 'h-[40vh] w-full self-start md:mt-20' :
-              item.layout === 'small-bottom' ? 'h-[40vh] w-full self-end md:mb-20' :
-              'h-[40vh] md:h-[50vh] w-full'}`}
+          {/* Two normalized display classes without cropping */}
+          <div
+            className={`relative transition-all duration-700
+              ${imageOrientations[item.id] === 'vertical' ? 'h-[56vh] md:h-[78vh]' : 'h-[42vh] md:h-[62vh]'}`}
           >
             <motion.img
               initial={{ scale: 1.1 }}
@@ -89,14 +91,14 @@ const Reportage: React.FC = () => {
               transition={{ duration: 1.5 }}
               src={item.url}
               alt={item.caption}
-              className="w-full h-full object-cover contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+              onLoad={handleImageLoad(item.id)}
+              className={`h-full w-auto object-contain contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out
+                ${imageOrientations[item.id] === 'vertical' ? 'max-w-[72vw] md:max-w-[34vw]' : 'max-w-[92vw] md:max-w-[66vw]'}`}
             />
           </div>
 
           {/* Caption */}
-          <div className={`mt-4 flex items-center gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 md:delay-100
-             ${item.layout === 'small-bottom' ? 'md:absolute md:top-10 md:left-12' : ''}
-          `}>
+          <div className="mt-4 flex items-center gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 md:delay-100">
             <span className="font-sans text-xs font-bold tracking-widest">0{index + 1}</span>
             <span className="w-8 h-px bg-black/20" />
             <p className="font-serif italic text-lg">{item.caption}</p>

@@ -80,13 +80,19 @@ const SoireeClubEntreprise: React.FC = () => {
         const IconComponent = iconMap[event.icon] || Users;
         return (
         <div key={idx} className="shrink-0 w-full md:w-[50vw] h-[70vh] md:h-full relative group overflow-hidden border-t md:border-t-0 md:border-l border-white">
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 bg-black">
+             <img
+               src={event.image}
+               alt=""
+               aria-hidden="true"
+               className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 grayscale group-hover:grayscale-0 transition-[filter] duration-700"
+             />
              <img 
                src={event.image} 
                alt={event.title}
-               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+               className="relative z-10 w-full h-full object-contain grayscale group-hover:grayscale-0 transition-[filter] duration-700"
              />
-             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+             <div className="absolute inset-0 z-20 bg-black/35 group-hover:bg-black/20 transition-colors duration-500" />
           </div>
 
           <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-16 text-white">

@@ -29,8 +29,14 @@ const reportageOrder = [
 // Réglages de cadrage/taille par position affichée (après ajout de "Soirée" en #2)
 const layoutOverrides: Record<
   number,
-  { containerClass?: string; imageClass?: string }
+  { containerClass?: string; imageClass?: string; aspectRatio?: number }
 > = {
+  // 02 : format différent de 01, sans rognage
+  2: {
+    containerClass: 'h-[36vh] md:h-[50vh]',
+    imageClass: 'object-contain bg-gray-100',
+    aspectRatio: 1.18,
+  },
   // 2 -> 3 : rogner à gauche (sujet à droite), casser le format avec la #4
   3: { containerClass: 'h-[44vh] md:h-[60vh]', imageClass: 'object-cover object-[86%_50%]' },
   // 3 -> 4 : format différent de la #3
@@ -54,6 +60,11 @@ const normalizeText = (value: string) =>
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '');
+
+const captionOverrides: Record<number, string> = {
+  2: "Imprimez, partagez, c'est instantanné !",
+  16: 'Écrire avec le corps',
+};
 
 const Reportage: React.FC = () => {
   const config = useSiteConfig();
@@ -130,6 +141,8 @@ const Reportage: React.FC = () => {
         const override = layoutOverrides[position];
         const sizeClass = override?.containerClass ?? (isVertical ? 'h-[56vh] md:h-[78vh]' : 'h-[42vh] md:h-[62vh]');
         const fitClass = override?.imageClass ?? 'object-cover';
+        const aspectRatio = override?.aspectRatio ?? imageMetrics.ratio;
+        const caption = captionOverrides[position] ?? item.caption;
 
         return (
         <div
@@ -138,14 +151,14 @@ const Reportage: React.FC = () => {
         >
           <div
             className={`relative transition-all duration-700 ${sizeClass}`}
-            style={{ aspectRatio: imageMetrics.ratio }}
+            style={{ aspectRatio }}
           >
             <motion.img
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9 }}
               src={item.url}
-              alt={item.caption}
+              alt={caption}
               onLoad={onImageLoad(`reportage-${item.id}`)}
               className={`w-full h-full ${fitClass} contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out`}
             />
@@ -155,7 +168,7 @@ const Reportage: React.FC = () => {
           <div className="mt-4 flex items-center gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 md:delay-100">
             <span className="font-sans text-xs font-bold tracking-widest">0{index + 1}</span>
             <span className="w-8 h-px bg-black/20" />
-            <p className="font-serif italic text-lg">{item.caption}</p>
+            <p className="font-serif italic text-lg">{caption}</p>
           </div>
         </div>
       )})}

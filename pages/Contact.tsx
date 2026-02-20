@@ -49,46 +49,47 @@ const Contact: React.FC = () => {
       <div className="w-full md:w-1/2 shrink-0 min-h-[50vh] md:h-full flex flex-col justify-center p-10 md:p-24 relative z-10 bg-black pb-32 md:pb-24">
         
         <div className="flex flex-col gap-12">
-          
-          {/* Email Block */}
-          <motion.div 
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="group"
-          >
-            <div className="flex items-center gap-3 mb-2">
-               <Mail className="w-4 h-4 text-gray-500" />
-               <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.email.label}</h3>
-            </div>
-            <a href={config.contact.details.email.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors break-all">
-              {config.contact.details.email.value}
-              <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-5 h-5 shrink-0 text-gray-400" />
-            </a>
-          </motion.div>
-
-          {/* Phone Block */}
-          <motion.div 
-             initial={{ x: 50, opacity: 0 }}
-             animate={{ x: 0, opacity: 1 }}
-             transition={{ delay: 0.3, duration: 0.6 }}
-            className="group"
-          >
-            <div className="flex items-center gap-3 mb-2">
-               <Phone className="w-4 h-4 text-gray-500" />
-               <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.phone.label}</h3>
-            </div>
-            <a href={config.contact.details.phone.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors">
-              {config.contact.details.phone.value}
-            </a>
-            {/* Appeler Button - Mobile Only */}
-            <a 
-              href={config.contact.details.phone.href} 
-              className="md:hidden mt-4 inline-block px-6 py-3 bg-white text-black font-sans text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors duration-300"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+            {/* Email Block */}
+            <motion.div 
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="group"
             >
-              {config.contact.details.phone.callButton}
-            </a>
-          </motion.div>
+              <div className="flex items-center gap-3 mb-2">
+                 <Mail className="w-4 h-4 text-gray-500" />
+                 <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.email.label}</h3>
+              </div>
+              <a href={config.contact.details.email.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors break-all">
+                {config.contact.details.email.value}
+                <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-5 h-5 shrink-0 text-gray-400" />
+              </a>
+            </motion.div>
+
+            {/* Phone Block */}
+            <motion.div 
+               initial={{ x: 50, opacity: 0 }}
+               animate={{ x: 0, opacity: 1 }}
+               transition={{ delay: 0.3, duration: 0.6 }}
+              className="group"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                 <Phone className="w-4 h-4 text-gray-500" />
+                 <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.phone.label}</h3>
+              </div>
+              <a href={config.contact.details.phone.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors">
+                {config.contact.details.phone.value}
+              </a>
+              {/* Appeler Button - Mobile Only */}
+              <a 
+                href={config.contact.details.phone.href} 
+                className="md:hidden mt-4 inline-block px-6 py-3 bg-white text-black font-sans text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors duration-300"
+              >
+                {config.contact.details.phone.callButton}
+              </a>
+            </motion.div>
+          </div>
 
           {/* Simple Formspree Form */}
           <motion.form

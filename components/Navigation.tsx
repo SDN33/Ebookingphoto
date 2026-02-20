@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
 
 interface NavigationProps {
@@ -54,8 +54,10 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
   const config = useSiteConfig();
   const [isOpen, setIsOpen] = useState(false);
   const [logoTone, setLogoTone] = useState<'light' | 'dark'>('dark');
+  const [menuTone, setMenuTone] = useState<'light' | 'dark'>('dark');
   const navRootRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLButtonElement>(null);
 
   const handleNavigate = (path: string, sectionId?: string) => {
     setIsOpen(false);
@@ -83,13 +85,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
   };
 
   useEffect(() => {
-    const scan = () => {
-      const logo = logoRef.current;
-      const navRoot = navRootRef.current;
-      if (!logo || !navRoot) return;
-
-      const rect = logo.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return;
+    const scanToneForElement = (
+      el: HTMLElement | null,
+      navRoot: HTMLElement | null,
+    ): 'light' | 'dark' => {
+      if (!el || !navRoot) return 'dark';
+      const rect = el.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return 'dark';
 
       const samplePoints: Array<[number, number]> = [
         [rect.left + rect.width * 0.2, rect.top + rect.height * 0.2],
@@ -111,7 +113,14 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
       }
 
       const avg = count > 0 ? totalLuma / count : 0.95;
-      setLogoTone(avg < 0.52 ? 'light' : 'dark');
+      return avg < 0.52 ? 'light' : 'dark';
+    };
+
+    const scan = () => {
+      const navRoot = navRootRef.current;
+      if (!navRoot) return;
+      setLogoTone(scanToneForElement(logoRef.current, navRoot));
+      setMenuTone(scanToneForElement(menuRef.current, navRoot));
     };
 
     const scheduleScan = () => window.requestAnimationFrame(scan);
@@ -155,8 +164,10 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
 
         {/* Top Right Menu */}
         <button 
+          ref={menuRef}
           onClick={() => setIsOpen(true)}
-          className="text-xs md:text-sm font-sans tracking-widest font-semibold hover:opacity-50 transition-opacity pointer-events-auto text-white mix-blend-difference"
+          className="text-xs md:text-sm font-sans tracking-widest font-semibold hover:opacity-50 transition-colors duration-200 pointer-events-auto"
+          style={{ color: menuTone === 'light' ? '#ffffff' : '#000000' }}
         >
           MENU
         </button>

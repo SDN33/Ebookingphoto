@@ -64,9 +64,9 @@ const SectionShowcase = () => {
   const showcase = config.animationTotem.showcase;
   
   return (
-    <div className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center bg-zinc-950 border-r border-white/10 overflow-hidden text-white">
+    <div className="relative min-h-screen md:h-screen w-full md:w-screen flex-shrink-0 flex items-start md:items-center justify-center bg-zinc-950 border-r border-white/10 overflow-visible md:overflow-hidden text-white py-24 pb-36 md:py-0">
 
-      <div className="flex flex-col md:flex-row items-center w-full max-w-7xl px-8 gap-12 md:gap-24">
+      <div className="flex flex-col md:flex-row items-start md:items-center w-full max-w-7xl px-8 gap-12 md:gap-24">
         {/* Abstract Product Visualization */}
         <div className="relative group">
            <div className="absolute inset-0 bg-white blur-[100px] opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
@@ -84,7 +84,7 @@ const SectionShowcase = () => {
         </div>
 
         {/* Specs Text */}
-        <div className="flex flex-col gap-8 md:w-1/3">
+        <div className="flex flex-col gap-8 md:w-1/3 pb-16 md:pb-0">
           <h3 className="font-serif text-4xl md:text-5xl text-white">
             <span className="italic text-gray-400">{showcase.title.line1}</span> {showcase.title.line2}
           </h3>
@@ -134,8 +134,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
           src={feature.image} 
           alt={feature.title} 
           onLoad={onImageLoad(`animation-feature-${feature.id}`)}
-          className="w-full h-full object-cover opacity-100 transition-[filter] duration-700 ease-out"
-          style={isQrCodeCard ? { objectPosition: '50% 44%' } : undefined}
+          className={`w-full h-full object-cover opacity-100 transition-[filter] duration-700 ease-out ${
+            isQrCodeCard ? 'object-[50%_62%] md:object-[50%_44%]' : ''
+          }`}
         />
       </div>
 

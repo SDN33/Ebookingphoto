@@ -18,7 +18,10 @@ const Manifesto: React.FC = () => {
             transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
             className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black whitespace-normal md:whitespace-nowrap"
             dangerouslySetInnerHTML={{
-              __html: line.replace(/S[’']UNISSENT\.?/g, '<span class="font-serif italic font-normal">S’UNISSENT.</span>')
+              __html: line.replace(
+                /S[’']UNISSENT\.?/g,
+                '<span class="font-serif italic font-normal text-[1.12em] leading-[0.9] align-baseline">S’UNISSENT.</span>',
+              ),
             }}
           />
         ))}
@@ -39,10 +42,6 @@ const Manifesto: React.FC = () => {
         />
       </motion.div>
 
-      {/* Background decoration */}
-      <span className="absolute top-1/2 right-10 -translate-y-1/2 text-[10rem] md:text-[20rem] font-serif italic text-gray-50 opacity-50 -z-10 pointer-events-none">
-        {manifesto.decoration}
-      </span>
     </section>
   );
 };

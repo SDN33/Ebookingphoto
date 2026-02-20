@@ -6,6 +6,7 @@ import { useSiteConfig } from '../hooks/useSiteConfig';
 const Hero: React.FC = () => {
   const config = useSiteConfig();
   const hero = config.home.hero;
+  const isEmbedVideo = !/\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(hero.video.src);
 
   return (
     <section className="min-w-full h-[100dvh] w-screen lg:w-[100vw] flex flex-col lg:flex-row relative shrink-0 min-w-[320px]">
@@ -66,21 +67,31 @@ const Hero: React.FC = () => {
       {/* Right Video Side */}
       <div className="w-full lg:w-1/2 h-[50%] lg:h-full p-4 relative overflow-hidden order-1 lg:order-2 flex-shrink-0">
         <motion.div 
-          className="w-full h-full relative"
+          className="w-full h-full relative overflow-hidden"
           initial={{ scale: 1.2, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         >
           {/* Grayscale overlay */}
           <div className="absolute inset-0 bg-black/10 z-10" />
-          <video 
-            src={hero.video.src}
-            autoPlay={hero.video.autoPlay}
-            loop={hero.video.loop}
-            muted={hero.video.muted}
-            playsInline
-            className="w-full h-full object-cover grayscale contrast-125"
-          />
+          {isEmbedVideo ? (
+            <iframe
+              src={hero.video.src}
+              title="Hero video"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              className="absolute inset-0 block w-full h-full object-cover grayscale contrast-125"
+            />
+          ) : (
+            <video
+              src={hero.video.src}
+              autoPlay={hero.video.autoPlay}
+              loop={hero.video.loop}
+              muted={hero.video.muted}
+              playsInline
+              className="absolute inset-0 block w-full h-full object-cover grayscale contrast-125"
+            />
+          )}
         </motion.div>
       </div>
     </section>

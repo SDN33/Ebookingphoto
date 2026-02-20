@@ -50,7 +50,7 @@
         }
       },
       "video": {
-        "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "src": "/VIDEO FINALE NOIR & BLANC.mov",
         "autoPlay": true,
         "loop": true,
         "muted": true

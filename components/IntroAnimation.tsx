@@ -75,7 +75,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
                 className="font-sans font-normal tracking-tight whitespace-nowrap block"
-                style={{ fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 5rem)' }}
+                style={{ fontSize: 'clamp(1.7rem, 8vw, 5rem)' }}
               >
                 EBOOKINGPHOTO
               </motion.span>
@@ -86,7 +86,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                 transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
                 className="font-serif italic font-light tracking-tight whitespace-nowrap block"
                 style={{ 
-                  fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 5rem)',
+                  fontSize: 'clamp(1.7rem, 8vw, 5rem)',
                   marginLeft: 'clamp(0.5rem, 3vw, 5rem)',
                   marginTop: 'clamp(-0.25rem, -0.8vw, -1rem)'
                 }}
@@ -100,7 +100,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                 transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
                 className="font-sans font-normal tracking-tight whitespace-nowrap block"
                 style={{ 
-                  fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 5rem)',
+                  fontSize: 'clamp(1.7rem, 8vw, 5rem)',
                   marginTop: 'clamp(-0.125rem, -0.4vw, -0.75rem)'
                 }}
               >
@@ -113,7 +113,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                 transition={{ duration: 0.8, delay: 2.0, ease: "easeOut" }}
                 className="font-serif italic font-light tracking-tight whitespace-nowrap block"
                 style={{ 
-                  fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 5rem)',
+                  fontSize: 'clamp(1.7rem, 8vw, 5rem)',
                   marginLeft: 'clamp(1rem, 3vw, 4rem)',
                   marginTop: 'clamp(-0.25rem, -0.8vw, -1rem)'
                 }}

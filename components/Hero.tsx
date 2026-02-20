@@ -22,14 +22,14 @@ const Hero: React.FC = () => {
           <h1 className="flex flex-col text-black w-full">
             <span 
               className="font-sans font-normal tracking-tight whitespace-nowrap"
-              style={{ fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 70px)' }}
+              style={{ fontSize: 'clamp(1.7rem, 8vw, 70px)' }}
             >
               {hero.title.line1}
             </span>
             <span 
               className="font-serif italic font-light tracking-tight whitespace-nowrap"
               style={{ 
-                fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 70px)',
+                fontSize: 'clamp(1.7rem, 8vw, 70px)',
                 marginLeft: 'clamp(0.5rem, 3vw, 5rem)',
                 marginTop: 'clamp(-0.25rem, -0.8vw, -1rem)'
               }}
@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
             <span 
               className="font-sans font-normal tracking-tight whitespace-nowrap"
               style={{ 
-                fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 70px)',
+                fontSize: 'clamp(1.7rem, 8vw, 70px)',
                 marginTop: 'clamp(-0.125rem, -0.4vw, -0.75rem)'
               }}
             >
@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
             <span 
               className="font-serif italic font-light tracking-tight whitespace-nowrap"
               style={{ 
-                fontSize: 'clamp(2.3rem, 5vw + 0.5rem, 70px)',
+                fontSize: 'clamp(1.7rem, 8vw, 70px)',
                 marginLeft: 'clamp(1rem, 3vw, 4rem)',
                 marginTop: 'clamp(-0.25rem, -0.8vw, -1rem)'
               }}

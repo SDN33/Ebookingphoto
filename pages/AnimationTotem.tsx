@@ -243,7 +243,7 @@ const AnimationTotem: React.FC<AnimationTotemProps> = ({ onNavigate }) => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-[full] overflow-y-auto md:overflow-y-hidden md:overflow-x-auto no-scrollbar flex flex-col md:flex-row bg-white text-black"
+      className="relative w-full h-full overflow-y-auto overflow-x-hidden md:overflow-y-hidden md:overflow-x-auto no-scrollbar flex flex-col md:flex-row bg-white text-black"
     >
       {/* 
         Horizontal Layout for Desktop (flex-row)

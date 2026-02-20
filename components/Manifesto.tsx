@@ -32,12 +32,12 @@ const Manifesto: React.FC = () => {
         initial={{ y: 50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.4 }}
-        className="relative z-10 justify-self-start lg:justify-self-end lg:self-end w-[180px] md:w-[260px] lg:w-[420px] max-w-[90vw] aspect-[4/3] overflow-hidden"
+        className="relative z-10 justify-self-center lg:justify-self-end lg:self-end w-full md:w-[260px] lg:w-[420px] overflow-hidden"
       >
         <img 
           src={manifesto.image.src} 
           alt={manifesto.image.alt} 
-          className="w-full h-full object-contain grayscale"
+          className="w-full h-auto object-contain grayscale"
         />
       </motion.div>
 

@@ -8,6 +8,7 @@ const imageModules = import.meta.glob('/public/portfolio-reportage/*.{jpg,jpeg,p
 
 const reportageOrder = [
   "Vos événements d'entreprise, gala, séminaire..",
+  "Soirée",
   "L'instant du lancement., l'image du succès",
   "Quand le mouvement se fait grâce",
   "Le sport entre ciel et terre",
@@ -21,9 +22,31 @@ const reportageOrder = [
   "Parures au sommet du chaos",
   "Duel à distance, géni sous silence",
   "Dans l'ombre d'un doute",
+  "Photo spectacle danse",
   "À la lumière des projecteurs",
-  "PHOTO SPECTACLE DANSE",
 ];
+
+// Réglages de cadrage/taille par position affichée (après ajout de "Soirée" en #2)
+const layoutOverrides: Record<
+  number,
+  { containerClass?: string; imageClass?: string }
+> = {
+  // 2 -> 3 : rogner à gauche (sujet à droite), casser le format avec la #4
+  3: { containerClass: 'h-[44vh] md:h-[60vh]', imageClass: 'object-cover object-[86%_50%]' },
+  // 3 -> 4 : format différent de la #3
+  4: { containerClass: 'h-[36vh] md:h-[52vh]' },
+  // 4 -> 5 & 5 -> 6 : casser les formats identiques
+  5: { containerClass: 'h-[50vh] md:h-[70vh]' },
+  6: { containerClass: 'h-[40vh] md:h-[56vh]' },
+  // 8 -> 9 : sans rognage, plus petit
+  9: { containerClass: 'h-[30vh] md:h-[44vh]', imageClass: 'object-contain' },
+  // 9 -> 10 : rogner à gauche pour casser le format
+  10: { containerClass: 'h-[42vh] md:h-[60vh]', imageClass: 'object-cover object-[84%_50%]' },
+  // 13 -> 14 (Duel) : même format que #16, mais plus grand
+  14: { containerClass: 'h-[48vh] md:h-[68vh]' },
+  // #16 après permutation (PHOTO SPECTACLE DANSE) : même base, un peu plus petit que #14
+  16: { containerClass: 'h-[42vh] md:h-[58vh]' },
+};
 
 const normalizeText = (value: string) =>
   value
@@ -101,8 +124,12 @@ const Reportage: React.FC = () => {
 
       {/* Gallery Flow */}
       {images.map((item, index) => {
+        const position = index + 1;
         const imageMetrics = getMetrics(`reportage-${item.id}`, 4 / 3);
         const isVertical = imageMetrics.orientation === 'vertical';
+        const override = layoutOverrides[position];
+        const sizeClass = override?.containerClass ?? (isVertical ? 'h-[56vh] md:h-[78vh]' : 'h-[42vh] md:h-[62vh]');
+        const fitClass = override?.imageClass ?? 'object-cover';
 
         return (
         <div
@@ -110,9 +137,7 @@ const Reportage: React.FC = () => {
           className="shrink-0 w-full md:w-auto flex flex-col justify-center items-center px-4 md:px-10 py-8 md:py-0 relative group"
         >
           <div
-            className={`relative transition-all duration-700 ${
-              isVertical ? 'h-[56vh] md:h-[78vh]' : 'h-[42vh] md:h-[62vh]'
-            }`}
+            className={`relative transition-all duration-700 ${sizeClass}`}
             style={{ aspectRatio: imageMetrics.ratio }}
           >
             <motion.img
@@ -122,7 +147,7 @@ const Reportage: React.FC = () => {
               src={item.url}
               alt={item.caption}
               onLoad={onImageLoad(`reportage-${item.id}`)}
-              className="w-full h-full object-cover contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+              className={`w-full h-full ${fitClass} contrast-110 group-hover:grayscale-0 transition-all duration-700 ease-in-out`}
             />
           </div>
 
@@ -137,7 +162,7 @@ const Reportage: React.FC = () => {
 
       {/* End Spacer */}
       <div className="shrink-0 h-20 md:h-full md:w-[20vw] bg-gray-50 flex items-center justify-center">
-        <span className="md:vertical-rl font-sans text-xs tracking-widest text-gray-300 uppercase md:rotate-180 md:writing-mode-vertical">
+        <span className="font-sans text-xs tracking-widest text-gray-300 uppercase md:[writing-mode:vertical-rl] md:rotate-0">
           {config.reportage.endLabel}
         </span>
       </div>

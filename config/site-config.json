@@ -69,8 +69,8 @@
         "LES CONTRAIRES S’UNISSENT."
       ],
       "image": {
-        "src": "/photographe1.jpg",
-        "alt": "Abstract portrait"
+        "src": "/artist.png",
+        "alt": "Artist portrait"
       },
       "decoration": "&"
     },
@@ -187,7 +187,7 @@
       {
         "title": "Au coeur de l'action",
         "subtitle": "Reportage & Immersion",
-        "description": "Immortalisez les moments forts de votre saison. Des compétitions décisifs aux soirées de gala, nous capturons l'esprit d'équipe et la passion qui animent votre club.",
+        "description": "Immortalisez les moments forts de votre saison. Nous capturons l'esprit d'équipe et la passion qui vous animent.",
         "image": "/action.jpg",
         "icon": "Users"
       }
@@ -238,7 +238,7 @@
       },
       "description": "Valorisez votre image de marques lors de vos séminaires, lancements de produits ou fête de fin d'année. Une couverture professionnelle pour une communication impactante.",
       "image": {
-        "src": "/totem.jpg",
+        "src": "/totem2.jpg",
         "alt": "Totem d'animation"
       },
       "specs": [

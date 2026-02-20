@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
 
@@ -7,9 +7,55 @@ interface NavigationProps {
   onNavigate: (path: string) => void;
 }
 
+const parseColor = (value: string): [number, number, number, number] | null => {
+  const match = value.match(/rgba?\(([^)]+)\)/i);
+  if (!match) return null;
+  const parts = match[1].split(',').map((p) => p.trim());
+  const r = Number(parts[0]);
+  const g = Number(parts[1]);
+  const b = Number(parts[2]);
+  const a = parts[3] !== undefined ? Number(parts[3]) : 1;
+  if ([r, g, b, a].some((n) => Number.isNaN(n))) return null;
+  return [r, g, b, a];
+};
+
+const luminance = (r: number, g: number, b: number) => {
+  const normalize = (v: number) => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  };
+  const rr = normalize(r);
+  const gg = normalize(g);
+  const bb = normalize(b);
+  return 0.2126 * rr + 0.7152 * gg + 0.0722 * bb;
+};
+
+const readBackgroundLuma = (el: HTMLElement): number => {
+  let current: HTMLElement | null = el;
+  while (current) {
+    const style = window.getComputedStyle(current);
+    const parsed = parseColor(style.backgroundColor);
+    if (parsed && parsed[3] > 0.06) {
+      return luminance(parsed[0], parsed[1], parsed[2]);
+    }
+    const classes = current.className;
+    if (typeof classes === 'string') {
+      if (classes.includes('bg-black')) return 0.03;
+      if (classes.includes('bg-white')) return 0.98;
+      if (classes.includes('bg-gray-50')) return 0.95;
+      if (classes.includes('bg-gray-100')) return 0.9;
+    }
+    current = current.parentElement;
+  }
+  return 0.95;
+};
+
 const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
   const config = useSiteConfig();
   const [isOpen, setIsOpen] = useState(false);
+  const [logoTone, setLogoTone] = useState<'light' | 'dark'>('dark');
+  const navRootRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
 
   const handleNavigate = (path: string, sectionId?: string) => {
     setIsOpen(false);
@@ -36,26 +82,81 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
     }
   };
 
+  useEffect(() => {
+    const scan = () => {
+      const logo = logoRef.current;
+      const navRoot = navRootRef.current;
+      if (!logo || !navRoot) return;
+
+      const rect = logo.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+
+      const samplePoints: Array<[number, number]> = [
+        [rect.left + rect.width * 0.2, rect.top + rect.height * 0.2],
+        [rect.left + rect.width * 0.5, rect.top + rect.height * 0.5],
+        [rect.left + rect.width * 0.8, rect.top + rect.height * 0.8],
+      ];
+
+      let totalLuma = 0;
+      let count = 0;
+
+      for (const [x, y] of samplePoints) {
+        const stack = document.elementsFromPoint(x, y);
+        const target = stack.find(
+          (node) => node instanceof HTMLElement && !navRoot.contains(node),
+        ) as HTMLElement | undefined;
+        if (!target) continue;
+        totalLuma += readBackgroundLuma(target);
+        count += 1;
+      }
+
+      const avg = count > 0 ? totalLuma / count : 0.95;
+      setLogoTone(avg < 0.52 ? 'light' : 'dark');
+    };
+
+    const scheduleScan = () => window.requestAnimationFrame(scan);
+
+    scheduleScan();
+    window.addEventListener('scroll', scheduleScan, true);
+    window.addEventListener('resize', scheduleScan);
+    const intervalId = window.setInterval(scheduleScan, 250);
+
+    return () => {
+      window.removeEventListener('scroll', scheduleScan, true);
+      window.removeEventListener('resize', scheduleScan);
+      window.clearInterval(intervalId);
+    };
+  }, [currentPath, isOpen]);
+
   return (
     <>
-      {/* Fixed Header Elements with Mix Blend Difference */}
-      <div className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-start pointer-events-none mix-blend-difference">
+      {/* Fixed Header Elements */}
+      <div
+        ref={navRootRef}
+        className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-start pointer-events-none"
+      >
         {/* Top Left Logo - Click to go Home */}
         <div 
+          ref={logoRef}
           onClick={() => handleNavigate('/')}
           className="pointer-events-auto hover:scale-110 transition-transform duration-300 cursor-pointer"
         >
           <img 
             src={config.navigation.logo.src} 
             alt={config.navigation.logo.alt} 
-            className="h-8 w-auto md:h-10"
+            className="h-8 w-auto md:h-10 transition-[filter] duration-200"
+            style={{
+              filter: logoTone === 'light'
+                ? 'brightness(0) saturate(100%) invert(1)'
+                : 'brightness(0) saturate(100%)',
+            }}
           />
         </div>
 
         {/* Top Right Menu */}
         <button 
           onClick={() => setIsOpen(true)}
-          className="text-xs md:text-sm font-sans tracking-widest font-semibold hover:opacity-50 transition-opacity pointer-events-auto text-white"
+          className="text-xs md:text-sm font-sans tracking-widest font-semibold hover:opacity-50 transition-opacity pointer-events-auto text-white mix-blend-difference"
         >
           MENU
         </button>

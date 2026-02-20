@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            action="https://formspree.io/f/xeellrjo"
+            action="https://formspree.io/f/xeellpkv"
             method="POST"
             className="space-y-4"
           >

@@ -52,7 +52,7 @@ const App: React.FC = () => {
       case '/animation-totem':
         return <AnimationTotem onNavigate={handleNavigate} />;
       case '/soiree-club-entreprise':
-        return <SoireeClubEntreprise />;
+        return <SoireeClubEntreprise onNavigate={handleNavigate} />;
       default:
         return <Home onNavigate={handleNavigate} />;
     }

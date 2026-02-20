@@ -27,7 +27,11 @@ const EVENTS = [
   }
 ];
 
-const SoireeClubEntreprise: React.FC = () => {
+interface SoireeClubEntrepriseProps {
+  onNavigate: (path: string) => void;
+}
+
+const SoireeClubEntreprise: React.FC<SoireeClubEntrepriseProps> = ({ onNavigate }) => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollXProgress } = useScroll({ container: containerRef });
@@ -132,7 +136,10 @@ const SoireeClubEntreprise: React.FC = () => {
             })}
          </div>
 
-         <button className="mt-16 mb-10 md:mb-0 border border-white px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors self-start">
+         <button
+            onClick={() => onNavigate('/contact')}
+            className="mt-16 mb-10 md:mb-0 border border-white px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors self-start"
+         >
             {config.soireeClubEntreprise.services.cta.label}
          </button>
       </div>

@@ -6,28 +6,60 @@ import { useImageMetrics } from '../hooks/useImageMetrics';
 // Charge automatiquement toutes les images du dossier reportage dédié
 const imageModules = import.meta.glob('/public/portfolio-reportage/*.{jpg,jpeg,png,JPG,JPEG,PNG}', { eager: true, as: 'url' });
 
+const reportageOrder = [
+  "Vos événements d'entreprise, gala, séminaire..",
+  "L'instant du lancement., l'image du succès",
+  "Quand le mouvement se fait grâce",
+  "Le sport entre ciel et terre",
+  "Reportage au coeur du défi",
+  "En roue libre",
+  "Figer l'adrénaline",
+  "Mécanique. Quand la piste s'efface",
+  "Le Sport dans chaque foulée",
+  "Au delà de la foulée",
+  "L'éclat d'une plume",
+  "Parures au sommet du chaos",
+  "Duel à distance, géni sous silence",
+  "Dans l'ombre d'un doute",
+  "À la lumière des projecteurs",
+  "PHOTO SPECTACLE DANSE",
+];
+
+const normalizeText = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '');
+
 const Reportage: React.FC = () => {
   const config = useSiteConfig();
   const containerRef = useRef<HTMLDivElement>(null);
   const { onImageLoad, getMetrics } = useImageMetrics();
 
-  // Generate images dynamically from folder
+  // Génère les images depuis le dossier puis applique l'ordre métier demandé
   const images = useMemo(() => {
-    // Récupère tous les chemins d'images et les trie
-    const imagePaths = Object.keys(imageModules).sort();
-    
-    return imagePaths.map((path, index) => {
-      // Extrait le nom du fichier et crée un caption
+    const orderIndex = new Map(
+      reportageOrder.map((label, index) => [normalizeText(label), index]),
+    );
+
+    const ordered = Object.keys(imageModules)
+      .map((path) => {
       const filename = path.split('/').pop()?.replace(/\.[^/.]+$/, '') || '';
-      const cleanFilename = filename.replace(/^\d{1,3}[)\-_\s]+/, '');
-      const caption = cleanFilename.replace(/[-_]/g, ' ');
-      
-      return {
-        id: index + 1,
-        url: path.replace('/public', ''),
-        caption: caption.charAt(0).toUpperCase() + caption.slice(1)
-      };
-    });
+      const normalizedFilename = normalizeText(filename);
+      const rank = orderIndex.get(normalizedFilename);
+      if (rank === undefined) return null;
+
+      return { path, rank };
+      })
+      .filter((item): item is { path: string; rank: number } => item !== null)
+      .sort((a, b) => a.rank - b.rank);
+
+    return ordered.map((item, index) => ({
+      id: index + 1,
+      url: item.path.replace('/public', ''),
+      caption: reportageOrder[item.rank],
+    }));
   }, []);
 
   // Manual horizontal scroll handler

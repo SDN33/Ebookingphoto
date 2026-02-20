@@ -51,7 +51,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   return (
     <div 
       ref={scrollContainerRef}
-      className="flex flex-col lg:flex-row h-full w-full overflow-y-auto lg:overflow-y-hidden lg:overflow-x-auto no-scrollbar"
+      className="flex flex-col lg:flex-row h-full w-full overflow-y-auto overflow-x-hidden lg:overflow-y-hidden lg:overflow-x-auto no-scrollbar"
     >
       {/* Section 1: Hero */}
       <div className="shrink-0" id="top">
@@ -59,7 +59,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </div>
 
       {/* Section 2: Intro */}
-      <div className="shrink-0 w-full lg:w-[50vw] h-[40vh] lg:h-full flex flex-col justify-end items-start p-10 md:p-20 bg-white" id="about">
+      <div className="shrink-0 w-full lg:w-[50vw] min-h-[40vh] lg:h-full flex flex-col justify-end items-start p-10 md:p-20 bg-white" id="about">
         <p className="font-serif italic text-2xl md:text-4xl leading-relaxed text-gray-800 max-w-2xl">
           "{config.home.intro.quote}"
         </p>

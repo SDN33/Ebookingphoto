@@ -50,7 +50,7 @@ const SoireeClubEntreprise: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="flex flex-col md:flex-row h-full w-full overflow-y-auto md:overflow-y-hidden md:overflow-x-auto no-scrollbar bg-white text-black"
+      className="flex flex-col md:flex-row h-full w-full overflow-y-auto overflow-x-hidden md:overflow-y-hidden md:overflow-x-auto no-scrollbar bg-white text-black"
     >
       {/* 1. Intro / Title Section */}
       <div className="shrink-0 w-full md:w-[60vw] h-[80vh] md:h-full flex flex-col justify-center pl-6 pr-8 md:pl-24 md:pr-36 lg:pr-44 bg-gray-50 relative overflow-hidden pt-24 md:pt-0">

@@ -90,11 +90,55 @@ const Contact: React.FC = () => {
             </a>
           </motion.div>
 
+          {/* Simple Formspree Form */}
+          <motion.form
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            action="https://formspree.io/f/xeellrjo"
+            method="POST"
+            className="space-y-4"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <Mail className="w-4 h-4 text-gray-500" />
+              <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">Formulaire de contact</h3>
+            </div>
+
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Nom"
+              className="w-full bg-transparent border border-white/30 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white transition-colors"
+            />
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Email"
+              className="w-full bg-transparent border border-white/30 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white transition-colors"
+            />
+            <textarea
+              name="message"
+              required
+              rows={4}
+              placeholder="Votre message"
+              className="w-full bg-transparent border border-white/30 px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white transition-colors resize-none"
+            />
+            <button
+              type="submit"
+              className="inline-flex items-center gap-3 px-6 py-3 border border-white text-white font-sans text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors"
+            >
+              Envoyer
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </motion.form>
+
           {/* Socials Divider */}
           <motion.div 
             initial={{ scaleX: 0 }} 
-            animate={{ scaleX: 1 }} 
-            transition={{ delay: 0.5, duration: 0.8 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
             className="h-px w-full bg-white/10 origin-left" 
           />
 
@@ -102,7 +146,7 @@ const Contact: React.FC = () => {
           <motion.div 
              initial={{ y: 20, opacity: 0 }}
              animate={{ y: 0, opacity: 1 }}
-             transition={{ delay: 0.6, duration: 0.6 }}
+             transition={{ delay: 0.7, duration: 0.6 }}
              className="flex gap-12"
           >
             {config.contact.details.socials.map((social, idx) => {

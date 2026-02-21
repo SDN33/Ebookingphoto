@@ -57,13 +57,11 @@
       }
     },
     "intro": {
-      "quote": "Votre événement, notre regard. Quand les sourires se mêlent aux larmes, des cris, des joies, la pudeur d'un discours... Chaque instant devient une narration visuelle, authentique, capturée dans l'émotion brut.",
+      "quote": "Chaque instant devient une narration visuelle, authentique, capturée dans l'émotion brut.",
       "scrollHint": "Photographe : Saisir le bon instant !"
     },
     "manifesto": {
       "lines": [
-        "QUAND LA COULEUR D’ORIGINE",
-        "NOUS RAPPELLE L’AUTHENTIQUE,",
         "LE GRAIN DU NOIR ET BLANC,",
         "L’INSTANT DE VÉRITÉ OÙ",
         "LES CONTRAIRES S’UNISSENT."
@@ -75,7 +73,7 @@
       "decoration": "&"
     },
     "services": {
-      "title": "NOS EXPERTISES",
+      "title": "EXPERTISES",
       "items": [
         {
           "id": "01",
@@ -96,7 +94,7 @@
           "path": "/soiree-club-entreprise"
         }
       ],
-      "footer": "Là où l’humain performe, s’exprime et se ressemble."
+      "footer": "Photographe,là où l’humain performe, s’exprime et se ressemble."
     },
     "gallery": {
       "label": "Depuis 1986",

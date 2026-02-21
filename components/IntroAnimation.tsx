@@ -124,13 +124,24 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
           ) : (
             // TRANSITION MODE - SINGLE TEXT
             <div className="flex flex-col">
+              {isMobile && (
+                <motion.span
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
+                  className="font-sans font-semibold tracking-tight whitespace-nowrap block self-start"
+                  style={{ fontSize: 'clamp(2rem, 9vw, 3rem)' }}
+                >
+                  EBOOKING
+                </motion.span>
+              )}
               <motion.span 
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: isMobile ? 0.06 : 0 }}
                 className={`font-serif italic font-light tracking-tight whitespace-nowrap block ${isMobile ? 'self-start' : 'self-center lg:self-start'}`}
                 style={{ 
-                  fontSize: isMobile ? '2.5rem' : 'clamp(3rem, 6vw + 1rem, 6rem)',
+                  fontSize: isMobile ? 'clamp(2.8rem, 13vw, 4.2rem)' : 'clamp(3rem, 6vw + 1rem, 6rem)',
                 }}
               >
                 {lastLineText}

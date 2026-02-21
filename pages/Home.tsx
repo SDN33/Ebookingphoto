@@ -1,11 +1,10 @@
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Hero from '../components/Hero';
 import GalleryItem from '../components/GalleryItem';
 import Manifesto from '../components/Manifesto';
 import Services from '../components/Services';
 import { Photo } from '../types';
-import { X } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
 import { useImageMetrics } from '../hooks/useImageMetrics';
 
@@ -16,7 +15,6 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const config = useSiteConfig();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isFlipbookOpen, setIsFlipbookOpen] = useState(false);
   const { onImageLoad, getMetrics } = useImageMetrics();
   const mariageImageMetrics = getMetrics('home-mariage-image', 3 / 4);
 
@@ -35,18 +33,6 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
     container.addEventListener('wheel', handleWheel, { passive: false });
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
-
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isFlipbookOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isFlipbookOpen]);
 
   return (
     <div 
@@ -87,45 +73,18 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
            <div key={photo.id} className="shrink-0 w-full lg:w-auto">
              <GalleryItem 
                photo={photo as Photo} 
-               index={index} 
-               onClick={() => setIsFlipbookOpen(true)}
+               index={index}
              />
            </div>
          ))}
       </div>
-
-      {/* Flipbook Modal */}
-      {isFlipbookOpen && (
-        <div 
-          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
-          onClick={() => setIsFlipbookOpen(false)}
-        >
-          <div 
-            className="relative w-full h-full max-w-7xl max-h-[90vh] bg-white"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setIsFlipbookOpen(false)}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/90 hover:bg-white rounded-full transition-colors"
-            >
-              <X size={24} className="text-black" />
-            </button>
-            <iframe
-              src={config.home.flipbook.url}
-              className="w-full h-full border-0"
-              allowFullScreen
-              title="Flipbook"
-            />
-          </div>
-        </div>
-      )}
 
       {/* Section 6: Mariages */}
       <div className="shrink-0 w-full lg:w-[100vw] mt-20 md:mt-0 lg:h-full flex flex-col lg:flex-row bg-white relative" id="mariages">
         {/* Left side: Text content */}
         <div className="w-full lg:w-2/3 flex flex-col justify-center items-start p-10 md:p-20">
           <div className="max-w-7xl">
-            <h2 className="font-sans text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-black">
+            <h2 className="font-sans text-4xl sm:text-5xl md:text-5xl font-bold tracking-tighter mb-4 text-black">
               {config.home.mariage.title.line1}
             </h2>
             <h2 className="font-serif italic text-4xl md:text-6xl font-light mb-8 text-gray-800">
@@ -147,7 +106,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             src={config.home.mariage.image.src}  
             alt={config.home.mariage.image.alt} 
             onLoad={onImageLoad('home-mariage-image')}
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+            className="w-full h-full object-cover grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700"
           />
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500"></div>

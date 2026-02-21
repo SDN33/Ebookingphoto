@@ -203,24 +203,17 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.path, item.sectionId)}
-                className={`transition-opacity duration-300 cursor-pointer bg-transparent border-none text-center ${currentPath === item.path ? 'opacity-55' : 'text-white hover:opacity-80'}`}
-                style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}
+                className={`transition-opacity duration-300 cursor-pointer bg-transparent border-none text-center whitespace-nowrap ${currentPath === item.path ? 'opacity-55' : 'text-white hover:opacity-80'}`}
+                style={{ fontSize: 'clamp(2.9rem, 6vw, 3.8rem)' }}
               >
-                {item.label.split('\n').map((line, lineIndex, arr) => (
-                  <span
-                    key={`${item.id}-${lineIndex}`}
-                    className={lineIndex === 0 || arr.length === 1 ? 'menu-line-primary' : 'menu-line-secondary'}
-                  >
-                    {line}
-                  </span>
-                ))}
+                <span className="menu-line-primary">{item.label.replace(/\n/g, ' ')}</span>
               </button>
             ))}
           </div>
 
           <div className="flex justify-between text-xs text-gray-400 font-sans tracking-widest uppercase">
             <span>{config.site.copyright}</span>
-            <span>{config.site.locations}</span>
+            {config.site.locations ? <span>{config.site.locations}</span> : <span />}
           </div>
         </div>
       </div>

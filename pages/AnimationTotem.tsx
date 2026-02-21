@@ -114,10 +114,9 @@ interface FeatureCardProps {
     description: string;
     image: string;
   };
-  index: number;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
   const IconComponent = iconMap[feature.icon] || Monitor;
   const { onImageLoad, getMetrics } = useImageMetrics();
   const imageMetrics = getMetrics(`animation-feature-${feature.id}`, 4 / 3);
@@ -141,8 +140,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
       </div>
 
       <div className="relative z-10 flex flex-col justify-between h-full p-8 md:p-16">
-        <div className="flex justify-between items-start">
-          <span className="font-serif text-6xl text-white">0{index + 1}</span>
+        <div className="flex justify-end items-start">
           <div className="p-4 rounded-full border border-white bg-transparent backdrop-blur-md group-hover:bg-white group-hover:text-black transition-all duration-300">
             <IconComponent className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black" strokeWidth={1.5} />
           </div>
@@ -262,9 +260,9 @@ const AnimationTotem: React.FC<AnimationTotemProps> = ({ onNavigate }) => {
       </div>
 
       {/* 3. Features Horizontal List */}
-      {config.animationTotem.features.map((feature, index) => (
+      {config.animationTotem.features.map((feature) => (
         <div key={feature.id} className="shrink-0 w-full md:w-auto border-b md:border-b-0 border-white/10">
-          <FeatureCard feature={feature} index={index} />
+          <FeatureCard feature={feature} />
         </div>
       ))}
 

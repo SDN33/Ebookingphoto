@@ -31,9 +31,9 @@ const layoutOverrides: Record<
   number,
   { containerClass?: string; imageClass?: string; aspectRatio?: number }
 > = {
-  // 02 : format différent de 01, sans rognage
+  // 02 : même hauteur que la #03, sans rognage
   2: {
-    containerClass: 'h-[36vh] md:h-[50vh]',
+    containerClass: 'h-[44vh] md:h-[60vh]',
     imageClass: 'object-contain bg-gray-100',
     aspectRatio: 1.18,
   },
@@ -63,6 +63,7 @@ const normalizeText = (value: string) =>
 
 const captionOverrides: Record<number, string> = {
   2: "Imprimez, partagez, c'est instantanné !",
+  14: 'Duel à distance, combat sous silence',
   16: 'Écrire avec le corps',
 };
 
@@ -118,7 +119,7 @@ const Reportage: React.FC = () => {
       className="flex flex-col md:flex-row h-full w-full overflow-y-auto overflow-x-hidden md:overflow-y-hidden md:overflow-x-auto no-scrollbar bg-gray-50"
     >
       {/* Intro Section */}
-      <div className="shrink-0 w-full md:w-[50vw] h-auto md:h-full flex flex-col justify-center p-6 md:p-24 bg-white z-10 pt-24 md:pt-0 pb-12">
+      <div className="shrink-0 w-full md:w-[50vw] h-auto md:h-full flex flex-col justify-center px-8 py-8 md:p-24 bg-white z-10 pt-24 md:pt-0 pb-12">
         <span className="font-sans text-xs tracking-[0.3em] uppercase mb-6 text-gray-400">
           {config.reportage.intro.category}
         </span>
@@ -147,7 +148,7 @@ const Reportage: React.FC = () => {
         return (
         <div
           key={item.id}
-          className="shrink-0 w-full md:w-auto flex flex-col justify-center items-center px-4 md:px-10 py-8 md:py-0 relative group"
+          className="shrink-0 w-full md:w-auto flex flex-col justify-center items-center px-6 md:px-10 py-8 md:py-0 relative group"
         >
           <div
             className={`relative transition-all duration-700 ${sizeClass}`}

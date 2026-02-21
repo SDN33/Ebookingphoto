@@ -2,8 +2,8 @@
   "site": {
     "name": "EBOOKINGPHOTO",
     "tagline": "STUDIO PHOTOGRAPHE",
-    "copyright": "© 2024 Ebooking Photo",
-    "locations": "Paris"
+    "copyright": "© 2026 EBOOKING PHOTO",
+    "locations": ""
   },
   "navigation": {
     "logo": {
@@ -18,17 +18,17 @@
       },
       {
         "id": "reportage",
-        "label": "PORTFOLIO\nREPORTAGE",
+        "label": "PORTFOLIO REPORTAGE",
         "path": "/reportage"
       },
       {
         "id": "totem",
-        "label": "TOTEM ANIMATION\nEVENEMENTIELLE",
+        "label": "TOTEM ANIMATION EVENEMENTIELLE",
         "path": "/animation-totem"
       },
       {
         "id": "clubs",
-        "label": "SHOOTING OFFICIEL\nEsprit D'Équipe",
+        "label": "SHOOTING OFFICIEL DES CLUBS",
         "path": "/soiree-club-entreprise"
       },
       {
@@ -144,9 +144,6 @@
         "url": "https://ebookingphoto-mariage.com/",
         "label": "Découvrir"
       }
-    },
-    "flipbook": {
-      "url": "https://online.flippingbook.com/view/1041806480/"
     }
   },
   "reportage": {
@@ -166,10 +163,10 @@
   },
   "soireeClubEntreprise": {
     "intro": {
-      "category": "OFFRE CLUBS",
+      "category": "Esprit d'équipe",
       "title": {
         "line1": "SHOOTING OFFICIEL",
-        "line2": "Esprit D'Équipe"
+        "line2": "DES CLUBS"
       },
       "description": "Nous accompagnons les associations sportives et artistiques dans la mise en lumière de leurs événements majeurs. Une approche dynamique et innovante pour célébrer vos réussites.",
       "decoration": "EP"
@@ -179,7 +176,7 @@
         "title": "Portrait de saison",
         "subtitle": "Edition Studio",
         "description": "Le rendez-vous annuel pour immortaliser vos équipes et vos talents. Une journée de shooting organisé dans votre club, des portraits Pro pour chaque licencié.",
-        "image": "/portrait-spiodt.png",
+        "image": "/portrait.jpg",
         "icon": "Trophy"
       },
       {
@@ -234,7 +231,7 @@
         "line1": "Signature",
         "line2": "événementielle"
       },
-      "description": "Valorisez votre image de marques lors de vos séminaires, lancements de produits ou fête de fin d'année. Une couverture professionnelle pour une communication impactante.",
+      "description": "Transformer chaque cliché en levier de développement.",
       "image": {
         "src": "/totem2.jpg",
         "alt": "Totem d'animation"
@@ -285,12 +282,12 @@
   },
   "contact": {
     "intro": {
-      "category": "Réponse rapide et personnalisé",
+      "category": "Photographe",
       "title": {
         "line1": "CONTACT",
-        "line2": "PHOTOGRAPHE EVENEMENTIEL"
+        "line2": "EVENEMENTIEL"
       },
-      "description": "Parce que chaque événement est unique, je privilégie un échange direct par téléphone ou email . Disponible du lundi au samedi."
+      "description": "Parce que chaque événement est unique, je privilégie un échange direct par téléphone ou email."
     },
     "details": {
       "email": {
@@ -409,7 +406,7 @@
     "transitionTexts": {
       "/reportage": "Saisir le bon instant !",
       "/animation-totem": "Signature événementielle",
-      "/soiree-club-entreprise": "Esprit d'Équipe"
+      "/soiree-club-entreprise": "Portrait de saison"
     }
   }
 }

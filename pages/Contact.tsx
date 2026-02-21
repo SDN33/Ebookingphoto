@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
+import { ArrowUpRight, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 import { useSiteConfig } from '../hooks/useSiteConfig';
 
 const iconMap: { [key: string]: React.ElementType } = {
@@ -31,7 +31,7 @@ const Contact: React.FC = () => {
           </span>
           <h1 className="flex flex-col leading-none">
             <span className="font-sans font-bold text-4xl md:text-6xl 2xl:text-8xl tracking-tighter">{config.contact.intro.title.line1}</span>
-            <span className="font-serif italic font-light text-4xl md:text-6xl 2xl:text-8xl tracking-tight ml-2 md:ml-16 text-gray-300 break-all md:break-normal">{config.contact.intro.title.line2}</span>
+            <span className="font-serif italic font-light text-4xl md:text-6xl 2xl:text-8xl tracking-tight ml-2 md:ml-16 text-gray-300">{config.contact.intro.title.line2}</span>
           </h1>
         </motion.div>
 
@@ -61,9 +61,9 @@ const Contact: React.FC = () => {
                  <Mail className="w-4 h-4 text-gray-500" />
                  <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.email.label}</h3>
               </div>
-              <a href={config.contact.details.email.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors break-all">
+              <a href={config.contact.details.email.href} className="flex items-center gap-2 md:gap-4 text-[0.85rem] sm:text-base md:text-3xl font-serif italic hover:text-gray-300 transition-colors whitespace-nowrap">
                 {config.contact.details.email.value}
-                <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-5 h-5 shrink-0 text-gray-400" />
+                <ArrowUpRight className="hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-5 h-5 shrink-0 text-gray-400" />
               </a>
             </motion.div>
 
@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
                  <Phone className="w-4 h-4 text-gray-500" />
                  <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">{config.contact.details.phone.label}</h3>
               </div>
-              <a href={config.contact.details.phone.href} className="flex items-center gap-4 text-xl md:text-3xl font-serif italic hover:text-gray-300 transition-colors">
+              <a href={config.contact.details.phone.href} className="flex items-center gap-4 text-xl md:text-3xl font-sans hover:text-gray-300 transition-colors">
                 {config.contact.details.phone.value}
               </a>
               {/* Appeler Button - Mobile Only */}
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
           >
             <div className="flex items-center gap-3 mb-2">
               <Mail className="w-4 h-4 text-gray-500" />
-              <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">Formulaire de contact</h3>
+              <h3 className="font-sans text-xs tracking-widest text-gray-500 uppercase">Réponse de 24H en 48H</h3>
             </div>
 
             <input

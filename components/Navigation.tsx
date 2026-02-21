@@ -204,7 +204,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
                 key={item.id}
                 onClick={() => handleNavigate(item.path, item.sectionId)}
                 className={`transition-opacity duration-300 cursor-pointer bg-transparent border-none text-center ${currentPath === item.path ? 'opacity-55' : 'text-white hover:opacity-80'}`}
-                style={{ fontSize: 'clamp(1.25rem, 2.5vw, 3.2rem)' }}
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}
               >
                 {item.label.split('\n').map((line, lineIndex, arr) => (
                   <span

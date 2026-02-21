@@ -166,10 +166,12 @@ const Reportage: React.FC = () => {
           </div>
 
           {/* Caption */}
-          <div className="mt-4 flex items-center gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 md:delay-100">
-            <span className="font-sans text-xs font-bold tracking-widest">0{index + 1}</span>
-            <span className="w-8 h-px bg-black/20" />
-            <p className="font-serif italic text-lg">{caption}</p>
+          <div className="mt-4 flex w-full items-center gap-2 md:gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 md:delay-100">
+            <span className="font-sans text-[10px] md:text-xs font-bold tracking-widest shrink-0">0{index + 1}</span>
+            <span className="w-5 md:w-8 h-px bg-black/20 shrink-0" />
+            <p className="font-serif italic text-[clamp(0.72rem,2.9vw,0.95rem)] md:text-lg whitespace-nowrap">
+              {caption}
+            </p>
           </div>
         </div>
       )})}

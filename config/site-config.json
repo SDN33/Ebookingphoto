@@ -137,7 +137,7 @@
       },
       "description": "Parce que chaque victoire, chaque projet, chaque union mérite une image forte.",
       "image": {
-        "src": "/gallery/mariage/photo1.jpg",
+        "src": "/totem.jpg",
         "alt": "Mariage"
       },
       "link": {
@@ -176,7 +176,7 @@
         "title": "Portrait de saison",
         "subtitle": "Edition Studio",
         "description": "Le rendez-vous annuel pour immortaliser vos équipes et vos talents. Une journée de shooting organisé dans votre club, des portraits Pro pour chaque licencié.",
-        "image": "/portrait.jpg",
+        "image": "/portrait-spiodt.png",
         "icon": "Trophy"
       },
       {
@@ -305,7 +305,7 @@
         {
           "name": "Facebook",
           "icon": "Facebook",
-          "href": "https://www.facebook.com/ebookingphotoSoiree/?locale=fr_FR"
+          "href": "https://www.facebook.com/charly.ekambi/"
         },
         {
           "name": "Instagram",

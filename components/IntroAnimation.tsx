@@ -13,6 +13,13 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
   mode = 'intro' 
 }) => {
   const [slideOut, setSlideOut] = useState(false);
+  const normalizedTransitionText = lastLineText
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+  const isSignatureTransition =
+    mode === 'transition' && normalizedTransitionText === 'signature evenementielle';
   // Initialize directly with window width to ensure correct 'initial' animation prop on mount
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 1024);
 
@@ -141,7 +148,9 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                 transition={{ duration: 0.6, ease: "easeOut", delay: isMobile ? 0.06 : 0 }}
                 className={`font-serif italic font-light tracking-tight whitespace-nowrap block ${isMobile ? 'self-start' : 'self-center lg:self-start'}`}
                 style={{ 
-                  fontSize: isMobile ? 'clamp(2.8rem, 13vw, 4.2rem)' : 'clamp(3rem, 6vw + 1rem, 6rem)',
+                  fontSize: isMobile
+                    ? (isSignatureTransition ? 'clamp(1.85rem, 8.4vw, 2.35rem)' : 'clamp(2.8rem, 13vw, 4.2rem)')
+                    : 'clamp(3rem, 6vw + 1rem, 6rem)',
                 }}
               >
                 {lastLineText}

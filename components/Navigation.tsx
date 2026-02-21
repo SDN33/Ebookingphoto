@@ -204,7 +204,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath, onNavigate }) => {
                 key={item.id}
                 onClick={() => handleNavigate(item.path, item.sectionId)}
                 className={`transition-opacity duration-300 cursor-pointer bg-transparent border-none text-center whitespace-nowrap ${currentPath === item.path ? 'opacity-55' : 'text-white hover:opacity-80'}`}
-                style={{ fontSize: 'clamp(2.2rem, 4.8vw, 3.2rem)' }}
+                style={{ fontSize: 'clamp(1.25rem, 5.2vw, 3.2rem)', lineHeight: 1.02 }}
               >
                 <span className="menu-line-primary">{item.label.replace(/\n/g, ' ')}</span>
               </button>

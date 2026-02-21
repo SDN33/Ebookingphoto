@@ -18,12 +18,12 @@
       },
       {
         "id": "reportage",
-        "label": "PORTFOLIO REPORTAGE",
+        "label": "PORTFOLIO",
         "path": "/reportage"
       },
       {
         "id": "totem",
-        "label": "TOTEM ANIMATION EVENEMENTIELLE",
+        "label": "TOTEM EVENEMENTIELLE",
         "path": "/animation-totem"
       },
       {

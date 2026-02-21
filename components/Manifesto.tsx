@@ -16,11 +16,11 @@ const Manifesto: React.FC = () => {
             initial={{ x: 100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
-            className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[0.9] text-black whitespace-normal md:whitespace-nowrap"
+            className="text-4xl md:text-7xl lg:text-6xl font-sans font-semibold tracking-tighter leading-[1.02] md:leading-[0.9] text-black whitespace-normal md:whitespace-nowrap py-[0.03em]"
             dangerouslySetInnerHTML={{
               __html: line.replace(
                 /S[’']UNISSENT\.?/g,
-                '<span class="font-serif italic font-normal text-[1.12em] leading-[0.9] align-baseline">S’UNISSENT.</span>',
+                '<span class="font-serif italic font-normal text-[1.12em] leading-[1.02] md:leading-[0.9] align-baseline">S’UNISSENT.</span>',
               ),
             }}
           />

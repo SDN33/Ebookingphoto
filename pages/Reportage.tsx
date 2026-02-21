@@ -148,10 +148,10 @@ const Reportage: React.FC = () => {
         return (
         <div
           key={item.id}
-          className="shrink-0 w-full md:w-auto flex flex-col justify-center items-center px-6 md:px-10 py-8 md:py-0 relative group"
+          className="shrink-0 w-full md:w-auto flex flex-col justify-center items-center px-8 md:px-10 py-8 md:py-0 relative group"
         >
           <div
-            className={`relative transition-all duration-700 ${sizeClass}`}
+            className={`relative w-full md:w-auto transition-all duration-700 ${sizeClass}`}
             style={{ aspectRatio }}
           >
             <motion.img

@@ -122,10 +122,10 @@
         },
         {
           "id": "4",
-          "url": "/totem.jpg",
+          "url": "/totem-optimized.jpg",
           "title": "Totem",
           "category": "Animation d’événement",
-          "aspectRatio": "landscape"
+          "aspectRatio": "portrait"
         }
       ]
     },
@@ -137,7 +137,7 @@
       },
       "description": "Parce que chaque victoire, chaque projet, chaque union mérite une image forte.",
       "image": {
-        "src": "/gallery/mariage/photo1.jpg",
+        "src": "/gallery/mariage/photo1-vertical.jpg",
         "alt": "Mariage"
       },
       "link": {

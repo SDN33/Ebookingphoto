@@ -134,7 +134,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
           alt={feature.title} 
           onLoad={onImageLoad(`animation-feature-${feature.id}`)}
           className={`w-full h-full object-cover opacity-100 transition-[filter] duration-700 ease-out ${
-            isQrCodeCard ? 'object-[50%_62%] md:object-[50%_44%]' : ''
+            isQrCodeCard ? 'object-[50%_48%] md:object-[50%_44%]' : ''
           }`}
         />
       </div>
@@ -146,12 +146,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
           </div>
         </div>
 
-        <div className={`mb-6 md:mb-0 ${isQrCodeCard ? 'absolute bottom-5 md:bottom-12 left-8 md:left-16 right-8 md:right-16' : ''}`}>
-          <h4 className={`flex flex-col mb-6 ${isQrCodeCard ? 'text-3xl md:text-5xl leading-[0.95]' : 'text-4xl md:text-5xl'}`}>
+        <div className={`mb-6 md:mb-0 ${isQrCodeCard ? 'absolute bottom-2 md:bottom-12 left-4 md:left-16 right-4 md:right-16 bg-white/88 md:bg-transparent p-3 md:p-0 rounded-sm md:rounded-none' : ''}`}>
+          <h4 className={`flex flex-col mb-4 md:mb-6 ${isQrCodeCard ? 'text-[1.55rem] md:text-5xl leading-[0.95]' : 'text-4xl md:text-5xl'}`}>
             <span className={`font-sans font-bold tracking-tight ${isQrCodeCard ? 'text-black' : 'text-white'}`}>{feature.title}</span>
             <span className={`font-serif italic font-light ${isQrCodeCard ? 'text-black' : 'text-white'}`}>{feature.subtitle}</span>
           </h4>
-          <p className={`font-sans text-sm md:text-base leading-relaxed ${isQrCodeCard ? 'text-black max-w-sm' : 'text-white max-w-md'}`}>
+          <p className={`font-sans text-xs md:text-base leading-relaxed ${isQrCodeCard ? 'text-black max-w-sm md:max-w-sm' : 'text-white max-w-md'}`}>
             {feature.description}
           </p>
         </div>

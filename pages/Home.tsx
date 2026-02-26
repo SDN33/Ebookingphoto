@@ -101,14 +101,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
         {/* Right side: Image with button overlay */}
         <div
-          className="w-auto h-[50vh] lg:h-full max-w-[92vw] lg:max-w-[40vw] relative group overflow-hidden mx-auto lg:mx-0"
+          className="w-auto h-[50vh] lg:h-full max-w-[92vw] lg:max-w-[40vw] relative group overflow-hidden mx-auto lg:mx-0 mb-8 lg:mb-0"
           style={{ aspectRatio: mariageImageMetrics.ratio }}
         >
           <img 
             src={config.home.mariage.image.src}  
             alt={config.home.mariage.image.alt} 
             onLoad={onImageLoad('home-mariage-image')}
-            className="w-full h-full object-contain bg-gray-100 grayscale md:group-hover:grayscale-0 transition-all duration-700"
+            className="w-full h-full object-cover grayscale md:group-hover:grayscale-0 transition-all duration-700"
           />
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500"></div>

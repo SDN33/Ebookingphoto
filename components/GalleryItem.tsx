@@ -21,7 +21,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ photo, index, onClick }) => {
   const mobileFitClass = isPoesieVisuelle
     ? 'object-cover object-[44%_50%] md:object-cover md:object-center'
     : isTotemCard
-      ? 'object-contain md:object-cover object-center bg-gray-100'
+      ? 'object-cover object-center md:object-cover'
       : 'object-cover';
   const canClick = typeof onClick === 'function';
 

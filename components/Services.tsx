@@ -31,7 +31,13 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
             >
               <div className="flex flex-col md:flex-col lg:flex-row lg:items-baseline gap-3 md:gap-3 lg:gap-12">
                 <span className="font-serif italic text-xl md:text-2xl text-gray-400 group-hover:text-black transition-colors">{service.id}</span>
-                <h3 className="font-sans font-bold text-3xl md:text-4xl lg:text-4xl tracking-tight uppercase leading-[0.95] whitespace-pre-line min-h-[2.1em]">{service.title}</h3>
+                <h3 className="font-sans font-bold text-[clamp(1.62rem,7.6vw,2.2rem)] md:text-4xl lg:text-4xl tracking-tight uppercase leading-[0.95] min-h-[2.1em]">
+                  {service.title.split('\n').map((line, lineIndex) => (
+                    <span key={`${service.id}-${lineIndex}`} className="block whitespace-nowrap">
+                      {line}
+                    </span>
+                  ))}
+                </h3>
               </div>
               <div className="flex items-center gap-4 mt-5 md:mt-5 lg:mt-0 opacity-100 md:opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">
                 <span className="font-sans text-xs md:text-sm tracking-wide text-gray-600">{service.description}</span>

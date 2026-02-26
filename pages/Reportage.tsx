@@ -38,7 +38,7 @@ const layoutOverrides: Record<
     aspectRatio: 1.18,
   },
   // 2 -> 3 : rogner à gauche (sujet à droite), casser le format avec la #4
-  3: { containerClass: 'h-[44vh] md:h-[60vh]', imageClass: 'object-cover object-[86%_50%]' },
+  3: { containerClass: 'h-[44vh] md:h-[60vh]', imageClass: 'object-cover object-center md:object-[86%_50%]' },
   // 3 -> 4 : format différent de la #3
   4: { containerClass: 'h-[36vh] md:h-[52vh]' },
   // 4 -> 5 & 5 -> 6 : casser les formats identiques
@@ -76,27 +76,32 @@ const Reportage: React.FC = () => {
 
   // Génère les images depuis le dossier puis applique l'ordre métier demandé
   const images = useMemo(() => {
-    const orderIndex = new Map(
-      reportageOrder.map((label, index) => [normalizeText(label), index]),
-    );
+    const filesByNormalizedName = new Map<string, string>();
 
-    const ordered = Object.keys(imageModules)
-      .map((path) => {
+    Object.keys(imageModules).forEach((path) => {
       const filename = path.split('/').pop()?.replace(/\.[^/.]+$/, '') || '';
       const normalizedFilename = normalizeText(filename);
-      const rank = orderIndex.get(normalizedFilename);
-      if (rank === undefined) return null;
 
-      return { path, rank };
+      // Keep only one file by normalized key to avoid duplicate rendering
+      // when filenames differ only by accent normalization.
+      if (!filesByNormalizedName.has(normalizedFilename)) {
+        filesByNormalizedName.set(normalizedFilename, path);
+      }
+    });
+
+    return reportageOrder
+      .map((caption, index) => {
+        const normalizedCaption = normalizeText(caption);
+        const path = filesByNormalizedName.get(normalizedCaption);
+        if (!path) return null;
+
+        return {
+          id: index + 1,
+          url: path.replace('/public', ''),
+          caption,
+        };
       })
-      .filter((item): item is { path: string; rank: number } => item !== null)
-      .sort((a, b) => a.rank - b.rank);
-
-    return ordered.map((item, index) => ({
-      id: index + 1,
-      url: item.path.replace('/public', ''),
-      caption: reportageOrder[item.rank],
-    }));
+      .filter((item): item is { id: number; url: string; caption: string } => item !== null);
   }, []);
 
   // Manual horizontal scroll handler

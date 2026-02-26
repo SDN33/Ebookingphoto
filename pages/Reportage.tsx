@@ -44,10 +44,12 @@ const layoutOverrides: Record<
   // 4 -> 5 & 5 -> 6 : casser les formats identiques
   5: { containerClass: 'h-[50vh] md:h-[70vh]' },
   6: { containerClass: 'h-[40vh] md:h-[56vh]' },
+  // 7 -> 8 (Figer l'adrénaline) : mobile en entier, recentré
+  8: { imageClass: 'object-contain object-center md:object-cover md:object-center bg-gray-100' },
   // 8 -> 9 : sans rognage, plus petit
   9: { containerClass: 'h-[30vh] md:h-[44vh]', imageClass: 'object-contain' },
-  // 9 -> 10 : rogner à gauche pour casser le format
-  10: { containerClass: 'h-[42vh] md:h-[60vh]', imageClass: 'object-cover object-[84%_50%]' },
+  // 9 -> 10 (Le Sport dans chaque foulée) : mobile en entier, desktop inchangé
+  10: { containerClass: 'h-[42vh] md:h-[60vh]', imageClass: 'object-contain object-center md:object-cover md:object-[84%_50%] bg-gray-100' },
   // 13 -> 14 (Duel) : même format que #16, mais plus grand
   14: { containerClass: 'h-[48vh] md:h-[68vh]' },
   // #16 après permutation (PHOTO SPECTACLE DANSE) : même base, un peu plus petit que #14

@@ -18,6 +18,11 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ photo, index, onClick }) => {
     photo.title.trim().toLowerCase() === 'totem' ||
     photo.category.toLowerCase().includes('animation');
   const isPoesieVisuelle = photo.title.trim().toLowerCase() === 'poésie visuelle';
+  const mobileFitClass = isPoesieVisuelle
+    ? 'object-cover object-[44%_50%] md:object-cover md:object-center'
+    : isTotemCard
+      ? 'object-contain md:object-cover object-center bg-gray-100'
+      : 'object-cover';
   const canClick = typeof onClick === 'function';
 
   return (
@@ -26,7 +31,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ photo, index, onClick }) => {
     >
       <div 
         onClick={onClick}
-        className={`relative overflow-hidden bg-gray-100 shadow-lg mx-auto md:mx-0 ${canClick ? 'cursor-pointer' : 'cursor-default'} ${
+        className={`relative overflow-hidden bg-gray-100 shadow-lg mx-auto md:mx-0 ${isPoesieVisuelle ? 'w-[86vw] md:w-auto' : ''} ${canClick ? 'cursor-pointer' : 'cursor-default'} ${
           isPortrait ? 'h-[60vh] md:h-[70vh]' : 'h-[40vh] md:h-[50vh]'
         }`}
         style={{ aspectRatio: metrics.ratio }}
@@ -35,10 +40,8 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ photo, index, onClick }) => {
           src={photo.url} 
           alt={photo.title}
           onLoad={onImageLoad(photo.id)}
-          className={`w-full h-full object-cover ${isPoesieVisuelle ? 'object-center' : ''} grayscale-0 md:grayscale transition-all duration-700 ease-in-out contrast-110 ${
-            isTotemCard
-              ? 'md:group-hover:grayscale-0 md:group-hover:brightness-125 md:group-hover:saturate-110'
-              : 'md:group-hover:grayscale-0'
+          className={`w-full h-full ${mobileFitClass} grayscale transition-all duration-700 ease-in-out contrast-110 ${
+            isTotemCard ? 'md:grayscale-0' : 'md:grayscale md:group-hover:grayscale-0'
           }`}
           loading="lazy"
         />

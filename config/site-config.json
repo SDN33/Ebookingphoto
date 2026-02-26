@@ -2,7 +2,7 @@
   "site": {
     "name": "EBOOKINGPHOTO",
     "tagline": "STUDIO PHOTOGRAPHE",
-    "copyright": "© 2026 EBOOKING PHOTO",
+    "copyright": "© 2026 EBOOKINGPHOTO",
     "locations": ""
   },
   "navigation": {
@@ -18,7 +18,7 @@
       },
       {
         "id": "reportage",
-        "label": "PORTFOLIO",
+        "label": "PORTFOLIO REPORTAGE",
         "path": "/reportage"
       },
       {
@@ -137,7 +137,7 @@
       },
       "description": "Parce que chaque victoire, chaque projet, chaque union mérite une image forte.",
       "image": {
-        "src": "/totem.jpg",
+        "src": "/gallery/mariage/photo1.jpg",
         "alt": "Mariage"
       },
       "link": {
@@ -150,8 +150,8 @@
     "intro": {
       "category": "Photo Reportage",
       "title": {
-        "line1": "Votre événement,",
-        "line2": "notre regard."
+        "line1": "Votre évènement,",
+        "line2": "Un regard"
       },
       "description": "Une sélection curatée de photographies de reportage. Des fragments de vie capturés sur le vif, le mouvement et l’émotion, entre les gestes et les silences. Là où la perfection se révèle dans l’inattendu."
     },
@@ -249,7 +249,7 @@
         "icon": "Monitor",
         "title": "Décor",
         "subtitle": "Scénographique",
-        "description": "Un dispositif d'exception, décor scénarisé sur mesure et experience immersive : L'art de sublimer vos clichés.",
+        "description": "Un décor subtile qui compose avec la photographie d'art et votre image de marque où l'Art de sublimer vos clichés.",
         "image": "/decor.jpg"
       },
       {
@@ -257,7 +257,7 @@
         "icon": "Printer",
         "title": "Partage ",
         "subtitle": "Qr-code & Impression",
-        "description": "L'excellence du tirage papier alliée à la sécurité numérique. Par confidentialité, chaque invité accède à ses souvenirs via un Qr-code, via un accès immediat et sécurisé.",
+        "description": "L'excellence du tirage papier allié à la fulgurance d'un accès privé. Si l'encre fige l'instant, le numérique l'emporte.",
         "image": "/qrcode.png"
       },
       {
@@ -265,7 +265,7 @@
         "icon": "Share2",
         "title": "Branding",
         "subtitle": "Social Ready",
-        "description": "Transformez chaque cliché en levier d'image. Entre logo intégré et scénographie personnalisée, vos invités deviennent les ambassadeurs de votre marque.",
+        "description": "Faites de chaque image un moteur de visibilité. Vos invités deviennent les ambassadeurs de votre marque.",
           "image": "/branding.jpg"
         }
     ],

@@ -62,10 +62,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       <Services onNavigate={onNavigate} />
 
       {/* Section 5: Archive Gallery */}
-      <div className="shrink-0 flex flex-col lg:flex-row lg:items-center bg-gray-50/50" id="journal">
+      <div className="shrink-0 flex flex-col lg:flex-row lg:items-center bg-gray-50 mt-14 pt-6 lg:mt-0 lg:pt-0" id="journal">
          {/* Archive Label: Top Header on Mobile, Vertical Sidebar on Desktop */}
-         <div className="w-full lg:w-40 h-20 lg:h-full flex items-center justify-center lg:justify-center border-b lg:border-b-0 lg:border-r border-gray-200 bg-gray-50 static lg:static z-20">
-           <span className="lg:-rotate-90 text-xs tracking-widest uppercase text-gray-400 whitespace-nowrap">{config.home.gallery.label}</span>
+         <div className="hidden lg:flex lg:w-40 lg:h-full items-center justify-center border-r border-gray-200 bg-gray-50 relative z-10">
+           <span className="block lg:-rotate-90 text-[11px] tracking-[0.24em] uppercase text-gray-500 whitespace-nowrap text-center">
+             {config.home.gallery.label}
+           </span>
          </div>
          
          {/* Gallery Items */}
@@ -82,7 +84,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       {/* Section 6: Mariages */}
       <div className="shrink-0 w-full lg:w-[100vw] mt-20 md:mt-0 lg:h-full flex flex-col lg:flex-row bg-white relative" id="mariages">
         {/* Left side: Text content */}
-        <div className="w-full lg:w-2/3 flex flex-col justify-center items-start p-10 md:p-20">
+        <div className="w-full lg:w-2/3 flex flex-col justify-center items-start p-10 pt-24 md:p-20">
           <div className="max-w-7xl">
             <h2 className="font-sans text-4xl sm:text-5xl md:text-5xl font-bold tracking-tighter mb-4 text-black">
               {config.home.mariage.title.line1}
@@ -106,7 +108,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             src={config.home.mariage.image.src}  
             alt={config.home.mariage.image.alt} 
             onLoad={onImageLoad('home-mariage-image')}
-            className="w-full h-full object-cover grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700"
+            className="w-full h-full object-contain bg-gray-100 grayscale md:group-hover:grayscale-0 transition-all duration-700"
           />
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500"></div>

@@ -146,7 +146,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
           </div>
         </div>
 
-        <div className={`mb-12 md:mb-0 ${isQrCodeCard ? 'absolute bottom-8 md:bottom-12 left-8 md:left-16 right-8 md:right-16' : ''}`}>
+        <div className={`mb-6 md:mb-0 ${isQrCodeCard ? 'absolute bottom-5 md:bottom-12 left-8 md:left-16 right-8 md:right-16' : ''}`}>
           <h4 className={`flex flex-col mb-6 ${isQrCodeCard ? 'text-3xl md:text-5xl leading-[0.95]' : 'text-4xl md:text-5xl'}`}>
             <span className={`font-sans font-bold tracking-tight ${isQrCodeCard ? 'text-black' : 'text-white'}`}>{feature.title}</span>
             <span className={`font-serif italic font-light ${isQrCodeCard ? 'text-black' : 'text-white'}`}>{feature.subtitle}</span>

@@ -103,8 +103,8 @@ const SoireeClubEntreprise: React.FC<SoireeClubEntrepriseProps> = ({ onNavigate 
           </div>
 
           <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-16 text-white">
-             <div className="mb-auto pt-10 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 transform md:-translate-y-4 md:group-hover:translate-y-0">
-                <IconComponent className="w-12 h-12 mb-4 text-white" />
+             <div className="mb-auto pt-6 md:pt-10 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 transform md:-translate-y-4 md:group-hover:translate-y-0">
+                <IconComponent className="w-10 h-10 md:w-12 md:h-12 mb-4 text-white" />
              </div>
              
              <h2 className="font-sans font-bold text-4xl md:text-6xl tracking-tight mb-2">{event.title}</h2>

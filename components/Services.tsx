@@ -41,7 +41,7 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
           ))}
         </div>
 
-        <div className="mt-auto pt-4 md:pt-6">
+        <div className="mt-auto pt-4 pb-6 md:pt-6 md:pb-0">
           <p className="font-serif italic text-base md:text-lg text-gray-500">{services.footer}</p>
         </div>
       </div>

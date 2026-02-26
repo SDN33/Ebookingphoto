@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import Reportage from './pages/Reportage';
 import AnimationTotem from './pages/AnimationTotem';
 import SoireeClubEntreprise from './pages/SoireeClubEntreprise';
+import MentionsLegales from './pages/MentionsLegales';
 import CustomCursor from './components/CustomCursor';
 import IntroAnimation from './components/IntroAnimation';
 import { useSiteConfig } from './hooks/useSiteConfig';
@@ -53,6 +54,8 @@ const App: React.FC = () => {
         return <AnimationTotem onNavigate={handleNavigate} />;
       case '/soiree-club-entreprise':
         return <SoireeClubEntreprise onNavigate={handleNavigate} />;
+      case '/mentions-legales':
+        return <MentionsLegales />;
       default:
         return <Home onNavigate={handleNavigate} />;
     }

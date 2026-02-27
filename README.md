@@ -88,4 +88,4 @@ Cliquer sur le bouton `Connect a Repo`:
   - Verifier les DNS dans IONOS.
 - Les modifs n'apparaissent pas:
   - Verifier que la modif est bien mergee/pushee sur `main`.
-  - Verifier le dernier deploy dans Vercel.
+  - Verifier le dernier deploy dans Vercel..

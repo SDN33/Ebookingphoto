@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Photo } from '../types';
 import { useImageMetrics } from '../hooks/useImageMetrics';
@@ -29,9 +28,9 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ photo, index, onClick }) => {
     <div 
       className={`shrink-0 flex flex-col justify-center px-6 md:px-16 py-10 md:py-0 w-full md:w-auto min-h-[50vh] md:h-screen relative group`}
     >
-      <div 
+      <div
         onClick={onClick}
-        className={`relative overflow-hidden bg-gray-100 shadow-lg mx-auto md:mx-0 ${isPoesieVisuelle ? 'w-[86vw] md:w-auto' : ''} ${canClick ? 'cursor-pointer' : 'cursor-default'} ${
+        className={`relative overflow-hidden bg-gray-100 shadow-lg mx-auto md:mx-0 ${isPoesieVisuelle ? 'w-[86vw] md:w-auto' : isTotemCard ? 'w-full md:w-auto' : ''} ${canClick ? 'cursor-pointer' : 'cursor-default'} ${
           isPortrait ? 'h-[60vh] md:h-[70vh]' : 'h-[40vh] md:h-[50vh]'
         }`}
         style={{ aspectRatio: metrics.ratio }}
